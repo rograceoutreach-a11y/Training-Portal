@@ -1,0 +1,93 @@
+# Reflections of Grace — Master Training Portal
+
+**Live Site:** https://reflectionsofgracebiblestudies.netlify.app  
+**Repository:** https://github.com/rograceoutreach-a11y/Training-Portal  
+**Developed by:** Thomas E. Walker, MDiv. · Moreno Valley, CA
+
+---
+
+## ✅ File Structure (Upload All of These)
+
+```
+Training-Portal/
+├── index.html        ← Main HTML page (required)
+├── _redirects        ← Netlify SPA routing (required)
+├── netlify.toml      ← Netlify build config (required)
+├── README.md         ← This file
+└── src/
+    ├── app.js        ← All JavaScript, routing, Stripe logic
+    └── style.css     ← All styles
+```
+
+---
+
+## 🔌 How to Activate Stripe Payments
+
+### Step 1 — Create Your Stripe Payment Links
+
+Go to [dashboard.stripe.com](https://dashboard.stripe.com) and create **4 Payment Links**:
+
+| Product | Description | After-Payment URL |
+|---|---|---|
+| Full Certificate Program | All 6 modules | https://reflectionsofgracebiblestudies.netlify.app/#/success |
+| Module 3 — Counseling | Integrated Christian Counseling | https://reflectionsofgracebiblestudies.netlify.app/#/success |
+| Module 6 — Gen X | Generation X Left the Church | https://reflectionsofgracebiblestudies.netlify.app/#/success |
+| Ministry Donation | One-time or recurring gift | https://reflectionsofgracebiblestudies.netlify.app/#/success |
+
+### Step 2 — Get Your Publishable Key
+
+In Stripe Dashboard → Developers → API Keys → copy your **Publishable key** (starts with `pk_live_`)
+
+### Step 3 — Update src/app.js
+
+Open `src/app.js` and find the `STRIPE_CONFIG` block at the top. Replace the placeholder values:
+
+```javascript
+const STRIPE_CONFIG = {
+  publishableKey: "pk_live_YOUR_ACTUAL_KEY_HERE",
+  links: {
+    full:       "https://buy.stripe.com/YOUR_ACTUAL_FULL_LINK",
+    counseling: "https://buy.stripe.com/YOUR_ACTUAL_COUNSELING_LINK",
+    genx:       "https://buy.stripe.com/YOUR_ACTUAL_GENX_LINK",
+    donate:     "https://buy.stripe.com/YOUR_ACTUAL_DONATE_LINK",
+  }
+};
+```
+
+### Step 4 — Commit and Deploy
+
+Commit the updated `src/app.js` to GitHub. Netlify will automatically redeploy in 60–90 seconds.
+
+---
+
+## 🚀 Netlify Setup
+
+Make sure your Netlify site is connected to this repository:
+
+1. Go to [app.netlify.com](https://app.netlify.com)
+2. Site → Site Settings → Build & Deploy → Link repository
+3. Select: `rograceoutreach-a11y/Training-Portal`
+4. Build command: *(leave blank)*
+5. Publish directory: `.` (a single dot — the root)
+6. Save → Trigger deploy
+
+---
+
+## 📄 Pages
+
+| URL | Description |
+|---|---|
+| `/#/` | Home page with hero, modules overview |
+| `/#/courses` | Full course catalog |
+| `/#/donate` | Donation page (one-time + monthly) |
+| `/#/about` | About Thomas E. Walker |
+| `/#/enroll` | Enrollment form → Stripe checkout |
+| `/#/success` | Post-payment confirmation page |
+
+---
+
+## 📞 Contact
+
+Reflections of Grace Outreach Ministries, Inc.  
+Moreno Valley, California  
+Thomas E. Walker, MDiv.

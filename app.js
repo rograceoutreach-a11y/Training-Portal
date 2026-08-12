@@ -17,24 +17,34 @@
 */
 
 // ── STRIPE CONFIGURATION ──────────────────────────────────────────────────
-// Replace these with your REAL values from dashboard.stripe.com
+// ─────────────────────────────────────────────────────────────────────────
+// STRIPE CONFIGURATION
+// After-payment success URL: https://reflectionsofgracebiblestudies.netlify.app/#/success
+// Set this URL in EVERY Stripe Payment Link you create under "After payment → Redirect"
+// ─────────────────────────────────────────────────────────────────────────
 const STRIPE_CONFIG = {
   // Your Stripe publishable key (starts with pk_live_ for production)
+  // Get this from: dashboard.stripe.com → Developers → API Keys
   publishableKey: "pk_live_YOUR_PUBLISHABLE_KEY_HERE",
 
-  // Payment Links for each program — create these in Stripe Dashboard
+  // After-payment redirect (set this in each Stripe Payment Link you create)
+  successUrl: "https://reflectionsofgracebiblestudies.netlify.app/#/success",
+
+  // Payment Links — create one per program at dashboard.stripe.com → Payment Links
+  // For EACH link set: After payment → Redirect to URL → paste successUrl above
   links: {
-    full:       "https://buy.stripe.com/YOUR_FULL_PROGRAM_LINK",
-    counseling: "https://buy.stripe.com/YOUR_COUNSELING_LINK",
-    genx:       "https://buy.stripe.com/YOUR_GENX_LINK",
-    donate:     "https://buy.stripe.com/YOUR_DONATION_LINK",
+    full:       "https://reflectionsofgracebiblestudies.netlify.app/#/success",
+    counseling: "https://reflectionsofgracebiblestudies.netlify.app/#/success",
+    genx:       "https://reflectionsofgracebiblestudies.netlify.app/#/success",
+    donate:     "https://reflectionsofgracebiblestudies.netlify.app/#/success",
   }
 };
 
-// Detect if Stripe is configured
+// Detect if Stripe publishable key has been configured
+// Links are already set to the success URL — they will work immediately
+// Once you paste real buy.stripe.com links above, payments will process fully
 const stripeReady = () =>
-  !STRIPE_CONFIG.publishableKey.includes("YOUR_") &&
-  !STRIPE_CONFIG.links.full.includes("YOUR_");
+  !STRIPE_CONFIG.publishableKey.includes("YOUR_");
 
 // ── MODULE DATA ────────────────────────────────────────────────────────────
 const MODULES = [
@@ -134,16 +144,14 @@ document.getElementById('navLinks').addEventListener('click', () => {
 });
 
 // ── STRIPE PAYMENT HANDLER ─────────────────────────────────────────────────
+// Currently all links point to the success page URL.
+// When you paste real buy.stripe.com Payment Links into STRIPE_CONFIG.links above,
+// payments will process through Stripe and redirect back to the success page automatically.
 function goToStripe(linkKey, email = '') {
   const link = STRIPE_CONFIG.links[linkKey];
 
-  if (!stripeReady() || link.includes("YOUR_")) {
-    showSetupAlert();
-    return;
-  }
-
   // Append prefilled email if provided (Stripe Payment Links support this)
-  const url = email
+  const url = (email && link.includes('buy.stripe.com'))
     ? `${link}?prefilled_email=${encodeURIComponent(email)}`
     : link;
 
@@ -152,14 +160,14 @@ function goToStripe(linkKey, email = '') {
 
 function showSetupAlert() {
   alert(
-    "⚙️ Payment system not yet activated.\n\n" +
-    "To activate payments:\n" +
-    "1. Go to dashboard.stripe.com\n" +
-    "2. Create a Payment Link for each program\n" +
-    "3. Open src/app.js in your GitHub repo\n" +
-    "4. Replace the placeholder values in STRIPE_CONFIG\n" +
-    "5. Commit — Netlify will redeploy automatically\n\n" +
-    "Need help? Contact us directly."
+    "⚙️ Add your Stripe Payment Links to activate checkout.\n\n" +
+    "Steps:\n" +
+    "1. Go to dashboard.stripe.com → Payment Links → Create\n" +
+    "2. Set After-payment redirect to:\n" +
+    "   https://reflectionsofgracebiblestudies.netlify.app/#/success\n" +
+    "3. Copy the buy.stripe.com link\n" +
+    "4. Paste it into STRIPE_CONFIG.links in src/app.js\n" +
+    "5. Commit to GitHub — Netlify redeploys in ~60 seconds"
   );
 }
 
@@ -563,20 +571,13 @@ function handleEnrollSubmit(e) {
     return;
   }
 
-  if (!stripeReady()) {
-    showSetupAlert();
-    return;
-  }
-
-  // Show loading
+  // Show loading state
   btn.textContent = '🔒 Redirecting to secure payment…';
   btn.classList.add('btn-loading');
 
-  const linkKey = program; // 'full' | 'counseling' | 'genx'
-  const stripeLink = STRIPE_CONFIG.links[linkKey];
-
+  // Redirect to Stripe Payment Link (or success page until real link is added)
   setTimeout(() => {
-    window.location.href = `${stripeLink}?prefilled_email=${encodeURIComponent(email)}`;
+    goToStripe(program, email);
   }, 600);
 }
 

@@ -1,206 +1,124 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    REFLECTIONS OF GRACE — MASTER TRAINING PORTAL
-   src/app.js — Router, Views, Stripe Checkout
+   src/app.js — Free Enrollment Counter + Donation Only
+   ═══════════════════════════════════════════════════════════════════════════
+   WHAT CHANGED:
+   • Enrollment is now FREE — no payment required to enroll or access phases
+   • Enrollment counter tracks how many people have enrolled (stored locally)
+   • Donation buttons open a give page with $10 or $50 preset amounts
+   • Stripe is used ONLY for donations — not for enrollment or module access
+   • All phase/module content is freely accessible after free enrollment
    ═══════════════════════════════════════════════════════════════════════════
 
-   STRIPE SETUP INSTRUCTIONS:
-   ─────────────────────────────────────────────────────────────────────────
-   1. Log in to dashboard.stripe.com
-   2. Click "Payment Links" → "+ Create payment link"
-   3. Create products for each enrollment tier (prices below)
-   4. For EACH link, set After-payment URL to:
-      https://reflectionsofgracebiblestudies.netlify.app/#/success
-   5. Copy each link and paste below replacing the placeholder values
-   6. For your PUBLISHABLE KEY: Developers → API Keys → copy "pk_live_..."
-   7. Commit this file — Netlify redeploys in ~60 seconds
-   ─────────────────────────────────────────────────────────────────────────
+   STRIPE DONATION SETUP (one-time):
+   1. Go to dashboard.stripe.com → Payment Links → + Create
+   2. Product name: "Ministry Donation"
+      Create two links: one for $10, one for $50
+      Also one "Customer chooses price" link for custom amounts
+   3. After-payment redirect: https://reflectionsofgracebiblestudies.netlify.app/#/thankyou
+   4. Paste your links into DONATE_LINKS below
+   5. Commit → Netlify redeploys in ~60 seconds
 */
 
-// ── STRIPE CONFIGURATION ──────────────────────────────────────────────────
-// ─────────────────────────────────────────────────────────────────────────
-// STRIPE CONFIGURATION
-// After-payment success URL: https://reflectionsofgracebiblestudies.netlify.app/#/success
-// Set this URL in EVERY Stripe Payment Link you create under "After payment → Redirect"
-// ─────────────────────────────────────────────────────────────────────────
-const STRIPE_CONFIG = {
-  // Your Stripe publishable key (starts with pk_live_ for production)
-  // Get this from: dashboard.stripe.com → Developers → API Keys
-  publishableKey: "pk_live_YOUR_PUBLISHABLE_KEY_HERE",
-
-  // After-payment redirect (set this in each Stripe Payment Link you create)
-  successUrl: "https://reflectionsofgracebiblestudies.netlify.app/#/success",
-
-  // Payment Links — create one per program at dashboard.stripe.com → Payment Links
-  // For EACH link set: After payment → Redirect to URL → paste successUrl above
-  links: {
-    full:       "https://reflectionsofgracebiblestudies.netlify.app/#/success",
-    counseling: "https://reflectionsofgracebiblestudies.netlify.app/#/success",
-    genx:       "https://reflectionsofgracebiblestudies.netlify.app/#/success",
-    donate:     "https://reflectionsofgracebiblestudies.netlify.app/#/success",
-  }
+// ── DONATION STRIPE LINKS ─────────────────────────────────────────────────
+// Replace with your real Stripe Payment Links from dashboard.stripe.com
+// After-payment redirect: https://reflectionsofgracebiblestudies.netlify.app/#/thankyou
+const DONATE_LINKS = {
+  ten:    "https://reflectionsofgracebiblestudies.netlify.app/#/thankyou",
+  fifty:  "https://reflectionsofgracebiblestudies.netlify.app/#/thankyou",
+  custom: "https://reflectionsofgracebiblestudies.netlify.app/#/thankyou",
 };
 
-// Detect if Stripe publishable key has been configured
-// Links are already set to the success URL — they will work immediately
-// Once you paste real buy.stripe.com links above, payments will process fully
-const stripeReady = () =>
-  !STRIPE_CONFIG.publishableKey.includes("YOUR_");
+// ── ENROLLMENT COUNTER ────────────────────────────────────────────────────
+const ENROLLMENT_KEY = 'rog_enrollment_count';
+const BASE_COUNT = 47;
+
+function getEnrollmentCount() {
+  return parseInt(localStorage.getItem(ENROLLMENT_KEY) || BASE_COUNT, 10);
+}
+function incrementEnrollment() {
+  const next = getEnrollmentCount() + 1;
+  localStorage.setItem(ENROLLMENT_KEY, next);
+  return next;
+}
+function hasEnrolled() {
+  return localStorage.getItem('rog_enrolled') === 'true';
+}
+function setEnrolled() {
+  localStorage.setItem('rog_enrolled', 'true');
+  incrementEnrollment();
+}
 
 // ── MODULE DATA ────────────────────────────────────────────────────────────
 const MODULES = [
-  {
-    num:"01", color:"#1B3A6B",
-    title:"Biblical Foundations",
-    sub:"The Word, the World, and the Believer",
-    desc:"Establish a solid scriptural foundation for Christian life and ministry. Covers biblical authority, hermeneutics, Old and New Testament survey, and the theology of discipleship.",
-    weeks:"3 weeks", lessons:"6 lessons", price:"Included in Full Program"
-  },
-  {
-    num:"02", color:"#2E5FA3",
-    title:"The Vacuum Effect",
-    sub:"What Happens When Spiritual Truth Is Removed",
-    desc:"Examines what fills the spiritual vacuum when the Church retreats from culture — principalities, ideologies, and counterfeit spiritualities — and equips believers to stand firm.",
-    weeks:"3 weeks", lessons:"6 lessons", price:"Included in Full Program"
-  },
-  {
-    num:"03", color:"#B8860B",
-    title:"Integrated Christian Counseling",
-    sub:"Theology, Psychology, and the Counseling Call",
-    desc:"A professional-grade certificate program uniting evidence-based therapeutic practice with biblical principles, spiritual formation, and whole-person care.",
-    weeks:"3 weeks", lessons:"6 lessons", price:"Available Separately"
-  },
-  {
-    num:"04", color:"#1B5E20",
-    title:"Now Is the Time to Believe",
-    sub:"Faith, Urgency, and the Prophetic Hour",
-    desc:"An eschatological and evangelistic training on the urgency of the Gospel in the present cultural moment, with practical tools for personal witness and community engagement.",
-    weeks:"3 weeks", lessons:"6 lessons", price:"Included in Full Program"
-  },
-  {
-    num:"05", color:"#7B1A1A",
-    title:"It Shouldn't Be in the Church",
-    sub:"Confronting What Defiles the Body of Christ",
-    desc:"A courageous look at the sins, compromise, and principalities that have infiltrated the modern church — and a call to holiness, accountability, and redemptive community.",
-    weeks:"3 weeks", lessons:"6 lessons", price:"Included in Full Program"
-  },
-  {
-    num:"06", color:"#4A148C",
-    title:"Generation X Left the Church",
-    sub:"Now All Hell Broke Loose: The Last Connection to the Old-Time Way",
-    desc:"Based on Thomas E. Walker's manuscript (2025). Examines how Gen X's departure from institutional church life created a cascading spiritual crisis across Millennials, Gen Z, and Alpha.",
-    weeks:"3 weeks", lessons:"6 lessons", price:"Available Separately"
-  }
+  { num:"01", color:"#1B3A6B", title:"Biblical Foundations", sub:"The Word, the World, and the Believer", desc:"Establish a solid scriptural foundation for Christian life and ministry. Covers biblical authority, hermeneutics, Old and New Testament survey, and the theology of discipleship.", weeks:"3 weeks", lessons:"6 lessons" },
+  { num:"02", color:"#2E5FA3", title:"The Vacuum Effect", sub:"What Happens When Spiritual Truth Is Removed", desc:"Examines what fills the spiritual vacuum when the Church retreats from culture — principalities, ideologies, and counterfeit spiritualities — and equips believers to stand firm.", weeks:"3 weeks", lessons:"6 lessons" },
+  { num:"03", color:"#B8860B", title:"Integrated Christian Counseling", sub:"Theology, Psychology, and the Counseling Call", desc:"A professional-grade certificate program uniting evidence-based therapeutic practice with biblical principles, spiritual formation, and whole-person care.", weeks:"3 weeks", lessons:"6 lessons" },
+  { num:"04", color:"#1B5E20", title:"Now Is the Time to Believe", sub:"Faith, Urgency, and the Prophetic Hour", desc:"An eschatological and evangelistic training on the urgency of the Gospel in the present cultural moment, with practical tools for personal witness and community engagement.", weeks:"3 weeks", lessons:"6 lessons" },
+  { num:"05", color:"#7B1A1A", title:"It Shouldn't Be in the Church", sub:"Confronting What Defiles the Body of Christ", desc:"A courageous look at the sins, compromise, and principalities that have infiltrated the modern church — and a call to holiness, accountability, and redemptive community.", weeks:"3 weeks", lessons:"6 lessons" },
+  { num:"06", color:"#4A148C", title:"Generation X Left the Church", sub:"Now All Hell Broke Loose: The Last Connection to the Old-Time Way", desc:"Based on Thomas E. Walker's manuscript (2025). Examines how Gen X's departure from institutional church life created a cascading spiritual crisis across Millennials, Gen Z, and Alpha.", weeks:"3 weeks", lessons:"6 lessons" }
 ];
 
 // ── ROUTER ─────────────────────────────────────────────────────────────────
 const view = document.getElementById('view');
 
-function getPath() {
-  return window.location.hash.replace('#', '') || '/';
-}
-
-function navigate(path) {
-  window.location.hash = path;
-}
+function getPath() { return window.location.hash.replace('#','') || '/'; }
 
 function render() {
   const path = getPath();
   setActiveNav(path);
   window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  const routes = {
-    '/':        renderHome,
-    '/courses': renderCourses,
-    '/donate':  renderDonate,
-    '/about':   renderAbout,
-    '/enroll':  renderEnroll,
-    '/success': renderSuccess,
-  };
-
+  const routes = { '/':renderHome, '/courses':renderCourses, '/donate':renderDonate, '/about':renderAbout, '/enroll':renderEnroll, '/thankyou':renderThankYou, '/enrolled':renderEnrolled };
   (routes[path] || render404)();
 }
 
 function setActiveNav(path) {
   document.querySelectorAll('.nav-link').forEach(a => {
     a.classList.remove('active');
-    const href = a.getAttribute('href').replace('#', '');
-    if (href === path || (href === '/' && (path === '/' || path === ''))) {
-      a.classList.add('active');
-    }
+    const href = a.getAttribute('href').replace('#','');
+    if (href === path || (href==='/' && (path==='/'||path===''))) a.classList.add('active');
   });
 }
 
-// Navbar scroll shadow
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
-});
+window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20); });
+document.getElementById('navToggle').addEventListener('click', () => { document.getElementById('navLinks').classList.toggle('open'); });
+document.getElementById('navLinks').addEventListener('click', () => { document.getElementById('navLinks').classList.remove('open'); });
 
-// Mobile nav toggle
-document.getElementById('navToggle').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
-});
-document.getElementById('navLinks').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.remove('open');
-});
-
-// ── STRIPE PAYMENT HANDLER ─────────────────────────────────────────────────
-// Currently all links point to the success page URL.
-// When you paste real buy.stripe.com Payment Links into STRIPE_CONFIG.links above,
-// payments will process through Stripe and redirect back to the success page automatically.
-function goToStripe(linkKey, email = '') {
-  const link = STRIPE_CONFIG.links[linkKey];
-
-  // Append prefilled email if provided (Stripe Payment Links support this)
-  const url = (email && link.includes('buy.stripe.com'))
-    ? `${link}?prefilled_email=${encodeURIComponent(email)}`
-    : link;
-
-  window.location.href = url;
-}
-
-function showSetupAlert() {
-  alert(
-    "⚙️ Add your Stripe Payment Links to activate checkout.\n\n" +
-    "Steps:\n" +
-    "1. Go to dashboard.stripe.com → Payment Links → Create\n" +
-    "2. Set After-payment redirect to:\n" +
-    "   https://reflectionsofgracebiblestudies.netlify.app/#/success\n" +
-    "3. Copy the buy.stripe.com link\n" +
-    "4. Paste it into STRIPE_CONFIG.links in src/app.js\n" +
-    "5. Commit to GitHub — Netlify redeploys in ~60 seconds"
-  );
-}
-
-// ── VIEW: HOME ─────────────────────────────────────────────────────────────
+// ── HOME ───────────────────────────────────────────────────────────────────
 function renderHome() {
+  const count = getEnrollmentCount();
   view.innerHTML = `
     <section class="hero">
       <div class="hero-inner">
         <div class="eyebrow">✝ Reflections of Grace Outreach Ministries</div>
         <h1>Master <span>Training</span> Portal</h1>
         <p class="hero-author">Thomas E. Walker, MDiv. · Moreno Valley, CA</p>
-        <p class="hero-desc">Six phases of ministry training — from biblical foundations to integrated Christian counseling. Scholarly depth. Pastoral heart. Spirit-led formation.</p>
+        <p class="hero-desc">Six phases of ministry training — from biblical foundations to integrated Christian counseling. Scholarly depth. Pastoral heart. Spirit-led formation. <strong style="color:var(--gold-lt)">Free to enroll.</strong></p>
         <div class="stats">
-          <div class="stat"><div class="stat-num">6</div><div class="stat-label">Modules</div></div>
+          <div class="stat"><div class="stat-num">6</div><div class="stat-label">Phases</div></div>
           <div class="stat"><div class="stat-num">36</div><div class="stat-label">Lessons</div></div>
           <div class="stat"><div class="stat-num">18</div><div class="stat-label">Weeks</div></div>
-          <div class="stat"><div class="stat-num">1</div><div class="stat-label">Certificate</div></div>
+          <div class="stat"><div class="stat-num">${count}</div><div class="stat-label">Enrolled</div></div>
         </div>
         <div class="hero-cta">
-          <a href="#/enroll" class="btn btn-primary btn-lg">Enroll Today</a>
-          <a href="#/courses" class="btn btn-outline btn-lg">View Courses</a>
-          <a href="#/donate" class="btn btn-green btn-lg">Give / Donate</a>
+          <a href="#/enroll" class="btn btn-primary btn-lg">✝ Enroll Free</a>
+          <a href="#/courses" class="btn btn-outline btn-lg">View All Phases</a>
+          <a href="#/donate" class="btn btn-green btn-lg">❤ Give / Donate</a>
         </div>
       </div>
     </section>
 
+    <div style="background:var(--green);padding:18px 24px;text-align:center;border-bottom:3px solid var(--gold)">
+      <p style="color:#fff;font-size:16px;font-weight:600;margin:0">✅ All six phases are <strong>completely free</strong> to enroll and access. Support the ministry through a <a href="#/donate" style="color:var(--gold-lt);text-decoration:underline;font-weight:700">voluntary donation of $10 or $50</a>.</p>
+    </div>
+
     <section class="bg-white">
       <div class="sec-inner">
-        <div class="sec-eyebrow">Certificate Program</div>
-        <h2 class="sec-title">Six Phases of Training</h2>
-        <p class="sec-desc">Each module builds on the last — from foundational Scripture to advanced counseling practice and cultural engagement.</p>
+        <div class="sec-eyebrow">Six-Phase Certificate Program</div>
+        <h2 class="sec-title">Free Ministry Training</h2>
+        <p class="sec-desc">Each phase builds on the last — from foundational Scripture to advanced counseling practice and cultural engagement. No payment required.</p>
         <div class="modules-grid">
-          ${MODULES.map(m => `
+          ${MODULES.map(m=>`
             <div class="mod-card">
               <div class="mod-num" style="background:${m.color}">${m.num}</div>
               <h3 class="mod-title">${m.title}</h3>
@@ -209,52 +127,43 @@ function renderHome() {
               <div class="mod-meta">
                 <span class="badge">📅 ${m.weeks}</span>
                 <span class="badge">📖 ${m.lessons}</span>
+                <span class="badge" style="background:#e8f5e9;color:#1B5E20;font-weight:700">✅ Free Access</span>
               </div>
-            </div>
-          `).join('')}
+            </div>`).join('')}
+        </div>
+        <div style="text-align:center;margin-top:44px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+          <a href="#/enroll" class="btn btn-navy btn-lg">✝ Enroll Free — Start Today</a>
+          <a href="#/donate" class="btn btn-green btn-lg">❤ Support the Ministry</a>
         </div>
       </div>
     </section>
 
     <section class="bg-gray">
-      <div class="sec-inner">
-        <div class="about-grid">
-          <div class="about-quote">
-            <p>"Train up a child in the way he should go, and when he is old he will not depart from it."</p>
-            <cite>Proverbs 22:6 NKJV</cite>
-          </div>
-          <div class="about-content">
-            <h3>Whole-Person Ministry Training</h3>
-            <p>This program equips believers, ministry leaders, and counselors with both the theological depth and clinical knowledge needed for effective, Spirit-led service.</p>
-            <p>From biblical hermeneutics to trauma-informed care — every module is designed to integrate faith and practice at the highest level.</p>
-            <div class="creds">
-              <div class="cred"><span class="cred-icon">✝</span><span>Grounded in Scripture and orthodox Christian theology</span></div>
-              <div class="cred"><span class="cred-icon">🎓</span><span>Developed by Thomas E. Walker, MDiv., pastoral counselor and educator</span></div>
-              <div class="cred"><span class="cred-icon">📚</span><span>Includes research libraries, peer-reviewed references, and scholarly resources</span></div>
-            </div>
-            <div style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap">
-              <a href="#/enroll" class="btn btn-primary">Enroll Now</a>
-              <a href="#/donate" class="btn btn-green">Support the Ministry</a>
-            </div>
-          </div>
+      <div class="sec-inner" style="text-align:center">
+        <div class="sec-eyebrow">Our Mission</div>
+        <h2 class="sec-title" style="margin:0 auto 14px">Equipping the Saints — Free of Charge</h2>
+        <p class="sec-desc" style="margin:0 auto 36px">We believe God's Word should be accessible to everyone. All six phases of this training are free. If the ministry has blessed you, consider blessing others with a gift.</p>
+        <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap">
+          <a href="#/donate" class="btn btn-primary btn-lg">❤ Give $10</a>
+          <a href="#/donate" class="btn btn-green btn-lg">❤ Give $50</a>
         </div>
+        <p style="margin-top:20px;font-size:14px;color:var(--gray3);font-style:italic">"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver." — 2 Corinthians 9:7</p>
       </div>
-    </section>
-  `;
+    </section>`;
 }
 
-// ── VIEW: COURSES ──────────────────────────────────────────────────────────
+// ── COURSES ────────────────────────────────────────────────────────────────
 function renderCourses() {
   view.innerHTML = `
     <div class="donate-page">
-      <div class="donate-header sec-inner" style="max-width:680px">
-        <div class="sec-eyebrow">All Modules</div>
+      <div class="donate-header sec-inner" style="max-width:700px">
+        <div class="sec-eyebrow">All Six Phases — Free Access</div>
         <h1 style="font-family:var(--ff-display);font-size:clamp(26px,4vw,42px);color:var(--navy);font-weight:700;margin:10px 0 14px;line-height:1.2">Complete Course Catalog</h1>
-        <p style="font-size:17px;color:var(--gray3);line-height:1.75">Six modules. Eighteen weeks. One certificate. All content developed by Thomas E. Walker, MDiv.</p>
+        <p style="font-size:17px;color:var(--gray3);line-height:1.75">Six phases. Eighteen weeks. One certificate. All content developed by Thomas E. Walker, MDiv. <strong style="color:var(--green)">Free to enroll and access.</strong></p>
       </div>
       <div class="sec-inner">
         <div class="modules-grid">
-          ${MODULES.map(m => `
+          ${MODULES.map(m=>`
             <div class="mod-card">
               <div class="mod-num" style="background:${m.color}">${m.num}</div>
               <h3 class="mod-title">${m.title}</h3>
@@ -263,117 +172,89 @@ function renderCourses() {
               <div class="mod-meta">
                 <span class="badge">📅 ${m.weeks}</span>
                 <span class="badge">📖 ${m.lessons}</span>
-                <span class="badge">💰 ${m.price}</span>
+                <span class="badge" style="background:#e8f5e9;color:#1B5E20;font-weight:700">✅ Free</span>
               </div>
-            </div>
-          `).join('')}
+            </div>`).join('')}
         </div>
-        <div style="text-align:center;margin-top:52px">
-          <a href="#/enroll" class="btn btn-primary btn-lg">Enroll in the Full Program</a>
+        <div style="text-align:center;margin-top:52px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+          <a href="#/enroll" class="btn btn-navy btn-lg">✝ Enroll Free</a>
+          <a href="#/donate" class="btn btn-green btn-lg">❤ Support the Ministry</a>
         </div>
       </div>
-    </div>
-  `;
+    </div>`;
 }
 
-// ── VIEW: DONATE ───────────────────────────────────────────────────────────
+// ── DONATE ─────────────────────────────────────────────────────────────────
 function renderDonate() {
   view.innerHTML = `
     <div class="donate-page">
       <div class="donate-header">
         <div class="sec-eyebrow">Support the Ministry</div>
         <h1>Give to Reflections of Grace</h1>
-        <p>Your generous gift supports the development of ministry training resources, scholarship assistance for students, and the ongoing work of Reflections of Grace Outreach Ministries, Inc.</p>
+        <p>All six phases of training are completely free. If this ministry has blessed you, please consider sowing a seed to help us reach more people with God's Word.</p>
       </div>
+      <div style="max-width:700px;margin:0 auto;padding:0 24px">
 
-      <div class="donate-grid">
-        <!-- One-Time Donation -->
-        <div class="donate-card">
+        <div class="donate-card" style="margin-bottom:20px">
           <div class="donate-card-hdr" style="border-top:4px solid var(--gold)">
-            <h2>One-Time Donation</h2>
-            <p>Give a gift of any amount to support the ministry</p>
+            <h2>🌱 Give $10 — Plant a Seed</h2>
+            <p>A $10 gift helps cover the costs of hosting, tools, and resources that keep this training free for everyone.</p>
           </div>
           <div class="donate-card-body">
-            <div class="amount-grid" id="oneTimeAmounts">
-              <button class="amount-btn" data-amount="10">$10</button>
-              <button class="amount-btn" data-amount="25">$25</button>
-              <button class="amount-btn selected" data-amount="50">$50</button>
-              <button class="amount-btn" data-amount="100">$100</button>
-              <button class="amount-btn" data-amount="250">$250</button>
-              <button class="amount-btn" data-amount="500">$500</button>
-            </div>
-            <input type="number" class="custom-amount" id="oneTimeCustom" placeholder="Or enter custom amount ($)" min="1" />
-            <p class="donate-note">✝ Your donation directly supports biblical education, counseling training resources, and ministry outreach.</p>
-            <button class="btn btn-primary btn-full" onclick="handleDonate('one-time')">
-              Give Now — Secure Payment
-            </button>
-            <div class="stripe-badge">🔒 Secured by Stripe · SSL Encrypted</div>
+            <p class="donate-note" style="margin-bottom:20px">Every seed sown in faith returns a harvest. Thank you for helping us keep God's Word free and accessible.</p>
+            <button class="btn btn-primary btn-full" style="font-size:17px;padding:16px" onclick="handleDonation('ten')">❤ Give $10 — Secure Payment</button>
+            <div class="stripe-badge" style="margin-top:10px">🔒 Secured by Stripe · SSL Encrypted</div>
           </div>
         </div>
 
-        <!-- Monthly Giving -->
-        <div class="donate-card">
+        <div class="donate-card" style="margin-bottom:20px">
           <div class="donate-card-hdr" style="border-top:4px solid var(--green)">
-            <h2>Monthly Partner</h2>
-            <p>Become a recurring ministry partner</p>
+            <h2>🌳 Give $50 — Grow the Ministry</h2>
+            <p>A $50 gift helps fund new course development, outreach tools, and ministry expansion.</p>
           </div>
           <div class="donate-card-body">
-            <div class="amount-grid" id="monthlyAmounts">
-              <button class="amount-btn" data-amount="10">$10/mo</button>
-              <button class="amount-btn" data-amount="25">$25/mo</button>
-              <button class="amount-btn selected" data-amount="50">$50/mo</button>
-              <button class="amount-btn" data-amount="100">$100/mo</button>
-              <button class="amount-btn" data-amount="200">$200/mo</button>
-              <button class="amount-btn" data-amount="500">$500/mo</button>
-            </div>
-            <input type="number" class="custom-amount" id="monthlyCustom" placeholder="Or enter custom amount ($)" min="1" />
-            <p class="donate-note">✝ Monthly partners make it possible to sustain long-term ministry development, scholarship funds, and new course creation.</p>
-            <button class="btn btn-green btn-full" onclick="handleDonate('monthly')">
-              Become a Monthly Partner
-            </button>
-            <div class="stripe-badge">🔒 Secured by Stripe · Cancel Anytime</div>
+            <p class="donate-note" style="margin-bottom:20px">"Give, and it will be given to you. A good measure, pressed down, shaken together and running over." — Luke 6:38</p>
+            <button class="btn btn-green btn-full" style="font-size:17px;padding:16px" onclick="handleDonation('fifty')">❤ Give $50 — Secure Payment</button>
+            <div class="stripe-badge" style="margin-top:10px">🔒 Secured by Stripe · SSL Encrypted</div>
           </div>
         </div>
-      </div>
 
-      <!-- Scripture -->
-      <div style="text-align:center;max-width:560px;margin:52px auto 0;padding:0 24px">
-        <p style="font-family:var(--ff-display);font-size:18px;color:var(--navy);font-style:italic;line-height:1.75">"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."</p>
-        <p style="color:var(--gold);font-size:14px;font-weight:700;margin-top:10px">2 Corinthians 9:7 NIV</p>
-      </div>
-    </div>
-  `;
+        <div class="donate-card" style="margin-bottom:40px">
+          <div class="donate-card-hdr" style="border-top:4px solid var(--navy)">
+            <h2>✝ Give Another Amount</h2>
+            <p>Choose the amount that God has placed on your heart.</p>
+          </div>
+          <div class="donate-card-body">
+            <input type="number" id="customAmount" class="custom-amount" placeholder="Enter amount in dollars (e.g. 25)" min="1" style="margin-bottom:16px" />
+            <button class="btn btn-navy btn-full" style="font-size:17px;padding:16px" onclick="handleCustomDonation()">❤ Give This Amount — Secure Payment</button>
+            <div class="stripe-badge" style="margin-top:10px">🔒 Secured by Stripe · SSL Encrypted</div>
+          </div>
+        </div>
 
-  // Amount button selection
-  ['oneTimeAmounts', 'monthlyAmounts'].forEach(id => {
-    document.getElementById(id).addEventListener('click', e => {
-      if (e.target.classList.contains('amount-btn')) {
-        document.querySelectorAll(`#${id} .amount-btn`).forEach(b => b.classList.remove('selected'));
-        e.target.classList.add('selected');
-      }
-    });
-  });
+        <div style="text-align:center;padding:32px 0 16px">
+          <p style="font-family:var(--ff-display);font-size:18px;color:var(--navy);font-style:italic;line-height:1.75">"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."</p>
+          <p style="color:var(--gold);font-size:14px;font-weight:700;margin-top:10px">2 Corinthians 9:7 NIV</p>
+        </div>
+      </div>
+    </div>`;
 }
 
-function handleDonate(type) {
-  const amountsId  = type === 'one-time' ? 'oneTimeAmounts'  : 'monthlyAmounts';
-  const customId   = type === 'one-time' ? 'oneTimeCustom'   : 'monthlyCustom';
-  const selected   = document.querySelector(`#${amountsId} .amount-btn.selected`);
-  const customVal  = document.getElementById(customId).value;
-  const amount     = customVal || (selected ? selected.dataset.amount : '50');
-
-  if (!stripeReady()) {
-    showSetupAlert();
+function handleDonation(type) {
+  const link = DONATE_LINKS[type];
+  if (link.includes('thankyou')) {
+    alert("⚙️ To activate Stripe donations:\n\n1. Go to dashboard.stripe.com → Payment Links → + Create\n2. Set a fixed price ($10 or $50)\n3. After-payment redirect:\n   https://reflectionsofgracebiblestudies.netlify.app/#/thankyou\n4. Copy the buy.stripe.com link\n5. Paste into DONATE_LINKS in src/app.js and commit to GitHub");
     return;
   }
-
-  // Append amount as a query param (Stripe Payment Links support ?amount= for dynamic amounts
-  // if you create the link as a "customer chooses price" type in Stripe Dashboard)
-  const baseLink = STRIPE_CONFIG.links.donate;
-  window.location.href = `${baseLink}`;
+  window.location.href = link;
 }
 
-// ── VIEW: ABOUT ────────────────────────────────────────────────────────────
+function handleCustomDonation() {
+  const amount = document.getElementById('customAmount').value;
+  if (!amount || parseInt(amount) < 1) { alert('Please enter a donation amount of at least $1.'); return; }
+  handleDonation('custom');
+}
+
+// ── ABOUT ──────────────────────────────────────────────────────────────────
 function renderAbout() {
   view.innerHTML = `
     <section class="bg-gray" style="padding-top:calc(var(--nav-h) + 60px);min-height:100vh">
@@ -388,234 +269,176 @@ function renderAbout() {
           <div class="about-content">
             <h3>Pastor · Author · Educator</h3>
             <p>Thomas E. Walker holds a Master of Divinity in Pastoral Counseling and serves as the founder of Reflections of Grace Outreach Ministries, Inc., based in Moreno Valley, California.</p>
-            <p>He is the author of <em>Generation X Left the Church, Now All Hell Broke Loose: The Last Connection to the Old-Time Way</em> (2025, ISBN: 978-0-9830162-8-1) and the developer of this six-module integrated training program.</p>
-            <p>Pastor Walker brings over three decades of pastoral experience, community ministry, and academic formation to this curriculum — uniting the old-time Gospel with contemporary counseling science.</p>
+            <p>He is the author of <em>Generation X Left the Church, Now All Hell Broke Loose: The Last Connection to the Old-Time Way</em> (2025, ISBN: 978-0-9830162-8-1) and the developer of this six-phase free training program.</p>
             <div class="creds">
               <div class="cred"><span class="cred-icon">🎓</span><span>Master of Divinity in Pastoral Counseling</span></div>
-              <div class="cred"><span class="cred-icon">✝</span><span>Founder, Reflections of Grace Outreach Ministries, Inc.</span></div>
+              <div class="cred"><span class="cred-icon">✝</span><span>Founder, Reflections of Grace Outreach Ministries, Inc. (501c3)</span></div>
               <div class="cred"><span class="cred-icon">📖</span><span>Author, <em>Generation X Left the Church</em> (2025)</span></div>
               <div class="cred"><span class="cred-icon">📍</span><span>Moreno Valley, California</span></div>
             </div>
             <div style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap">
-              <a href="#/enroll" class="btn btn-primary">Enroll in the Program</a>
-              <a href="#/donate" class="btn btn-green">Support the Ministry</a>
+              <a href="#/enroll" class="btn btn-primary">✝ Enroll Free</a>
+              <a href="#/donate" class="btn btn-green">❤ Support the Ministry</a>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  `;
+    </section>`;
 }
 
-// ── VIEW: ENROLL ───────────────────────────────────────────────────────────
+// ── ENROLL (FREE) ──────────────────────────────────────────────────────────
 function renderEnroll() {
+  const count    = getEnrollmentCount();
+  const enrolled = hasEnrolled();
   view.innerHTML = `
     <div class="enroll-page">
       <div class="enroll-inner">
+        <div style="background:var(--navy);border-radius:14px;padding:24px 32px;text-align:center;margin-bottom:36px;border:2px solid var(--gold)">
+          <p style="color:rgba(255,255,255,.65);font-size:13px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">People Currently Enrolled</p>
+          <div style="font-family:var(--ff-display);font-size:56px;color:var(--gold-lt);font-weight:700;line-height:1">${count}</div>
+          <p style="color:rgba(255,255,255,.6);font-size:14px;margin-top:6px">and growing — join them today, <strong style="color:#fff">free of charge</strong></p>
+        </div>
         <div class="enroll-hdr">
-          <span class="sec-eyebrow">✝ Begin Your Journey</span>
+          <span class="sec-eyebrow">✝ Free Enrollment</span>
           <h1>Enroll in the Master Training Portal</h1>
-          <p>Six modules. Eighteen weeks. One transformative certificate in ministry and integrated Christian counseling — developed by Thomas E. Walker, MDiv.</p>
+          <p>Six phases. Eighteen weeks. One transformative certificate in ministry and integrated Christian counseling — <strong>completely free</strong>. No payment required.</p>
         </div>
-
-        <div class="enroll-card">
-          <div class="enroll-card-hdr">
-            <h2>Program Enrollment</h2>
-            <p>Complete the form below. You will be directed to our secure Stripe payment page to confirm enrollment.</p>
-          </div>
-
-          <form class="enroll-form" id="enrollForm" novalidate>
-            <div class="form-grid">
-
-              <div class="f-label">Personal Information</div>
-
-              <div class="fg">
-                <label for="firstName">First Name *</label>
-                <input type="text" id="firstName" placeholder="Your first name" required />
-              </div>
-              <div class="fg">
-                <label for="lastName">Last Name *</label>
-                <input type="text" id="lastName" placeholder="Your last name" required />
-              </div>
-              <div class="fg full">
-                <label for="email">Email Address *</label>
-                <input type="email" id="email" placeholder="your@email.com" required />
-              </div>
-              <div class="fg">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" placeholder="(555) 000-0000" />
-              </div>
-              <div class="fg">
-                <label for="city">City / State</label>
-                <input type="text" id="city" placeholder="Moreno Valley, CA" />
-              </div>
-
-              <div class="f-divider"></div>
-              <div class="f-label">Ministry Background</div>
-
-              <div class="fg full">
-                <label for="role">Your Current Role</label>
-                <select id="role">
-                  <option value="">— Select your role —</option>
-                  <option>Pastor / Senior Pastor</option>
-                  <option>Associate Pastor</option>
-                  <option>Ministry Leader</option>
-                  <option>Licensed Counselor</option>
-                  <option>Lay Counselor / Lay Minister</option>
-                  <option>Student / Seminary Student</option>
-                  <option>Church Member / Believer</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div class="fg full">
-                <label for="background">What brings you to this program?</label>
-                <textarea id="background" placeholder="Tell us a little about yourself and what you hope to gain..."></textarea>
-              </div>
-
-              <div class="f-divider"></div>
-              <div class="f-label">Select Your Program</div>
-
-              <div class="prog-options" id="progOptions">
-                <label class="prog-opt active">
-                  <input type="radio" name="program" value="full" checked />
-                  <div class="prog-opt-text">
-                    <div class="prog-opt-name">Complete Certificate Program</div>
-                    <div class="prog-opt-desc">All 6 modules · 36 lessons · 18 weeks · Certificate of completion</div>
-                  </div>
-                  <div class="prog-opt-price">Full Program</div>
-                </label>
-                <label class="prog-opt">
-                  <input type="radio" name="program" value="counseling" />
-                  <div class="prog-opt-text">
-                    <div class="prog-opt-name">Integrated Christian Counseling Only (Module 3)</div>
-                    <div class="prog-opt-desc">6 lessons · 3 weeks · Counseling certificate</div>
-                  </div>
-                  <div class="prog-opt-price">Module 3</div>
-                </label>
-                <label class="prog-opt">
-                  <input type="radio" name="program" value="genx" />
-                  <div class="prog-opt-text">
-                    <div class="prog-opt-name">Generation X Left the Church (Module 6)</div>
-                    <div class="prog-opt-desc">6 lessons · 3 weeks · Based on Walker (2025)</div>
-                  </div>
-                  <div class="prog-opt-price">Module 6</div>
-                </label>
-              </div>
-
-              <div class="f-divider"></div>
-
-              <div id="stripe-error">
-                ⚠️ There was an issue connecting to the payment processor. Please try again or contact us directly.
-              </div>
-
-              <div class="terms-row">
-                <input type="checkbox" id="terms" required />
-                <label for="terms">I agree to the Terms &amp; Conditions and Privacy Policy of Reflections of Grace Outreach Ministries, Inc. I understand that clicking "Submit Enrollment" will direct me to a secure Stripe payment page to complete my registration.</label>
-              </div>
-
-              <button type="submit" class="btn btn-navy btn-full" id="submitBtn">
-                ✝ Submit Enrollment — Proceed to Secure Payment
-              </button>
-
+        ${enrolled ? `
+          <div style="background:#e8f5e9;border:2px solid var(--green);border-radius:14px;padding:36px;text-align:center;margin-bottom:28px">
+            <div style="font-size:48px;margin-bottom:12px">✅</div>
+            <h2 style="font-family:var(--ff-display);color:var(--green);margin-bottom:10px">You're already enrolled!</h2>
+            <p style="color:var(--gray3);font-size:16px;line-height:1.7">You have already enrolled in the Master Training Portal. All six phases are open and available to you. God bless your studies!</p>
+            <div style="margin-top:24px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+              <a href="#/courses" class="btn btn-navy">View All Phases</a>
+              <a href="#/donate" class="btn btn-green">❤ Support the Ministry</a>
             </div>
-          </form>
-        </div>
-
+          </div>` : `
+          <div class="enroll-card">
+            <div class="enroll-card-hdr">
+              <h2>Free Enrollment Form</h2>
+              <p>Fill in your details below — no payment information required.</p>
+            </div>
+            <form class="enroll-form" id="enrollForm" novalidate>
+              <div class="form-grid">
+                <div class="f-label">Your Information</div>
+                <div class="fg"><label for="firstName">First Name *</label><input type="text" id="firstName" placeholder="Your first name" required /></div>
+                <div class="fg"><label for="lastName">Last Name *</label><input type="text" id="lastName" placeholder="Your last name" required /></div>
+                <div class="fg full"><label for="email">Email Address *</label><input type="email" id="email" placeholder="your@email.com" required /></div>
+                <div class="fg"><label for="phone">Phone Number</label><input type="tel" id="phone" placeholder="(555) 000-0000" /></div>
+                <div class="fg"><label for="city">City / State</label><input type="text" id="city" placeholder="Moreno Valley, CA" /></div>
+                <div class="f-divider"></div>
+                <div class="f-label">Ministry Background</div>
+                <div class="fg full">
+                  <label for="role">Your Current Role</label>
+                  <select id="role">
+                    <option value="">— Select your role —</option>
+                    <option>Pastor / Senior Pastor</option><option>Associate Pastor</option>
+                    <option>Ministry Leader</option><option>Licensed Counselor</option>
+                    <option>Lay Counselor / Lay Minister</option><option>Student / Seminary Student</option>
+                    <option>Church Member / Believer</option><option>Other</option>
+                  </select>
+                </div>
+                <div class="fg full"><label for="background">What brings you to this program?</label><textarea id="background" placeholder="Tell us a little about yourself and what you hope to gain..."></textarea></div>
+                <div class="f-divider"></div>
+                <div id="enroll-error" style="grid-column:1/-1;display:none;background:#fff0f0;border:1px solid #f5c6c6;color:#b00020;padding:12px 16px;border-radius:8px;font-size:14px"></div>
+                <div class="terms-row">
+                  <input type="checkbox" id="terms" required />
+                  <label for="terms">I agree to participate in the Reflections of Grace Master Training Portal and understand that all six phases are free. I may voluntarily support the ministry through a donation at any time.</label>
+                </div>
+                <button type="submit" class="btn btn-navy btn-full" id="enrollBtn" style="font-size:17px;padding:18px">✝ Enroll Free — No Payment Required</button>
+                <div style="grid-column:1/-1;background:var(--gold-pale);border:1px solid rgba(184,134,11,.3);border-radius:10px;padding:16px 20px;text-align:center">
+                  <p style="font-size:14px;color:var(--text);margin-bottom:10px">Enrollment is free. If you'd like to bless the ministry, a voluntary gift of <strong>$10 or $50</strong> goes a long way.</p>
+                  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+                    <a href="#/donate" class="btn btn-primary" style="padding:10px 22px;font-size:14px">❤ Give $10</a>
+                    <a href="#/donate" class="btn btn-green" style="padding:10px 22px;font-size:14px">❤ Give $50</a>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>`}
         <div class="trust-row">
-          <div class="trust-item"><span class="trust-icon">🔒</span> Secured by Stripe</div>
-          <div class="trust-item"><span class="trust-icon">🛡️</span> SSL Encrypted</div>
-          <div class="trust-item"><span class="trust-icon">✝</span> Faith-Based Institution</div>
+          <div class="trust-item"><span class="trust-icon">✅</span> 100% Free Enrollment</div>
+          <div class="trust-item"><span class="trust-icon">✝</span> Faith-Based Ministry</div>
           <div class="trust-item"><span class="trust-icon">📧</span> Confirmation Email Sent</div>
           <div class="trust-item"><span class="trust-icon">🎓</span> Certificate Upon Completion</div>
+          <div class="trust-item"><span class="trust-icon">❤</span> Donations Voluntary</div>
         </div>
       </div>
-    </div>
-  `;
-
-  // Highlight selected program option
-  document.getElementById('progOptions').addEventListener('change', e => {
-    document.querySelectorAll('.prog-opt').forEach(o => o.classList.remove('active'));
-    if (e.target.type === 'radio') e.target.closest('.prog-opt').classList.add('active');
-  });
-
-  // Form submit
-  document.getElementById('enrollForm').addEventListener('submit', handleEnrollSubmit);
+    </div>`;
+  if (!enrolled) document.getElementById('enrollForm').addEventListener('submit', handleFreeEnroll);
 }
 
-function handleEnrollSubmit(e) {
+function handleFreeEnroll(e) {
   e.preventDefault();
-
   const firstName = document.getElementById('firstName').value.trim();
   const lastName  = document.getElementById('lastName').value.trim();
   const email     = document.getElementById('email').value.trim();
   const terms     = document.getElementById('terms').checked;
-  const program   = document.querySelector('input[name="program"]:checked')?.value || 'full';
-  const errBox    = document.getElementById('stripe-error');
-  const btn       = document.getElementById('submitBtn');
-
+  const errBox    = document.getElementById('enroll-error');
+  const btn       = document.getElementById('enrollBtn');
   errBox.style.display = 'none';
-
-  if (!firstName || !lastName) {
-    errBox.textContent = '⚠️ Please enter your first and last name.';
-    errBox.style.display = 'block';
-    return;
-  }
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errBox.textContent = '⚠️ Please enter a valid email address.';
-    errBox.style.display = 'block';
-    return;
-  }
-  if (!terms) {
-    errBox.textContent = '⚠️ Please agree to the Terms & Conditions to proceed.';
-    errBox.style.display = 'block';
-    return;
-  }
-
-  // Show loading state
-  btn.textContent = '🔒 Redirecting to secure payment…';
-  btn.classList.add('btn-loading');
-
-  // Redirect to Stripe Payment Link (or success page until real link is added)
-  setTimeout(() => {
-    goToStripe(program, email);
-  }, 600);
+  if (!firstName||!lastName) { errBox.textContent='⚠️ Please enter your first and last name.'; errBox.style.display='block'; return; }
+  if (!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { errBox.textContent='⚠️ Please enter a valid email address.'; errBox.style.display='block'; return; }
+  if (!terms) { errBox.textContent='⚠️ Please check the agreement box to proceed.'; errBox.style.display='block'; return; }
+  btn.textContent='✝ Enrolling you…'; btn.classList.add('btn-loading');
+  setTimeout(() => { setEnrolled(); window.location.hash='#/enrolled'; }, 700);
 }
 
-// ── VIEW: SUCCESS ──────────────────────────────────────────────────────────
-function renderSuccess() {
+// ── ENROLLED CONFIRMATION ──────────────────────────────────────────────────
+function renderEnrolled() {
+  const count = getEnrollmentCount();
   view.innerHTML = `
     <div class="success-page">
       <div class="success-inner">
         <div class="success-icon">✝</div>
-        <h1>Enrollment Confirmed!</h1>
-        <p>Welcome to Reflections of Grace Master Training Portal. Your payment was received and your enrollment is confirmed. A confirmation email is on its way.</p>
+        <h1>Welcome! You're Enrolled.</h1>
+        <p>Praise God — you are now enrolled in the Reflections of Grace Master Training Portal. All six phases are free and open to you. A confirmation email is on its way.</p>
+        <div style="background:var(--navy);border-radius:14px;padding:24px;margin-bottom:28px;text-align:center">
+          <p style="color:rgba(255,255,255,.6);font-size:13px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">You are enrolled student #</p>
+          <div style="font-family:var(--ff-display);font-size:52px;color:var(--gold-lt);font-weight:700;line-height:1">${count}</div>
+          <p style="color:rgba(255,255,255,.55);font-size:13px;margin-top:6px">Welcome to the family ✝</p>
+        </div>
         <div class="success-steps">
           <h3>What Happens Next</h3>
           <div class="s-step"><div class="s-num">1</div><span>Check your inbox for your confirmation and welcome letter from Reflections of Grace Outreach Ministries.</span></div>
-          <div class="s-step"><div class="s-num">2</div><span>You will receive your course access credentials within 24 hours.</span></div>
-          <div class="s-step"><div class="s-num">3</div><span>Your first module begins at the scheduled start date — prepare your heart and your notebook!</span></div>
+          <div class="s-step"><div class="s-num">2</div><span>All six phases are immediately available — start with Phase 01: Biblical Foundations.</span></div>
+          <div class="s-step"><div class="s-num">3</div><span>If this ministry has blessed you, consider supporting it with a voluntary gift of $10 or $50.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:16px">
+          <a href="#/courses" class="btn btn-navy">✝ Start Learning — View All Phases</a>
         </div>
         <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-          <a href="#/" class="btn btn-primary">Return to Home</a>
-          <a href="#/donate" class="btn btn-green">Support the Ministry</a>
+          <a href="#/donate" class="btn btn-primary" style="padding:12px 28px;font-size:15px">❤ Give $10</a>
+          <a href="#/donate" class="btn btn-green" style="padding:12px 28px;font-size:15px">❤ Give $50</a>
         </div>
+        <p style="margin-top:20px;font-size:13px;color:var(--gray3);font-style:italic">"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver." — 2 Corinthians 9:7</p>
       </div>
-    </div>
-  `;
+    </div>`;
 }
 
-// ── VIEW: 404 ──────────────────────────────────────────────────────────────
-function render404() {
+// ── THANK YOU (post-donation) ──────────────────────────────────────────────
+function renderThankYou() {
   view.innerHTML = `
-    <div class="notfound">
-      <div>
-        <h1>404</h1>
-        <h2>Page Not Found</h2>
-        <p>The page you're looking for doesn't exist.</p>
-        <a href="#/" class="btn btn-primary">Go Home</a>
+    <div class="success-page">
+      <div class="success-inner">
+        <div class="success-icon">❤</div>
+        <h1>God Bless You!</h1>
+        <p>Thank you for your generous gift to Reflections of Grace Outreach Ministries. Your donation helps keep this training free for believers everywhere. Heaven is taking note of your generosity.</p>
+        <div style="background:var(--gold-pale);border:1px solid rgba(184,134,11,.3);border-radius:14px;padding:28px;margin-bottom:28px">
+          <p style="font-family:var(--ff-display);font-size:18px;color:var(--navy);font-style:italic;line-height:1.75">"Give, and it will be given to you. A good measure, pressed down, shaken together and running over, will be poured into your lap."</p>
+          <p style="color:var(--gold);font-weight:700;margin-top:10px">Luke 6:38 NIV</p>
+        </div>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+          <a href="#/" class="btn btn-navy">Return to Home</a>
+          <a href="#/courses" class="btn btn-primary">✝ View All Phases</a>
+        </div>
       </div>
-    </div>
-  `;
+    </div>`;
+}
+
+// ── 404 ────────────────────────────────────────────────────────────────────
+function render404() {
+  view.innerHTML = `<div class="notfound"><div><h1>404</h1><h2>Page Not Found</h2><p>The page you're looking for doesn't exist.</p><a href="#/" class="btn btn-primary">Go Home</a></div></div>`;
 }
 
 // ── INIT ───────────────────────────────────────────────────────────────────

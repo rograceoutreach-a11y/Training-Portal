@@ -13,6 +13,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Stripe Buy Button -->
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
   <style>
     /* ── RESET & ROOT ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -310,12 +312,15 @@
 
 // ── STRIPE DONATION LINKS ──────────────────────────────────────────
 const DONATE_LINKS = {
-  ten:    "https://reflectionsofgracebiblestudies.netlify.app/#/thankyou",
-  fifty:  "https://reflectionsofgracebiblestudies.netlify.app/#/thankyou",
-  custom: "https://reflectionsofgracebiblestudies.netlify.app/#/thankyou",
+  ten:    "https://donate.stripe.com/9B600caNR32e2ne5hR9EI00",
+  fifty:  "https://buy.stripe.com/3cIdR2cVZ0U65zq11B9EI01",
+  custom: "https://donate.stripe.com/9B600caNR32e2ne5hR9EI00",
 };
-// Replace the values above with your real Stripe links e.g.:
-// ten: "https://buy.stripe.com/XXXXXXXX"
+// Stripe Publishable Key
+const STRIPE_PK = "pk_live_51TtGu02CmVw9y7MlDaEUUzmSfC247NMAsmlZoXSgY2jPIg32d9VMllShZg0x5gzbD1cQ7sGXyj7KEdpiDOHFM9bO00cNPzwrkO";
+// Stripe Buy Button IDs
+const STRIPE_BTN_10  = "buy_btn_1U5xhn2CmVw9y7MlQEx3q215";
+const STRIPE_BTN_50  = "buy_btn_1U5xfv2CmVw9y7Mlmmpaqaxf";
 
 // ── ENROLLMENT COUNTER ─────────────────────────────────────────────
 const ENROLL_KEY  = 'rog_enrollment_count';
@@ -447,8 +452,8 @@ function renderHome() {
             <p>We believe God's Word should be accessible to everyone. All six phases of this training are completely free. If the ministry has blessed you, consider blessing others with a gift.</p>
             <p>Reflections of Grace Outreach Ministries is a <strong>501c3 nonprofit</strong> — a "ministry without walls" dedicated to helping you build a personal relationship with Jesus Christ.</p>
             <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
-              <a href="#/donate" class="btn btn-primary">❤ Give $10</a>
-              <a href="#/donate" class="btn btn-green">❤ Give $50</a>
+              <a href="https://donate.stripe.com/9B600caNR32e2ne5hR9EI00" target="_blank" rel="noopener noreferrer" class="btn btn-primary">❤ Give $10</a>
+              <a href="https://buy.stripe.com/3cIdR2cVZ0U65zq11B9EI01" target="_blank" rel="noopener noreferrer" class="btn btn-green">❤ Give $50</a>
             </div>
             <p style="margin-top:16px;font-size:13px;color:var(--gray3);font-style:italic">"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver." — 2 Corinthians 9:7</p>
           </div>
@@ -615,6 +620,7 @@ function renderDonate() {
       </div>
       <div style="max-width:680px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column;gap:18px">
 
+        <!-- $10 DONATION — Stripe Buy Button -->
         <div class="donate-card">
           <div class="donate-card-hdr" style="border-top:4px solid var(--gold)">
             <h2>🌱 Give $10 — Plant a Seed</h2>
@@ -622,11 +628,23 @@ function renderDonate() {
           </div>
           <div class="donate-card-body">
             <p class="donate-note">Every seed sown in faith returns a harvest. Thank you for helping us keep God's Word free and accessible.</p>
-            <button class="btn btn-primary btn-full" style="font-size:16px;padding:15px" onclick="handleDonation('ten')">❤ Give $10 — Secure Payment</button>
+            <div style="display:flex;justify-content:center;margin-bottom:10px">
+              <stripe-buy-button
+                buy-button-id="buy_btn_1U5xhn2CmVw9y7MlQEx3q215"
+                publishable-key="pk_live_51TtGu02CmVw9y7MlDaEUUzmSfC247NMAsmlZoXSgY2jPIg32d9VMllShZg0x5gzbD1cQ7sGXyj7KEdpiDOHFM9bO00cNPzwrkO">
+              </stripe-buy-button>
+            </div>
+            <p style="text-align:center;font-size:13px;color:var(--gray3)">— or —</p>
+            <div style="text-align:center;margin-top:8px">
+              <a href="https://donate.stripe.com/9B600caNR32e2ne5hR9EI00" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-full" style="font-size:15px;padding:14px">
+                ❤ Give $10 — Donate Now
+              </a>
+            </div>
             <div class="stripe-badge">🔒 Secured by Stripe · SSL Encrypted</div>
           </div>
         </div>
 
+        <!-- $50 DONATION — Stripe Buy Button -->
         <div class="donate-card">
           <div class="donate-card-hdr" style="border-top:4px solid var(--green)">
             <h2>🌳 Give $50 — Grow the Ministry</h2>
@@ -634,11 +652,23 @@ function renderDonate() {
           </div>
           <div class="donate-card-body">
             <p class="donate-note">"Give, and it will be given to you. A good measure, pressed down, shaken together and running over." — Luke 6:38</p>
-            <button class="btn btn-green btn-full" style="font-size:16px;padding:15px" onclick="handleDonation('fifty')">❤ Give $50 — Secure Payment</button>
+            <div style="display:flex;justify-content:center;margin-bottom:10px">
+              <stripe-buy-button
+                buy-button-id="buy_btn_1U5xfv2CmVw9y7Mlmmpaqaxf"
+                publishable-key="pk_live_51TtGu02CmVw9y7MlDaEUUzmSfC247NMAsmlZoXSgY2jPIg32d9VMllShZg0x5gzbD1cQ7sGXyj7KEdpiDOHFM9bO00cNPzwrkO">
+              </stripe-buy-button>
+            </div>
+            <p style="text-align:center;font-size:13px;color:var(--gray3)">— or —</p>
+            <div style="text-align:center;margin-top:8px">
+              <a href="https://buy.stripe.com/3cIdR2cVZ0U65zq11B9EI01" target="_blank" rel="noopener noreferrer" class="btn btn-green btn-full" style="font-size:15px;padding:14px">
+                ❤ Give $50 — Donate Now
+              </a>
+            </div>
             <div class="stripe-badge">🔒 Secured by Stripe · SSL Encrypted</div>
           </div>
         </div>
 
+        <!-- CUSTOM AMOUNT -->
         <div class="donate-card">
           <div class="donate-card-hdr" style="border-top:4px solid var(--navy)">
             <h2>✝ Give Another Amount</h2>
@@ -646,7 +676,9 @@ function renderDonate() {
           </div>
           <div class="donate-card-body">
             <input type="number" id="customAmount" class="custom-amount" placeholder="Enter amount in dollars (e.g. 25)" min="1" style="margin-bottom:14px" />
-            <button class="btn btn-navy btn-full" style="font-size:16px;padding:15px" onclick="handleCustomDonation()">❤ Give This Amount — Secure Payment</button>
+            <a id="customDonateBtn" href="https://donate.stripe.com/9B600caNR32e2ne5hR9EI00" target="_blank" rel="noopener noreferrer" class="btn btn-navy btn-full" style="font-size:15px;padding:14px;display:block;text-align:center">
+              ❤ Give This Amount — Donate Now
+            </a>
             <div class="stripe-badge">🔒 Secured by Stripe · SSL Encrypted</div>
           </div>
         </div>
@@ -661,17 +693,13 @@ function renderDonate() {
 
 function handleDonation(type) {
   const link = DONATE_LINKS[type];
-  if (!link || link.includes('thankyou')) {
-    alert("⚙️ Stripe donations not yet activated.\n\nTo activate:\n1. Go to dashboard.stripe.com → Payment Links → + Create\n2. Set fixed price ($10 or $50)\n3. After-payment redirect:\n   https://reflectionsofgracebiblestudies.netlify.app/#/thankyou\n4. Copy the buy.stripe.com link\n5. Paste into DONATE_LINKS at the top of this file and upload to GitHub");
-    return;
-  }
-  window.location.href = link;
+  window.open(link, '_blank', 'noopener,noreferrer');
 }
 
 function handleCustomDonation() {
   const v = document.getElementById('customAmount').value;
   if (!v || parseInt(v) < 1) { alert('Please enter a donation amount of at least $1.'); return; }
-  handleDonation('custom');
+  window.open(DONATE_LINKS.custom, '_blank', 'noopener,noreferrer');
 }
 
 // ── ENROLL (FREE) ──────────────────────────────────────────────────
@@ -741,8 +769,8 @@ function renderEnroll() {
                 <div class="donate-nudge">
                   <p>Enrollment is free. If you'd like to bless the ministry, a voluntary gift of <strong>$10 or $50</strong> goes a long way.</p>
                   <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-                    <a href="#/donate" class="btn btn-primary" style="padding:10px 22px;font-size:14px">❤ Give $10</a>
-                    <a href="#/donate" class="btn btn-green" style="padding:10px 22px;font-size:14px">❤ Give $50</a>
+                    <a href="https://donate.stripe.com/9B600caNR32e2ne5hR9EI00" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:10px 22px;font-size:14px">❤ Give $10</a>
+                    <a href="https://buy.stripe.com/3cIdR2cVZ0U65zq11B9EI01" target="_blank" rel="noopener noreferrer" class="btn btn-green" style="padding:10px 22px;font-size:14px">❤ Give $50</a>
                   </div>
                 </div>
               </div>
@@ -810,8 +838,8 @@ function renderEnrolled() {
           <a href="#/courses" class="btn btn-navy">✝ Start Learning — View All Phases</a>
         </div>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-          <a href="#/donate" class="btn btn-primary" style="padding:12px 26px;font-size:14px">❤ Give $10</a>
-          <a href="#/donate" class="btn btn-green" style="padding:12px 26px;font-size:14px">❤ Give $50</a>
+          <a href="https://donate.stripe.com/9B600caNR32e2ne5hR9EI00" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:12px 26px;font-size:14px">❤ Give $10</a>
+          <a href="https://buy.stripe.com/3cIdR2cVZ0U65zq11B9EI01" target="_blank" rel="noopener noreferrer" class="btn btn-green" style="padding:12px 26px;font-size:14px">❤ Give $50</a>
         </div>
         <p style="margin-top:18px;font-size:12px;color:var(--gray3);font-style:italic">"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver." — 2 Corinthians 9:7</p>
       </div>

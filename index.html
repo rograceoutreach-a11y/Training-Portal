@@ -327,6 +327,4306 @@ function getCount(){return parseInt(localStorage.getItem('rog_count')||'47',10);
 function hasEnrolled(){return localStorage.getItem('rog_enrolled')==='true';}
 function setEnrolled(){localStorage.setItem('rog_enrolled','true');const c=getCount()+1;localStorage.setItem('rog_count',c);}
 const view=document.getElementById('view');
+const ENRICHMENT={
+  "phase01":[
+    {
+      "quiz":[
+        {
+          "q":"What term describes the Holy Spirit guiding Scripture writers to record God's truth accurately?",
+          "opts":[
+            "Illumination",
+            "Inspiration",
+            "Revelation",
+            "Translation"
+          ],
+          "ans":1
+        },
+        {
+          "q":"2 Timothy 3:16 says Scripture is profitable for all of the following EXCEPT:",
+          "opts":[
+            "Doctrine",
+            "Reproof",
+            "Entertainment",
+            "Instruction in righteousness"
+          ],
+          "ans":2
+        },
+        {
+          "q":"The term \"inerrancy\" means the Bible:",
+          "opts":[
+            "Was written in one language",
+            "Contains no errors in all it affirms",
+            "Was written by one author",
+            "Was discovered by archaeologists"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Which best describes the sufficiency of Scripture?",
+          "opts":[
+            "The Bible is one of many equal spiritual books",
+            "Scripture alone provides everything needed for salvation and godly living",
+            "The Bible must be supplemented by church tradition",
+            "Scripture is only relevant to ancient cultures"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "How has the authority of Scripture shaped the way you make decisions in your daily life? Share a specific example where the Word guided you differently than your own reasoning would have.",
+        "Many people today treat the Bible as \"one book among many.\" How do you personally explain and defend the unique authority of Scripture to someone from that perspective?",
+        "The Bible says it is \"profitable for reproof and correction.\" Describe a time when Scripture corrected something in your thinking or behavior. What was that process like?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"2 Timothy 3:16-17",
+          "meta":"The foundational text on biblical inspiration and sufficiency",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"2 Peter 1:20-21",
+          "meta":"Peter's explanation of how the Holy Spirit moved men to write Scripture",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Evidence That Demands a Verdict \u2014 Josh McDowell",
+          "meta":"Classic apologetics text on biblical reliability and authority",
+          "tag":"Book",
+          "url":"https://archive.org/search?query=evidence+demands+verdict+mcdowell"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Chicago Statement on Biblical Inerrancy (1978)",
+          "meta":"The definitive evangelical scholarly statement on Scripture's authority",
+          "tag":"Reference",
+          "url":"https://www.bible-researcher.com/chicago1.html"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Knowing Scripture \u2014 R.C. Sproul",
+          "meta":"Accessible scholarly guide to Bible study methodology",
+          "tag":"Book"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of the Evangelical Theological Society",
+          "meta":"Peer-reviewed scholarship on biblical authority and theology",
+          "tag":"Journal",
+          "url":"https://www.etsjets.org/JETS"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Why Trust the Bible? \u2014 The Bible Project",
+          "meta":"Free animated overview of biblical reliability",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/watch?v=ak06MSETeo4"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Teaching Channel",
+          "meta":"Thomas E. Walker MDiv. \u2014 weekly biblical teaching",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"Reflections of Grace Ministry Podcast",
+          "meta":"Audio teachings on Scripture and Christian life",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0ZEHoURQOg4EVOGku734QA"
+        }
+      ],
+      "bookLink":{
+        "book":"I",
+        "chapter":2,
+        "title":"Knowing God Through Prayer"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Hermeneutics is best defined as:",
+          "opts":[
+            "The history of Bible translations",
+            "The science and art of biblical interpretation",
+            "A type of biblical prophecy",
+            "The study of church history"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The term \"exegesis\" means:",
+          "opts":[
+            "Reading your own ideas into the text",
+            "Drawing meaning out of the text as the author intended",
+            "Memorizing Scripture passages",
+            "Preaching from the Old Testament only"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Which interpretive principle says we should understand a passage in light of its surrounding verses?",
+          "opts":[
+            "Allegorical method",
+            "Context principle",
+            "Typology",
+            "Proof-texting"
+          ],
+          "ans":1
+        },
+        {
+          "q":"When we ignore context and isolate a verse to support a pre-existing idea, this is called:",
+          "opts":[
+            "Exegesis",
+            "Systematic theology",
+            "Proof-texting",
+            "Hermeneutics"
+          ],
+          "ans":2
+        }
+      ],
+      "discussion":[
+        "Have you ever heard a Scripture verse used out of context in a way that changed its meaning? What was the verse, and what did the context actually say?",
+        "Fee and Stuart say \"a text cannot mean what it never meant.\" How does this principle protect us from making Scripture say whatever we want it to say?",
+        "What is your current personal approach to studying the Bible? What tools or methods do you use, and what would you like to add after this lesson?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"2 Timothy 2:15",
+          "meta":"Paul's command to rightly divide the word of truth",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Acts 17:11 \u2014 The Bereans",
+          "meta":"Model of Scripture-checking and careful study",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"How to Read the Bible for All Its Worth \u2014 Fee & Stuart",
+          "meta":"The standard evangelical hermeneutics text for all believers",
+          "tag":"Book",
+          "url":"https://archive.org/search?query=how+to+read+bible+fee+stuart"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Hermeneutical Spiral \u2014 Grant Osborne",
+          "meta":"Graduate-level hermeneutics from a leading evangelical scholar",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Biblical Hermeneutics \u2014 Roy Zuck",
+          "meta":"Dallas Seminary's academic hermeneutics textbook",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal for the Study of the NT \u2014 SAGE",
+          "meta":"Peer-reviewed New Testament interpretation scholarship",
+          "tag":"Journal",
+          "url":"https://journals.sagepub.com/home/jsn"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"How to Study the Bible \u2014 The Bible Project",
+          "meta":"Free YouTube series on context and biblical genre",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/watch?v=_OLezoUvOEQ"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Inductive Bible Study \u2014 Spoken Gospel",
+          "meta":"Observation, Interpretation, Application method explained",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/c/SpokenGospel"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Teaching Videos",
+          "meta":"Thomas Walker on reading and applying Scripture today",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        }
+      ],
+      "bookLink":{
+        "book":"I",
+        "chapter":2,
+        "title":"Knowing God Through Prayer"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"The Old Testament is organized into how many major divisions?",
+          "opts":[
+            "Two",
+            "Three",
+            "Four",
+            "Five"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The Pentateuch refers to:",
+          "opts":[
+            "The five books of Moses",
+            "The four Gospels",
+            "The letters of Paul",
+            "The books of poetry"
+          ],
+          "ans":0
+        },
+        {
+          "q":"Which OT theme is most consistently fulfilled in Jesus Christ?",
+          "opts":[
+            "Political governance",
+            "Temple worship and sacrifice",
+            "Military conquest",
+            "Agricultural law"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The Prophets in the OT were primarily called to:",
+          "opts":[
+            "Predict the future only",
+            "Call Israel back to covenant faithfulness",
+            "Establish the monarchy",
+            "Write the law"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Before this lesson, how familiar were you with the Old Testament? Which books or stories have shaped your faith the most, and which have you avoided?",
+        "Jesus said in Luke 24:27 that all the Scriptures spoke of Him. Pick one OT story or passage and explain how you see Christ in it.",
+        "Many Christians skip the Old Testament because it feels distant. What is one practical reason why every believer should read the full OT, and how would you motivate someone to do it?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Luke 24:27",
+          "meta":"Jesus explaining how all the Scriptures speak of Him",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Psalm 119:105",
+          "meta":"The Word as a lamp \u2014 the OT as ongoing light for God's people",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"An Introduction to the Old Testament \u2014 Dillard & Longman",
+          "meta":"Comprehensive evangelical OT introduction",
+          "tag":"Scholarly"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Old Testament Theology \u2014 Walter Brueggemann",
+          "meta":"Leading scholarly treatment of OT's major themes",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"How the OT Develops Key Themes \u2014 Goldsworthy",
+          "meta":"Christ-centered OT biblical theology",
+          "tag":"Book"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Vetus Testamentum \u2014 Brill",
+          "meta":"International peer-reviewed OT scholarship journal",
+          "tag":"Journal",
+          "url":"https://brill.com/view/journals/vt/vt-overview.xml"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"The Old Testament \u2014 The Bible Project Overview",
+          "meta":"Animated book-by-book OT overview series \u2014 free",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/playlist?list=PLH0Szn1yYNeeVFodkI9J_WEATHQqmueA4"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 OT Teaching",
+          "meta":"Thomas Walker on the Old Testament and its relevance today",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        }
+      ],
+      "bookLink":{
+        "book":"I",
+        "chapter":2,
+        "title":"Knowing God Through Prayer"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"The four Gospels record the life of Jesus from four perspectives. Which is considered the most theological?",
+          "opts":[
+            "Matthew",
+            "Mark",
+            "Luke",
+            "John"
+          ],
+          "ans":3
+        },
+        {
+          "q":"The book of Acts primarily chronicles:",
+          "opts":[
+            "The life of Jesus",
+            "The birth and spread of the early Church",
+            "Paul's theology",
+            "The end times"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Paul's letters are primarily addressed to:",
+          "opts":[
+            "Jewish synagogues",
+            "Individual churches and leaders",
+            "Roman government officials",
+            "OT prophets"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Revelation belongs to which literary genre?",
+          "opts":[
+            "Biography",
+            "Epistle",
+            "Apocalyptic literature",
+            "Historical narrative"
+          ],
+          "ans":2
+        }
+      ],
+      "discussion":[
+        "Which of the four Gospels do you connect with most deeply, and why? What does each Gospel's unique perspective add to your understanding of Jesus?",
+        "The book of Acts shows the early church growing through prayer, preaching, and persecution. Which of those three dynamics do you see most in your own faith community?",
+        "Paul's letters were written to specific churches with specific problems. Pick one Pauline letter and explain how its message addresses a challenge facing the church today."
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"John 1:1-14",
+          "meta":"The theological prologue to John's Gospel \u2014 the Word became flesh",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Acts 1:8",
+          "meta":"The mandate and roadmap for the NT church",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"NT Introduction \u2014 Carson & Moo",
+          "meta":"Leading evangelical NT introduction and survey",
+          "tag":"Scholarly"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The New Testament and Its World \u2014 N.T. Wright & Michael Bird",
+          "meta":"Comprehensive NT scholarship in its historical context",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"New Testament Studies \u2014 Cambridge",
+          "meta":"Peer-reviewed NT scholarship journal",
+          "tag":"Journal",
+          "url":"https://www.cambridge.org/core/journals/new-testament-studies"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Word Biblical Commentary \u2014 NT volumes",
+          "meta":"Detailed scholarly verse-by-verse NT commentary series",
+          "tag":"Reference"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"New Testament Overview \u2014 The Bible Project",
+          "meta":"Animated NT book-by-book overview series \u2014 free",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/playlist?list=PLH0Szn1yYNefc4EAX3nSv9aUuasfp5ZMM"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 NT Teaching",
+          "meta":"Thomas Walker on the Gospels and Epistles",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"Ministry Podcast \u2014 Spotify",
+          "meta":"Audio teaching on New Testament themes",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0ZEHoURQOg4EVOGku734QA"
+        }
+      ],
+      "bookLink":{
+        "book":"I",
+        "chapter":2,
+        "title":"Knowing God Through Prayer"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"The Great Commission in Matthew 28:19-20 commands believers to do all EXCEPT:",
+          "opts":[
+            "Go",
+            "Make disciples",
+            "Build church buildings",
+            "Baptize"
+          ],
+          "ans":2
+        },
+        {
+          "q":"Discipleship differs from mere church attendance in that it involves:",
+          "opts":[
+            "Longer sermons",
+            "Intentional life-on-life investment and accountability",
+            "More Bible translations",
+            "Better worship music"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Jesus modeled discipleship primarily through:",
+          "opts":[
+            "Large conferences",
+            "Living, working, and ministering alongside twelve men",
+            "Written correspondence",
+            "Annual retreats"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Which NT figure provides the clearest model of multiplication discipleship?",
+          "opts":[
+            "Barnabas",
+            "Timothy",
+            "Paul (who discipled Timothy)",
+            "Apollos"
+          ],
+          "ans":2
+        }
+      ],
+      "discussion":[
+        "Who has been the most significant discipler in your life? What did they do that made the greatest difference in your spiritual formation?",
+        "Jesus said \"make disciples of all nations\" \u2014 not just converts. What is the difference, and how does your current church or ministry focus on that distinction?",
+        "What would a discipleship relationship look like for you right now \u2014 who could you pour into, and who could pour into you?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Matthew 28:18-20",
+          "meta":"The Great Commission \u2014 the mandate for discipleship",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"2 Timothy 2:2",
+          "meta":"Paul's multiplication principle \u2014 what you've learned, teach to others",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"The Cost of Discipleship \u2014 Dietrich Bonhoeffer",
+          "meta":"The classic work on radical, costly discipleship",
+          "tag":"Book",
+          "url":"https://archive.org/search?query=cost+of+discipleship+bonhoeffer"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of Spiritual Formation & Soul Care \u2014 Biola",
+          "meta":"Peer-reviewed research on discipleship and spiritual formation",
+          "tag":"Journal",
+          "url":"https://journals.sagepub.com/home/jsc"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Master Plan of Evangelism \u2014 Robert Coleman",
+          "meta":"Influential study of Jesus' discipleship methodology",
+          "tag":"Book"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Transforming Discipleship \u2014 Greg Ogden",
+          "meta":"Scholarly and practical approach to intentional disciple-making",
+          "tag":"Scholarly"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Discipleship Teaching",
+          "meta":"Thomas Walker on what it means to make disciples today",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Walking with Denise Ford-Walker",
+          "meta":"Discipleship, encouragement, and spiritual growth",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@walkingwithdenisefordwalker"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"ROG Ministry Podcast \u2014 Spotify",
+          "meta":"Teaching on discipleship and Christian formation",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0ZEHoURQOg4EVOGku734QA"
+        }
+      ],
+      "bookLink":{
+        "book":"I",
+        "chapter":1,
+        "title":"The Cry of the Soul \u2014 Why We Pray"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"James 1:22 warns against being a \"hearer only\" \u2014 what does he say results from this?",
+          "opts":[
+            "Weak faith",
+            "Self-deception",
+            "Lack of prayer",
+            "Poor church attendance"
+          ],
+          "ans":1
+        },
+        {
+          "q":"What spiritual discipline is described as the intentional abstaining from food for spiritual purposes?",
+          "opts":[
+            "Meditation",
+            "Fasting",
+            "Solitude",
+            "Sabbath"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Scripture memory is primarily valuable because:",
+          "opts":[
+            "It impresses others with your knowledge",
+            "God's Word stored in the heart guards against sin (Psalm 119:11)",
+            "It helps with academic achievement",
+            "It replaces the need for Bible study"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The integration of faith and daily life is called:",
+          "opts":[
+            "Monasticism",
+            "Discipleship",
+            "Incarnational living",
+            "Bible study"
+          ],
+          "ans":2
+        }
+      ],
+      "discussion":[
+        "James says to be \"doers of the word, not hearers only.\" In what area of your life do you feel the biggest gap between what you know Scripture says and how you actually live?",
+        "Which spiritual discipline (prayer, fasting, Scripture reading, solitude, giving) is most natural for you \u2014 and which do you most avoid? What does that avoidance reveal?",
+        "How do you practically connect your faith to your Monday morning \u2014 your workplace, your relationships, your finances? What would \"living the Word\" look like this week specifically?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"James 1:22-25",
+          "meta":"The call to be doers, not hearers \u2014 the mirror metaphor",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Deuteronomy 6:4-9",
+          "meta":"The Shema \u2014 integrating God's Word into every part of daily life",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"The Spirit of the Disciplines \u2014 Dallas Willard",
+          "meta":"Foundational text on how spiritual disciplines transform life",
+          "tag":"Book"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Celebration of Discipline \u2014 Richard Foster",
+          "meta":"Classic work on the twelve spiritual disciplines",
+          "tag":"Book",
+          "url":"https://archive.org/search?query=celebration+of+discipline+foster"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of Spiritual Formation & Soul Care",
+          "meta":"Research on how spiritual practices form Christian character",
+          "tag":"Journal",
+          "url":"https://journals.sagepub.com/home/jsc"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Renovation of the Heart \u2014 Dallas Willard",
+          "meta":"The theology and practice of spiritual transformation",
+          "tag":"Scholarly"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Faith in Daily Life",
+          "meta":"Thomas Walker on incarnational Christian living",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"Denise's Inspirational Melodies \u2014 Spotify",
+          "meta":"Songs of faith and daily encouragement",
+          "tag":"Music",
+          "url":"https://open.spotify.com/show/0txwnSLF5SfFThBQzxFXNf"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Walking with Denise Ford-Walker \u2014 YouTube",
+          "meta":"Devotional living and spiritual encouragement",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@walkingwithdenisefordwalker"
+        }
+      ],
+      "bookLink":{
+        "book":"I",
+        "chapter":8,
+        "title":"A Life of Prayer \u2014 From Discipline to Communion"
+      }
+    }
+  ],
+  "phase02":[
+    {
+      "quiz":[
+        {
+          "q":"Walker's \"Vacuum Effect\" describes what happens when:",
+          "opts":[
+            "A church loses its pastor",
+            "God is displaced from a life, family, or community",
+            "The economy declines",
+            "A neighborhood loses population"
+          ],
+          "ans":1
+        },
+        {
+          "q":"In Luke 11:24-26, Jesus warns that an empty spiritual house:",
+          "opts":[
+            "Is blessed and protected",
+            "Will be filled with worse things than before",
+            "Remains empty permanently",
+            "Will attract new believers"
+          ],
+          "ans":1
+        },
+        {
+          "q":"According to Walker, the vacuum principle means:",
+          "opts":[
+            "Nature literally hates a physical vacuum",
+            "When God is removed something else always takes His place",
+            "Church attendance automatically fills spiritual needs",
+            "Prayer alone prevents vacuums"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The vacuum Walker describes is primarily:",
+          "opts":[
+            "Physical and material",
+            "Economic and political",
+            "Spiritual and relational",
+            "Academic and intellectual"
+          ],
+          "ans":2
+        }
+      ],
+      "discussion":[
+        "Have you ever experienced a \"vacuum\" in your life \u2014 a season when God seemed absent and something else rushed in to fill the space? What filled it, and what was the result?",
+        "Walker says the vacuum forms not just in individuals but in families and communities. Can you identify a vacuum in your neighborhood or community? What is filling that space?",
+        "Jesus describes the returning spirit in Luke 11 as bringing seven more wicked than itself. Why does spiritual emptiness always escalate rather than stay neutral?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Luke 11:24-26",
+          "meta":"Jesus' parable of the returning unclean spirit \u2014 the empty house",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Romans 1:18-25",
+          "meta":"What happens when God is suppressed \u2014 the theological vacuum principle",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"The Vacuum Effect \u2014 Thomas E. Walker",
+          "meta":"Phase 02 core text \u2014 Walker's first-hand account of the vacuum principle",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Thomas-E-Walker/e/B01J6QEWLG"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Secular Age \u2014 Charles Taylor",
+          "meta":"Landmark sociological study on why God was displaced from public life",
+          "tag":"Scholarly",
+          "url":"https://archive.org/search?query=secular+age+charles+taylor"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Screwtape Letters \u2014 C.S. Lewis",
+          "meta":"Classic extra-biblical depiction of how spiritual vacuums are exploited",
+          "tag":"Extra-Biblical",
+          "url":"https://archive.org/search?query=screwtape+letters+lewis"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Sociology of Religion \u2014 Berger & Luckmann",
+          "meta":"Social construction of reality and how meaning systems collapse",
+          "tag":"Scholarly"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"The Vacuum Effect \u2014 Full YouTube Playlist",
+          "meta":"Thomas E. Walker's complete teaching series on Phase 02",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=PLd8keH7MLY&list=PL0sV-2529XGAWpNyBIKr28X2xt8x5RqrF"
+        },
+        {
+          "icon":"\ud83d\udcf1",
+          "title":"TikTok \u2014 @thomaswalker41011",
+          "meta":"Walker's short-form teaching on spiritual emptiness in culture",
+          "tag":"TikTok",
+          "url":"https://www.tiktok.com/@thomaswalker41011"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"ROG Ministry Podcast \u2014 Spotify",
+          "meta":"Audio teachings on the vacuum effect",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0ZEHoURQOg4EVOGku734QA"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":1,
+        "title":"The Promise Stands"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Walker traces the vacuum in the Black family particularly to which government policy?",
+          "opts":[
+            "The Civil Rights Act",
+            "AFDC welfare policies that penalized two-parent households",
+            "The GI Bill",
+            "Social Security Act"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Malachi 4:6 prophesies that God will turn the hearts of:",
+          "opts":[
+            "Kings to prophets",
+            "Fathers to children and children to fathers",
+            "Teachers to students",
+            "Leaders to the poor"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The biblical term for the family covenant in the OT is best described as:",
+          "opts":[
+            "A legal contract only",
+            "A binding relationship of love, loyalty, and shared life",
+            "A temporary arrangement",
+            "A political alliance"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker argues that absent fathers create a vacuum that is often filled by:",
+          "opts":[
+            "Community organizations",
+            "Street culture, gangs, and false father-figures",
+            "Government programs",
+            "School systems"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Walker specifically addresses how government policy disrupted the Black family structure. How does understanding systemic causes of family breakdown change how the church should respond \u2014 from judging to healing?",
+        "Malachi 4:6 calls for fathers' hearts to turn to children. What does generational healing look like practically in a community where fatherlessness spans multiple generations?",
+        "What does a restored family altar look like in the 21st century? How can single-parent families, blended families, and non-traditional households create spiritual anchors for their children?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Malachi 4:5-6",
+          "meta":"God's promise to restore the father-child relationship",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Proverbs 22:6",
+          "meta":"Train up a child \u2014 the covenant responsibility of parents",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"The Vacuum Effect \u2014 Family Chapters \u2014 Walker",
+          "meta":"Walker's analysis of family breakdown and restoration",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Thomas-E-Walker/e/B01J6QEWLG"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Fatherless in America \u2014 David Blankenhorn",
+          "meta":"Sociological research on absent fathers and community collapse",
+          "tag":"Scholarly",
+          "url":"https://archive.org/search?query=fatherless+america+blankenhorn"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of Marriage and Family \u2014 Wiley",
+          "meta":"Peer-reviewed research on family structure and outcomes",
+          "tag":"Journal",
+          "url":"https://onlinelibrary.wiley.com/journal/17413737"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Bringing Up Boys \u2014 James Dobson",
+          "meta":"Biblical framework for raising children without a father's presence",
+          "tag":"Extra-Biblical"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"The Vacuum Effect Playlist \u2014 YouTube",
+          "meta":"Walker's full teaching series including family vacuum chapters",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=PLd8keH7MLY&list=PL0sV-2529XGAWpNyBIKr28X2xt8x5RqrF"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Walking with Denise Ford-Walker",
+          "meta":"Family healing and restoration through faith",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@walkingwithdenisefordwalker"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"Denise's Inspirational Melodies \u2014 Spotify",
+          "meta":"Songs of family healing and restoration",
+          "tag":"Music",
+          "url":"https://open.spotify.com/show/0txwnSLF5SfFThBQzxFXNf"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":3,
+        "title":"Opposition in the Promised Land"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"1 John 4:8 states that \"God is love\" \u2014 what does this mean for those who never received love in childhood?",
+          "opts":[
+            "They are permanently damaged beyond healing",
+            "Their wounds are real but God can restore what was taken",
+            "They must earn love through service",
+            "The church has no role in their healing"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker argues that the vacuum of love often produces:",
+          "opts":[
+            "Independence and self-sufficiency",
+            "Irrational behavior and destructive relationship patterns",
+            "Religious extremism only",
+            "Academic underachievement"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Agape love in the NT is best described as:",
+          "opts":[
+            "Romantic feeling between spouses",
+            "Brotherly affection among friends",
+            "Unconditional, self-giving love modeled by God",
+            "Emotional warmth and enthusiasm"
+          ],
+          "ans":2
+        },
+        {
+          "q":"The primary source of healing for a love vacuum according to a Christian counseling framework is:",
+          "opts":[
+            "Therapy alone",
+            "Time and distance from the wound",
+            "Experiencing God's unconditional love through community and Scripture",
+            "Self-help and positive thinking"
+          ],
+          "ans":2
+        }
+      ],
+      "discussion":[
+        "Walker says the vacuum of love produces irrational behavior. Can you identify patterns in your own life or someone you've ministered to where a love deficit drove choices that made no logical sense?",
+        "1 John 4:8 says God IS love. For someone who has never experienced consistent human love, what does it mean to \"know God as love\"? How does the church embody that?",
+        "How can a congregation become a family for those who never had one? What would that require practically \u2014 and what barriers would need to be removed?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"1 John 4:7-12",
+          "meta":"God is love \u2014 the source of all genuine human love",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Romans 8:38-39",
+          "meta":"Nothing can separate us from the love of God \u2014 the antidote to the love vacuum",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"The Vacuum Effect \u2014 Walker",
+          "meta":"Walker on love deficits and their spiritual consequences",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Thomas-E-Walker/e/B01J6QEWLG"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Attachment Theory \u2014 Bowlby & Ainsworth",
+          "meta":"How early attachment wounds shape all future relationships",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Emotionally Healthy Church \u2014 Peter Scazzero",
+          "meta":"How emotional immaturity and love wounds manifest in church life",
+          "tag":"Book"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of Psychology and Theology",
+          "meta":"Peer-reviewed research on love, attachment, and faith",
+          "tag":"Journal",
+          "url":"https://journals.sagepub.com/home/ptj"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"The Vacuum Effect \u2014 Walker Playlist",
+          "meta":"Teaching series including the vacuum of love chapters",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=PLd8keH7MLY&list=PL0sV-2529XGAWpNyBIKr28X2xt8x5RqrF"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Denise's Inspirational Melodies \u2014 YouTube",
+          "meta":"Songs and teaching on healing and God's love",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@denisesinspirationalmelodi6408"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"Walking with Denise \u2014 Spotify",
+          "meta":"Devotional audio on love, healing, and restoration",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0txwnSLF5SfFThBQzxFXNf"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":4,
+        "title":"Letting Go of What Hinders"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Hebrews 10:25 warns against \"forsaking the assembling of ourselves together\" \u2014 what does Walker say this produces?",
+          "opts":[
+            "Better personal devotion",
+            "A dangerous isolation that the enemy exploits",
+            "More time for family",
+            "Greater independence"
+          ],
+          "ans":1
+        },
+        {
+          "q":"In what ways does Walker say the enemy uses isolation as a weapon?",
+          "opts":[
+            "By removing church buildings",
+            "By cutting people off from accountability, witness, and belonging",
+            "Through economic hardship only",
+            "By promoting false religions"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Acts 2:42-47 describes the early church characterized by:",
+          "opts":[
+            "Isolation and individual devotion",
+            "Breaking bread, prayer, fellowship, and shared resources",
+            "Large formal gatherings only",
+            "Silent meditation"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The vacuum of community is particularly dangerous because:",
+          "opts":[
+            "Lonely people spend more money",
+            "Humans are fundamentally social beings made for covenant community",
+            "Church attendance statistics decline",
+            "Buildings fall into disrepair"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Has isolation ever affected your spiritual life? What happened, and what brought you back into community?",
+        "Walker argues community itself is a spiritual discipline. What does authentic, accountable Christian community look like beyond attending Sunday services? What would you have to give to build it?",
+        "Many people are leaving the church but claiming they are still \"spiritual.\" What does the vacuum of community do to a person's faith long-term without the anchor of gathered believers?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Hebrews 10:24-25",
+          "meta":"Don't forsake gathering together \u2014 we need each other",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Acts 2:42-47",
+          "meta":"The early church model of covenant community",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Ecclesiastes 4:9-12",
+          "meta":"Two are better than one \u2014 the strength of covenant friendship",
+          "tag":"Scripture"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Bowling Alone \u2014 Robert Putnam",
+          "meta":"Harvard research on the collapse of American community and its effects",
+          "tag":"Scholarly",
+          "url":"https://archive.org/search?query=bowling+alone+putnam"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Life Together \u2014 Dietrich Bonhoeffer",
+          "meta":"Classic theological text on the nature of Christian community",
+          "tag":"Extra-Biblical",
+          "url":"https://archive.org/search?query=life+together+bonhoeffer"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of Community & Applied Social Psychology",
+          "meta":"Research on social isolation and its psychological effects",
+          "tag":"Journal"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"The Vacuum Effect Playlist \u2014 YouTube",
+          "meta":"Walker's teaching on the vacuum of community",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=PLd8keH7MLY&list=PL0sV-2529XGAWpNyBIKr28X2xt8x5RqrF"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Community Teaching",
+          "meta":"Building covenant community in the 21st century",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\ud83d\udcf1",
+          "title":"TikTok \u2014 @thomaswalker41011",
+          "meta":"Short teachings on community, isolation, and faith",
+          "tag":"TikTok",
+          "url":"https://www.tiktok.com/@thomaswalker41011"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":6,
+        "title":"Community and the Promise"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Romans 8:28 promises that all things work together for good for those who:",
+          "opts":[
+            "Attend church regularly",
+            "Love God and are called according to His purpose",
+            "Give generously",
+            "Have perfect faith"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker defines \"the shift\" as:",
+          "opts":[
+            "Moving to a new city",
+            "A sudden or gradual displacement of God from the center of life",
+            "A change in church denomination",
+            "An economic recession"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Which biblical figure best exemplifies surviving a major \"shift\" and emerging stronger?",
+          "opts":[
+            "King Saul",
+            "Samson",
+            "Joseph",
+            "Lot"
+          ],
+          "ans":2
+        },
+        {
+          "q":"According to Walker, surviving the shift requires all EXCEPT:",
+          "opts":[
+            "Spiritual preparation before crisis",
+            "Community support during the shift",
+            "Understanding God's sovereignty",
+            "Avoiding all difficult emotions"
+          ],
+          "ans":3
+        }
+      ],
+      "discussion":[
+        "Have you experienced a major \"shift\" \u2014 a sudden life crisis, loss, or displacement? Looking back, where was God in it, and what did the season teach you?",
+        "Walker says we can prepare spiritually before a shift comes. What does that preparation look like in practical terms \u2014 and are you currently doing it?",
+        "Joseph's shift included betrayal, slavery, and false imprisonment before his destiny arrived. What sustained him? What specific quality do you need to develop to survive your next shift?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Romans 8:28-29",
+          "meta":"God works all things for good \u2014 the sovereign purpose behind the shift",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Genesis 37-45",
+          "meta":"Joseph's full journey \u2014 the biblical model of surviving the shift",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"The Vacuum Effect \u2014 Walker: Surviving the Shift",
+          "meta":"Walker's guidance on navigating seasons of crisis and displacement",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Thomas-E-Walker/e/B01J6QEWLG"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Post-Traumatic Growth \u2014 Tedeschi & Calhoun",
+          "meta":"Psychological Inquiry 15(1) \u2014 how crisis can produce unexpected growth",
+          "tag":"Journal"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Man's Search for Meaning \u2014 Viktor Frankl",
+          "meta":"Finding purpose and meaning in the midst of suffering",
+          "tag":"Extra-Biblical",
+          "url":"https://archive.org/search?query=mans+search+for+meaning+frankl"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Resilience: Hard-Won Wisdom for Living a Better Life \u2014 Eric Greitens",
+          "meta":"Research-based framework for building resilience through adversity",
+          "tag":"Scholarly"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"The Vacuum Effect Playlist \u2014 YouTube",
+          "meta":"Walker's teaching on surviving the shift",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=PLd8keH7MLY&list=PL0sV-2529XGAWpNyBIKr28X2xt8x5RqrF"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Denise's Inspirational Melodies \u2014 YouTube",
+          "meta":"Songs of strength for seasons of shift and trial",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@denisesinspirationalmelodi6408"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"ROG Ministry Podcast \u2014 Spotify",
+          "meta":"Audio teachings on resilience and faith in crisis",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0ZEHoURQOg4EVOGku734QA"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":5,
+        "title":"The Faith That Does Not Faint"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Joel 2:25 promises God will restore \"the years that the locust has eaten.\" This refers to:",
+          "opts":[
+            "Agricultural blessing only",
+            "God's ability to redeem and restore what sin and the enemy have destroyed",
+            "A literal agricultural prophecy with no spiritual meaning",
+            "Future blessings not available today"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker's restoration framework begins with:",
+          "opts":[
+            "Returning to church attendance",
+            "Honest acknowledgment of the vacuum and what filled it",
+            "Starting new programs",
+            "Relocating to a new community"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Forgiveness is central to closing the vacuum because:",
+          "opts":[
+            "It makes the offender feel better",
+            "Unforgiveness keeps the wound open and prevents God's restoration",
+            "Forgiveness means forgetting what happened",
+            "It is required for church membership"
+          ],
+          "ans":1
+        },
+        {
+          "q":"According to Walker, closing the vacuum is possible because:",
+          "opts":[
+            "God rewards those who deserve it",
+            "Human willpower is sufficient for change",
+            "God specializes in restoring what sin, circumstances, and the enemy have taken",
+            "Time naturally heals all wounds"
+          ],
+          "ans":2
+        }
+      ],
+      "discussion":[
+        "Joel 2:25 is a restoration promise. What specific \"years\" are you believing God to restore in your own life? Be as concrete as you can.",
+        "Walker says restoration requires closing the vacuum intentionally \u2014 not just hoping God will fix it passively. What is one active step you can take this week toward restoration in an area where you've experienced loss?",
+        "Who in your circle is living in an active vacuum right now? What would it look like to be an instrument of restoration for them \u2014 not as a fixer, but as a carrier of hope?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Joel 2:25-27",
+          "meta":"God's promise to restore the years the locust has eaten",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Isaiah 61:1-3",
+          "meta":"Beauty for ashes \u2014 the restoration ministry of Christ",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Total Forgiveness \u2014 R.T. Kendall",
+          "meta":"Biblical and practical guide to forgiveness as the path to restoration",
+          "tag":"Extra-Biblical",
+          "url":"https://archive.org/search?query=total+forgiveness+kendall"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Forgiveness and Reconciliation \u2014 Worthington",
+          "meta":"The REACH model \u2014 peer-reviewed clinical forgiveness research",
+          "tag":"Scholarly",
+          "url":"https://www.evworthington-forgiveness.com/"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Vacuum Effect \u2014 Walker: Restoration Chapters",
+          "meta":"Walker's framework for spiritual and communal restoration",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Thomas-E-Walker/e/B01J6QEWLG"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of Psychology & Christianity \u2014 CAPS",
+          "meta":"Research on forgiveness, restoration, and faith integration",
+          "tag":"Journal",
+          "url":"https://caps.net/jpc/"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"The Vacuum Effect Playlist \u2014 Restoration Teaching",
+          "meta":"Walker's closing sessions on restoration and renewal",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=PLd8keH7MLY&list=PL0sV-2529XGAWpNyBIKr28X2xt8x5RqrF"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Denise's Inspirational Melodies \u2014 YouTube",
+          "meta":"Worship and encouragement for seasons of restoration",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@denisesinspirationalmelodi6408"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"Denise Ford-Walker \u2014 Spotify",
+          "meta":"Songs of restoration and hope",
+          "tag":"Music",
+          "url":"https://open.spotify.com/show/0txwnSLF5SfFThBQzxFXNf"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":8,
+        "title":"The Moment of Receiving"
+      }
+    }
+  ],
+  "phase03":[
+    {
+      "quiz":[
+        {
+          "q":"McMinn's three-domain integration model combines:",
+          "opts":[
+            "Bible, church, and prayer",
+            "Psychology, theology, and spirituality",
+            "Counseling, preaching, and teaching",
+            "Assessment, diagnosis, and treatment"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The theological concept underlying the dignity of every counseling client is:",
+          "opts":[
+            "Imago Dei \u2014 every person made in God's image",
+            "Total depravity only",
+            "The prosperity gospel",
+            "Biblical inerrancy"
+          ],
+          "ans":0
+        },
+        {
+          "q":"BPSS stands for which counseling framework?",
+          "opts":[
+            "Biblical, Pastoral, Social, Spiritual",
+            "Bio-Psycho-Social-Spiritual",
+            "Brief, Practical, Systematic, Structured",
+            "Behavioral, Psychological, Systemic, Sacred"
+          ],
+          "ans":1
+        },
+        {
+          "q":"McMinn argues that compartmentalizing psychology from theology in counseling is problematic because:",
+          "opts":[
+            "It is efficient",
+            "It fragments the whole person God created",
+            "It saves time in sessions",
+            "Clients prefer it"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Before this lesson, how did you personally relate psychology and theology? Did you see them as friends, enemies, or strangers? How has this unit changed that view?",
+        "McMinn says the counselor's own spiritual health is the most important clinical instrument in the room. What does your current spiritual health bring into your helping relationships?",
+        "The BPSS model treats a person as biological, psychological, social, AND spiritual. Which dimension do you think is most neglected in the church's approach to helping people, and why?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Philippians 4:4-7",
+          "meta":"Paul's integrated approach \u2014 spiritual practice producing psychological peace",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Proverbs 20:5",
+          "meta":"The counselor draws out deep waters \u2014 the work of soul care",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Psychology, Theology & Spirituality in Christian Counseling \u2014 McMinn",
+          "meta":"The standard integration textbook for Phase 03",
+          "tag":"Core Text",
+          "url":"https://archive.org/search?query=psychology+theology+spirituality+mcminn"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Psychology & Christianity: Five Views \u2014 Johnson (Ed.)",
+          "meta":"Leading scholarly debate on integration models",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of Psychology and Theology \u2014 Sage",
+          "meta":"The flagship peer-reviewed Christian counseling integration journal",
+          "tag":"Journal",
+          "url":"https://journals.sagepub.com/home/ptj"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of Psychology and Christianity \u2014 CAPS",
+          "meta":"Applied and theoretical integration scholarship",
+          "tag":"Journal",
+          "url":"https://caps.net/jpc/"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Counseling Teaching Channel",
+          "meta":"Thomas Walker MDiv. on integrated Christian ministry",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Christian Counseling Basics \u2014 AACC",
+          "meta":"American Association of Christian Counselors training videos",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/c/AACC"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"CCEF \u2014 Soul Care Resources",
+          "meta":"Center for Biblical Counseling \u2014 free video and article library",
+          "tag":"Free",
+          "url":"https://www.ccef.org"
+        }
+      ],
+      "bookLink":{
+        "book":"III",
+        "chapter":1,
+        "title":"The Challenge of Integration"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"CBT (Cognitive Behavioral Therapy) aligns most closely with which biblical principle?",
+          "opts":[
+            "Tithing",
+            "Renewing the mind \u2014 Romans 12:2",
+            "Church attendance",
+            "Water baptism"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Attachment theory, developed by Bowlby, parallels the biblical concept of:",
+          "opts":[
+            "Repentance",
+            "God as a secure base and safe haven for His people",
+            "Church discipline",
+            "The Lord's Supper"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Narrative therapy helps clients by:",
+          "opts":[
+            "Analyzing dreams",
+            "Re-authoring destructive life stories within a redemptive framework",
+            "Prescribing medication",
+            "Avoiding painful memories"
+          ],
+          "ans":1
+        },
+        {
+          "q":"When using psychological theories in Christian counseling, Walker and McMinn agree that:",
+          "opts":[
+            "All psychological theories must be rejected",
+            "Theories are tools \u2014 they must be evaluated through a theological filter",
+            "Psychology and theology are completely separate",
+            "CBT is the only valid approach"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Romans 12:2 calls for the \"renewing of the mind.\" How does CBT's focus on changing thought patterns align with \u2014 or differ from \u2014 biblical transformation? Where do they complement each other?",
+        "Attachment theory says our early relational wounds shape every subsequent relationship, including our relationship with God. How has your attachment history affected your view of God?",
+        "Narrative therapy says people get stuck in \"problem-saturated stories.\" How does the Gospel offer a different story \u2014 and how do you help someone actually step into that new narrative?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Romans 12:1-2",
+          "meta":"The renewing of the mind \u2014 the theological basis for cognitive change",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Psalm 139:1-6",
+          "meta":"God's intimate knowledge of us \u2014 the foundation of healthy self-understanding",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Christian Counseling: A Comprehensive Guide \u2014 Gary Collins",
+          "meta":"Gary Collins' 700+ page integration reference \u2014 free on Archive.org",
+          "tag":"Free",
+          "url":"https://archive.org/search?query=christian+counseling+gary+collins"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Attachment and Loss \u2014 John Bowlby",
+          "meta":"The foundational attachment theory text",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"When God and Science Meet \u2014 NIH / Pew",
+          "meta":"Research review on neuroscience, psychology, and religious belief",
+          "tag":"Data",
+          "url":"https://www.pewresearch.org/religion/"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Cognitive Therapy and the Emotional Disorders \u2014 Beck",
+          "meta":"The clinical CBT foundational text by Aaron Beck",
+          "tag":"Scholarly"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Biblical Psychology Teaching",
+          "meta":"Thomas Walker on psychology through a biblical lens",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Attachment Theory Explained \u2014 YouTube",
+          "meta":"Accessible overview of Bowlby's attachment framework",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/results?search_query=attachment+theory+bowlby+explained"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"JFIC \u2014 Open Access Counseling Journal",
+          "meta":"Free peer-reviewed integration articles on theory and practice",
+          "tag":"Free",
+          "url":"https://jfic.researchcommons.org/"
+        }
+      ],
+      "bookLink":{
+        "book":"III",
+        "chapter":1,
+        "title":"The Challenge of Integration"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"FICA is a spiritual assessment tool that stands for:",
+          "opts":[
+            "Faith, Influence, Community, Address in care",
+            "Faith, Importance, Community, Address in care",
+            "Feeling, Identity, Coping, Awareness",
+            "First, Implement, Confirm, Assess"
+          ],
+          "ans":1
+        },
+        {
+          "q":"When is it ethically appropriate to use prayer in a counseling session?",
+          "opts":[
+            "At the start of every session regardless of client preference",
+            "Only in church-based settings",
+            "When the client requests it and it is clinically appropriate",
+            "Never \u2014 prayer is outside the scope of counseling"
+          ],
+          "ans":2
+        },
+        {
+          "q":"Spiritual formation as a therapeutic process recognizes that:",
+          "opts":[
+            "Spiritual health is irrelevant to mental health",
+            "Spiritual disciplines can function as evidence-based interventions",
+            "Only medication produces real change",
+            "Pastors should not use psychological tools"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The Holy Spirit's role in Christian counseling according to John 14:26 is:",
+          "opts":[
+            "To replace the need for counseling",
+            "To be the Helper who teaches and comforts \u2014 the ultimate therapeutic presence",
+            "To guarantee all prayer requests are answered",
+            "To reward clients who attend church"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "McMinn addresses the ethics of prayer in session carefully. Have you ever prayed with someone in a helping role? How did it affect the relationship and the conversation?",
+        "Which spiritual discipline do you think has the most therapeutic value for the clients or people you serve \u2014 and how would you introduce it clinically without it feeling coercive?",
+        "John 14:26 describes the Holy Spirit as the Helper who teaches. How does that change how you understand your role as a counselor or minister \u2014 from expert to instrument?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"John 14:26",
+          "meta":"The Holy Spirit as Counselor and Helper \u2014 the ultimate therapeutic presence",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"James 5:14-16",
+          "meta":"Prayer, confession, and healing in community \u2014 a NT counseling model",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Psychology, Theology & Spirituality \u2014 McMinn: Ch. 2-3",
+          "meta":"McMinn's clinical chapters on prayer and Scripture in counseling",
+          "tag":"Core Text",
+          "url":"https://archive.org/search?query=psychology+theology+spirituality+mcminn"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"FICA Spiritual History Tool \u2014 Puchalski",
+          "meta":"The validated spiritual assessment instrument for clinical settings",
+          "tag":"Clinical Tool",
+          "url":"https://gwish.smhs.gwu.edu/fica-spiritual-history-tool"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Religion & Health \u2014 Koenig et al.",
+          "meta":"Oxford Handbook of Religion and Health \u2014 comprehensive research review",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"JFIC \u2014 Faith Integration in Counseling",
+          "meta":"Free open-access research on spiritual disciplines and therapy",
+          "tag":"Free",
+          "url":"https://jfic.researchcommons.org/"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Prayer and Ministry",
+          "meta":"Thomas Walker on the role of prayer in pastoral care",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"ROG Ministry Podcast \u2014 Spotify",
+          "meta":"Audio teaching on spiritual formation and soul care",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0ZEHoURQOg4EVOGku734QA"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"CCEF \u2014 Spiritual Formation Videos",
+          "meta":"Free resources on prayer, Scripture, and the counseling relationship",
+          "tag":"Free",
+          "url":"https://www.ccef.org"
+        }
+      ],
+      "bookLink":{
+        "book":"III",
+        "chapter":2,
+        "title":"Prayer in Counseling"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Bessel van der Kolk's landmark research shows that trauma is stored primarily in:",
+          "opts":[
+            "Long-term memory only",
+            "The body \u2014 nervous system and somatic memory",
+            "Cognitive beliefs only",
+            "Spiritual beliefs"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Psalms of lament (Psalm 22, 42, 88) provide a clinical model for:",
+          "opts":[
+            "Positive thinking",
+            "Honest protest, grief, and trust \u2014 processing pain before God",
+            "Silent acceptance of suffering",
+            "Avoiding negative emotions in worship"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Post-Traumatic Growth (PTG) research by Tedeschi & Calhoun found that:",
+          "opts":[
+            "Trauma always produces permanent damage",
+            "Crisis can catalyze unexpected personal and spiritual growth",
+            "Time alone heals all trauma",
+            "Religious people are immune to trauma"
+          ],
+          "ans":1
+        },
+        {
+          "q":"2 Corinthians 1:4 teaches that God comforts us so that:",
+          "opts":[
+            "We will never suffer again",
+            "We can be comfortable and avoid others' pain",
+            "We can comfort others with the same comfort we have received",
+            "We can preach prosperity to others"
+          ],
+          "ans":2
+        }
+      ],
+      "discussion":[
+        "Van der Kolk says \"the body keeps the score.\" Have you observed or experienced how trauma lives in the body \u2014 not just the mind \u2014 in your own life or in someone you've ministered to?",
+        "The Psalms of lament allow honest protest to God \u2014 \"Why have you forsaken me?\" (Psalm 22:1). How comfortable is your church with lament? How might embracing lament change how you help people in pain?",
+        "2 Corinthians 1:4 says our suffering equips us to comfort others. What suffering in your own story has become the very thing that allows you to genuinely meet someone else in theirs?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"2 Corinthians 1:3-5",
+          "meta":"The God of all comfort \u2014 suffering as preparation for ministry",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Psalm 22:1-5 & 88",
+          "meta":"Biblical lament psalms \u2014 the model for honest grief before God",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Suffering and the Heart of God \u2014 Diane Langberg",
+          "meta":"How trauma destroys and how Christ restores \u2014 essential reading",
+          "tag":"Book"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Body Keeps the Score \u2014 Bessel van der Kolk",
+          "meta":"The landmark trauma neuroscience text \u2014 widely cited",
+          "tag":"Scholarly",
+          "url":"https://archive.org/search?query=body+keeps+score+van+der+kolk"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Post-Traumatic Growth \u2014 Tedeschi & Calhoun (2004)",
+          "meta":"Psychological Inquiry 15(1) \u2014 the foundational PTG research",
+          "tag":"Journal"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"JFIC \u2014 Trauma and Faith Integration",
+          "meta":"Open access research on trauma, faith, and counseling",
+          "tag":"Free",
+          "url":"https://jfic.researchcommons.org/"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Trauma and the Church \u2014 Diane Langberg",
+          "meta":"YouTube lecture series on trauma-informed ministry",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/results?search_query=diane+langberg+trauma+church"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Lament and Healing \u2014 The Bible Project",
+          "meta":"Free animated video on the theology of suffering and lament",
+          "tag":"Free",
+          "url":"https://www.youtube.com/watch?v=v8HMzPBzLwA"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"ROG Ministry Podcast \u2014 Spotify",
+          "meta":"Pastoral teaching on trauma, grief, and redemptive suffering",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0ZEHoURQOg4EVOGku734QA"
+        }
+      ],
+      "bookLink":{
+        "book":"III",
+        "chapter":4,
+        "title":"Confession in Counseling"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Cultural humility in counseling differs from cultural competence in that it:",
+          "opts":[
+            "Requires knowing every culture in detail",
+            "Emphasizes ongoing learning and self-examination rather than mastery",
+            "Is only relevant for international missionaries",
+            "Means using only culturally specific therapeutic models"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Matthew 22:39 \u2014 \"Love your neighbor as yourself\" \u2014 in a counseling context means:",
+          "opts":[
+            "Only serve people from your own background",
+            "Enter every client's world with genuine curiosity and respect",
+            "Apply the same techniques to every person",
+            "Avoid discussing cultural differences"
+          ],
+          "ans":1
+        },
+        {
+          "q":"When counseling across cultural differences, the FIRST priority is:",
+          "opts":[
+            "Learning the other culture's language",
+            "Acknowledging your own cultural assumptions and biases",
+            "Using culture-specific therapy manuals",
+            "Referring to a same-culture counselor immediately"
+          ],
+          "ans":1
+        },
+        {
+          "q":"A covenant perspective on marriage counseling views marriage as:",
+          "opts":[
+            "A social contract that can be dissolved for any reason",
+            "A binding covenant between two people and God \u2014 with implications for healing",
+            "A legal arrangement only",
+            "A personal preference of the individuals involved"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "What cultural assumptions do you bring into helping relationships? How might those assumptions be serving or limiting the people you minister to?",
+        "Walker addresses counseling across racial and cultural lines with both skill and love. What specific preparation do you need to serve people whose background differs significantly from yours?",
+        "A covenant view of marriage means both partners are accountable to God, not just to each other. How does that framework change the approach to marriage counseling \u2014 especially in crisis?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Matthew 22:37-39",
+          "meta":"Love God, love neighbor \u2014 the double command that defines cross-cultural ministry",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Acts 17:26-27",
+          "meta":"God made every nation \u2014 the theological basis for cultural dignity",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Galatians 3:28",
+          "meta":"Neither Jew nor Greek \u2014 the church's vision of multicultural unity",
+          "tag":"Scripture"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Multicultural Counseling and Therapy \u2014 Sue & Sue",
+          "meta":"The leading text on cultural competence in counseling",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Cultural Humility in Counseling \u2014 Hook et al.",
+          "meta":"Journal of Counseling Psychology research on humility and effectiveness",
+          "tag":"Journal"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"American Journal of Family Therapy",
+          "meta":"Peer-reviewed research on marriage, family, and cross-cultural counseling",
+          "tag":"Journal",
+          "url":"https://www.tandfonline.com/journals/uaft20"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Cultural Humility Teaching",
+          "meta":"Thomas Walker on ministry across cultural lines",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Walking with Denise Ford-Walker",
+          "meta":"Reaching diverse communities with compassion and cultural wisdom",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@walkingwithdenisefordwalker"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"CCEF \u2014 Cross-Cultural Resources",
+          "meta":"Free articles and videos on diverse populations and soul care",
+          "tag":"Free",
+          "url":"https://www.ccef.org"
+        }
+      ],
+      "bookLink":{
+        "book":"III",
+        "chapter":5,
+        "title":"Forgiveness in Counseling"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"A personal integration statement is primarily:",
+          "opts":[
+            "A list of clinical techniques",
+            "A credential for licensure",
+            "A counselor's articulated philosophy of persons, God, sin, and healing",
+            "A church mission statement"
+          ],
+          "ans":2
+        },
+        {
+          "q":"Henri Nouwen's \"wounded healer\" concept suggests:",
+          "opts":[
+            "Only healthy counselors should practice",
+            "The counselor's processed wounds become instruments of empathy",
+            "Wounds disqualify a person from ministry",
+            "Healing requires no prior suffering"
+          ],
+          "ans":1
+        },
+        {
+          "q":"McMinn's capstone argument is that the most powerful instrument in the counseling room is:",
+          "opts":[
+            "The theoretical model used",
+            "The client's motivation",
+            "The counselor's own spiritual health and formation",
+            "The office environment"
+          ],
+          "ans":2
+        },
+        {
+          "q":"Proverbs 4:23 says \"Keep your heart with all diligence, for out of it spring the issues of life.\" In counseling this means:",
+          "opts":[
+            "Counselors should not show emotion",
+            "The counselor's inner life directly affects everything they offer in session",
+            "Heart issues only matter in spiritual direction",
+            "Emotional intelligence replaces theological training"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Nouwen wrote about the \"wounded healer.\" What wound in your story has God been using or preparing to use as an instrument of healing for others? How does naming it change how you see your calling?",
+        "McMinn says the counseling relationship itself is a microcosm of grace. What does a grace-filled counseling relationship look like \u2014 and how does it differ from a merely professional one?",
+        "Write the first sentence of your personal integration statement out loud with the group: \"I believe that people are _______, that healing requires _______, and that God's role in that healing is _______.\" What did you learn from trying to put it in one sentence?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"2 Corinthians 5:17-18",
+          "meta":"New creation \u2014 the theology of redemption underlying all counseling",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Proverbs 4:23",
+          "meta":"Guard your heart \u2014 the counselor's formation is their most critical tool",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"The Wounded Healer \u2014 Henri Nouwen",
+          "meta":"The classic text on how our wounds become instruments of ministry",
+          "tag":"Extra-Biblical"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Psychology, Theology & Spirituality \u2014 McMinn: Capstone",
+          "meta":"McMinn's final chapter on integration and the therapeutic relationship",
+          "tag":"Core Text",
+          "url":"https://archive.org/search?query=psychology+theology+spirituality+mcminn"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of Psychology and Theology \u2014 Integration Articles",
+          "meta":"Peer-reviewed models of personal integration statements",
+          "tag":"Journal",
+          "url":"https://journals.sagepub.com/home/ptj"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Competencies for Counseling the Religiously Diverse \u2014 ACA",
+          "meta":"ACA's official competency framework for spiritually integrated counseling",
+          "tag":"Professional"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Integration and Formation",
+          "meta":"Thomas Walker on becoming the counselor God is forming you to be",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"ROG Ministry Podcast \u2014 Spotify",
+          "meta":"Audio teaching on calling, formation, and Christian counseling",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0ZEHoURQOg4EVOGku734QA"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"JFIC \u2014 Open Access Counseling Research",
+          "meta":"Free scholarly articles on the integrated counselor",
+          "tag":"Free",
+          "url":"https://jfic.researchcommons.org/"
+        }
+      ],
+      "bookLink":{
+        "book":"III",
+        "chapter":6,
+        "title":"Redemption and the Counseling Relationship"
+      }
+    }
+  ],
+  "phase04":[
+    {
+      "quiz":[
+        {
+          "q":"Romans 13:11 says salvation is \"nearer than when we first believed\" \u2014 what practical application does Walker draw from this?",
+          "opts":[
+            "Retire early and rest",
+            "Wake from spiritual sleep and act with urgency",
+            "Wait patiently without action",
+            "Withdraw from the world"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker identifies the \"signs of the times\" as calling believers to:",
+          "opts":[
+            "Fear and retreat",
+            "Increased social isolation",
+            "Urgent faith, witness, and outreach",
+            "Greater church programs"
+          ],
+          "ans":2
+        },
+        {
+          "q":"Spiritual sleep in Walker's framework is characterized by:",
+          "opts":[
+            "Physical tiredness",
+            "Comfort, complacency, and loss of evangelistic urgency",
+            "Attending too many church services",
+            "Excessive Bible reading"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The title \"Now Is the Time to Believe\" reflects Walker's conviction that:",
+          "opts":[
+            "Tomorrow is always available",
+            "The prophetic hour demands immediate faith and action",
+            "Belief can wait until circumstances improve",
+            "This era is no different from others"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Walker writes that we are living in a prophetic hour. What specific signs in your community, family, or culture create urgency for you personally? What is stopping you from acting on that urgency?",
+        "Romans 13:11 says \"it is high time to awake.\" What area of your spiritual life or ministry has been asleep \u2014 and what would it look like to fully wake up this week?",
+        "Many believers feel the urgency but are paralyzed by fear of rejection or inadequacy. What is one specific fear that holds you back from bolder witness \u2014 and what Scripture speaks directly to it?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Romans 13:11-14",
+          "meta":"The call to wake from sleep \u2014 the urgency of the hour",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Matthew 24:42-44",
+          "meta":"Watch therefore \u2014 Jesus on readiness and the signs of the times",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Now Is the Time to Believe \u2014 Thomas E. Walker",
+          "meta":"Phase 04 core text \u2014 Walker's urgent call to active faith",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Thomas-E-Walker/e/B01J6QEWLG"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Pew Research: Religious Landscape 2023",
+          "meta":"Current data on faith, nones, and the urgent state of American religion",
+          "tag":"Data",
+          "url":"https://www.pewresearch.org/religion/"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Rise of the Nones \u2014 Ryan Burge",
+          "meta":"Peer-reviewed data on who is leaving faith and why \u2014 essential context",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of the Evangelical Theological Society",
+          "meta":"Peer-reviewed eschatology and urgency in contemporary theology",
+          "tag":"Journal",
+          "url":"https://www.etsjets.org/JETS"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Now Is the Time to Believe \u2014 Full YouTube Playlist",
+          "meta":"Walker's complete Phase 04 teaching series",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=t7MavKqoExo&list=PL0sV-2529XGDFDSmN70keD_f87FmwYtR_"
+        },
+        {
+          "icon":"\ud83d\udcf1",
+          "title":"TikTok \u2014 @thomaswalker41011",
+          "meta":"Walker's short-form prophetic teaching and cultural commentary",
+          "tag":"TikTok",
+          "url":"https://www.tiktok.com/@thomaswalker41011"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"ROG Ministry Podcast \u2014 Spotify",
+          "meta":"Audio teachings on the urgency of the prophetic hour",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0ZEHoURQOg4EVOGku734QA"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":1,
+        "title":"The Promise Stands"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Mark 11:23 describes faith that moves mountains as requiring:",
+          "opts":[
+            "Perfect sinlessness",
+            "Speaking to the mountain without doubting in the heart",
+            "Fasting for 40 days first",
+            "A large prayer group"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker distinguishes biblical faith from positive thinking primarily in that biblical faith:",
+          "opts":[
+            "Also relies on willpower",
+            "Is merely optimism with religious language",
+            "Is anchored in the character and promises of a specific God",
+            "Guarantees health and wealth"
+          ],
+          "ans":2
+        },
+        {
+          "q":"Hebrews 11:1 defines faith as:",
+          "opts":[
+            "Believing what you cannot prove",
+            "The substance of things hoped for and the evidence of things not seen",
+            "An emotional feeling of certainty",
+            "A decision to ignore doubt"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The role of confession and declaration in Walker's faith framework is:",
+          "opts":[
+            "Magic words that force God to act",
+            "Aligning our words with God's revealed Word and promises",
+            "A replacement for prayer",
+            "Psychological self-talk only"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Walker calls for mountain-moving faith. What is the \"mountain\" in your life right now \u2014 and what would it mean to speak to it in faith rather than just pray about it?",
+        "Hebrews 11 is the \"faith hall of fame.\" Which person in that chapter do you most identify with in this season, and what does their story say to yours?",
+        "Many believers confuse faith with certainty and give up when doubt arrives. Walker argues doubt and faith can coexist. How do you personally navigate seasons of strong doubt while holding onto declared faith?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Mark 11:22-24",
+          "meta":"Mountain-moving faith \u2014 speak, believe, do not doubt",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Hebrews 11:1-6",
+          "meta":"The biblical definition of faith and the example of Enoch",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Now Is the Time to Believe \u2014 Walker",
+          "meta":"Walker on activating and sustaining mountain-moving faith",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Thomas-E-Walker/e/B01J6QEWLG"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Psychology of Religion and Coping \u2014 Pargament",
+          "meta":"Guilford Press \u2014 clinical research on how faith functions in crisis",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Religion, Faith, and Health Outcomes \u2014 Koenig",
+          "meta":"Oxford Handbook research on the measurable effects of faith",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Believing God \u2014 Beth Moore",
+          "meta":"Practical guide to activating biblical faith in daily life",
+          "tag":"Extra-Biblical"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Now Is the Time Playlist \u2014 YouTube",
+          "meta":"Walker's full teaching series on faith and the prophetic hour",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=t7MavKqoExo&list=PL0sV-2529XGDFDSmN70keD_f87FmwYtR_"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Denise's Inspirational Melodies \u2014 YouTube",
+          "meta":"Songs of faith and encouragement from Co-Founder Denise Ford-Walker",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@denisesinspirationalmelodi6408"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"Denise Ford-Walker \u2014 Spotify",
+          "meta":"Music that builds and sustains mountain-moving faith",
+          "tag":"Music",
+          "url":"https://open.spotify.com/show/0txwnSLF5SfFThBQzxFXNf"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":2,
+        "title":"The Delay Is Not a Denial"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Romans 10:14 asks \"how shall they hear without a preacher?\" This rhetorical question makes the point that:",
+          "opts":[
+            "Only ordained pastors can evangelize",
+            "The Gospel does not spread automatically \u2014 it requires human carriers",
+            "Preaching is more important than living the faith",
+            "Radio and TV can replace personal witness"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker emphasizes \"digital evangelism\" because:",
+          "opts":[
+            "It replaces personal evangelism",
+            "The platforms where people spend their time are mission fields",
+            "It is easier than face-to-face witness",
+            "Social media is always trustworthy"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Your personal testimony is a powerful evangelism tool primarily because:",
+          "opts":[
+            "It cannot be argued with \u2014 it is your experience of God's work",
+            "It is more theologically accurate than Scripture",
+            "It impresses people with your past sin",
+            "It requires no preparation"
+          ],
+          "ans":0
+        },
+        {
+          "q":"Reaching Gen X, Millennials, and Gen Z with the Gospel requires:",
+          "opts":[
+            "Using the same methods from the 1950s",
+            "Abandoning biblical content for cultural relevance",
+            "Understanding their specific questions and meeting them where they are",
+            "Focusing only on younger generations"
+          ],
+          "ans":2
+        }
+      ],
+      "discussion":[
+        "What is your personal testimony in three sentences? Practice sharing it with someone in the group. What is most powerful about it \u2014 and what do you tend to leave out?",
+        "Walker says social media, YouTube, and podcasting are mission fields. How are you currently using digital platforms for witness \u2014 and what would a more intentional strategy look like?",
+        "Romans 10 says people cannot hear without a preacher. Who in your life has not yet heard a clear presentation of the Gospel from someone they trust? What is one step you could take toward them this week?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Romans 10:13-17",
+          "meta":"Everyone who calls will be saved \u2014 but someone must go and tell",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"1 Peter 3:15",
+          "meta":"Always be ready to give a reason for the hope within you",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Now Is the Time to Believe \u2014 Walker: Evangelism Chapters",
+          "meta":"Walker's practical guidance on personal witness today",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Thomas-E-Walker/e/B01J6QEWLG"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Evangelism Handbook \u2014 Alvin Reid",
+          "meta":"Comprehensive scholarly and practical evangelism training text",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Missiology: An International Review \u2014 SAGE",
+          "meta":"Peer-reviewed missions and evangelism journal",
+          "tag":"Journal",
+          "url":"https://journals.sagepub.com/home/mis"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Just Walk Across the Room \u2014 Bill Hybels",
+          "meta":"Accessible relational evangelism guide for everyday believers",
+          "tag":"Extra-Biblical"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Evangelism Teaching",
+          "meta":"Thomas Walker on personal witness in the 21st century",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"How to Share Your Faith \u2014 Living Waters",
+          "meta":"Ray Comfort's practical YouTube evangelism training",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/c/LivingWaters"
+        },
+        {
+          "icon":"\ud83d\udcf1",
+          "title":"TikTok \u2014 @thomaswalker41011",
+          "meta":"Walker's evangelism and outreach short-form content",
+          "tag":"TikTok",
+          "url":"https://www.tiktok.com/@thomaswalker41011"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":7,
+        "title":"The Testimony Fuel"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"1 Thessalonians 5:17 \"Pray without ceasing\" most accurately means:",
+          "opts":[
+            "Never sleep",
+            "Maintain a continuous orientation of the heart toward God",
+            "Pray audibly at all times",
+            "Schedule prayer every hour"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Intercessory prayer differs from petition in that it:",
+          "opts":[
+            "Is more powerful because it is longer",
+            "Is prayer offered on behalf of another person or situation",
+            "Requires fasting to be valid",
+            "Must be spoken aloud to be heard"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Ephesians 6:18 connects \"praying always\" directly to:",
+          "opts":[
+            "Church attendance",
+            "The Full Armor of God \u2014 prayer activates every piece",
+            "Financial giving",
+            "Scripture memorization"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker's framework for prayer in the last days emphasizes:",
+          "opts":[
+            "Private devotion only",
+            "Corporate prayer that transforms communities",
+            "Longer individual prayers",
+            "Prayer that focuses only on personal needs"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Paul says \"pray without ceasing.\" What would your week look like if prayer moved from a scheduled activity to a continuous posture? What would have to change?",
+        "Walker teaches intercessory prayer as a ministry. Who are you currently carrying in consistent prayer \u2014 and what have you noticed in them or in yourself as a result?",
+        "Ephesians 6 ends with prayer \u2014 the armor is put on through prayer. Which piece of armor do you most need to pray on right now, and what specific prayer would you use?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"1 Thessalonians 5:16-18",
+          "meta":"Rejoice always, pray without ceasing, give thanks \u2014 the posture of prayer",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Ephesians 6:18",
+          "meta":"Praying always \u2014 prayer as the activation of the full armor",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Praying to Know Him, Praying From My Soul \u2014 Denise Ford-Walker",
+          "meta":"Phase-connected book on prayer by Co-Founder Denise Ford-Walker",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Denise-P.-Ford/e/B08WQ7PY8N"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Prayer: Finding the Heart's True Home \u2014 Richard Foster",
+          "meta":"Classic scholarly-pastoral guide to the dimensions of prayer",
+          "tag":"Book"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Transforming Power of Prayer \u2014 JO Fraser",
+          "meta":"Research on intercession and its effects on communities",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of Spiritual Formation & Soul Care",
+          "meta":"Research on intercessory prayer practice and spiritual formation",
+          "tag":"Journal",
+          "url":"https://journals.sagepub.com/home/jsc"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Now Is the Time Playlist \u2014 Prayer Teaching",
+          "meta":"Walker's teaching on prayer and intercession in the last days",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=t7MavKqoExo&list=PL0sV-2529XGDFDSmN70keD_f87FmwYtR_"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Prayer Channel",
+          "meta":"Teaching on prayer, intercession, and spiritual warfare",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"ROG Ministry Podcast \u2014 Spotify",
+          "meta":"Audio teachings on prayer and intercession",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0ZEHoURQOg4EVOGku734QA"
+        }
+      ],
+      "bookLink":{
+        "book":"I",
+        "chapter":5,
+        "title":"Intercessory Prayer"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Isaiah 58:6-7 describes the fast God has chosen as one that includes:",
+          "opts":[
+            "Longer church services only",
+            "Loosing bonds, feeding the hungry, housing the homeless, and clothing the naked",
+            "Avoiding secular culture",
+            "Increased Bible reading"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker's \"ministry without walls\" approach means:",
+          "opts":[
+            "Building larger church facilities",
+            "Taking ministry to where people are rather than waiting for them to come to church",
+            "Removing all church structure",
+            "Online ministry only"
+          ],
+          "ans":1
+        },
+        {
+          "q":"James 2:17 says \"faith without works is dead\" \u2014 in the context of social justice this means:",
+          "opts":[
+            "Social work replaces evangelism",
+            "Genuine faith produces tangible action for the vulnerable",
+            "Political activism is required of all believers",
+            "Works earn salvation"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The Great Commandment (love God and neighbor) and Great Commission (make disciples) are related because:",
+          "opts":[
+            "They are in conflict with each other",
+            "You cannot truly do one without doing the other",
+            "The Commission supersedes the Commandment",
+            "They apply to different groups of Christians"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Isaiah 58 defines fasting in terms of social justice \u2014 feeding, freeing, housing. How does this challenge a purely individualistic view of Christian spirituality?",
+        "Walker models \"ministry without walls\" \u2014 taking the church to the community. What walls does your current faith community still have that prevent it from reaching the people around it?",
+        "James 2 says faith without works is dead. What is one specific act of justice, mercy, or service that your faith is calling you to do \u2014 and what has been stopping you from doing it?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Isaiah 58:6-7",
+          "meta":"The fast God chooses \u2014 social justice as spiritual practice",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"James 2:14-17",
+          "meta":"Faith without works is dead \u2014 the integration of belief and action",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Luke 4:18-19",
+          "meta":"Jesus' inaugural sermon \u2014 the social justice mandate of the Kingdom",
+          "tag":"Scripture"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Generous Justice \u2014 Tim Keller",
+          "meta":"A theologically rigorous case for why the Gospel demands justice",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Missiology \u2014 Reaching Post-Christian Generations",
+          "meta":"SAGE peer-reviewed journal on missions and community engagement",
+          "tag":"Journal",
+          "url":"https://journals.sagepub.com/home/mis"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Rich Christians in an Age of Hunger \u2014 Ronald Sider",
+          "meta":"Classic evangelical text on faith and economic justice",
+          "tag":"Extra-Biblical"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace Outreach \u2014 YouTube",
+          "meta":"Ministry videos showing community outreach in action",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Walking with Denise Ford-Walker",
+          "meta":"Community encouragement and outreach from Co-Founder Denise",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@walkingwithdenisefordwalker"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"ROG Ministry Podcast \u2014 Spotify",
+          "meta":"Audio teaching on outreach, justice, and ministry without walls",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0ZEHoURQOg4EVOGku734QA"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":6,
+        "title":"Community and the Promise"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Acts 1:8 says \"you shall receive power\" for witness when:",
+          "opts":[
+            "You complete a ministry degree",
+            "The Holy Spirit comes upon you",
+            "You pray for three days",
+            "The church officially commissions you"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker describes a \"lifestyle of witness\" as different from evangelism events in that it:",
+          "opts":[
+            "Replaces all verbal witness",
+            "Happens in every relationship and setting, not just formal ministry moments",
+            "Is less effective than crusades",
+            "Only applies to pastors and evangelists"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The sequence in Acts 1:8 \u2014 Jerusalem, Judea, Samaria, ends of the earth \u2014 represents:",
+          "opts":[
+            "A timeline only for the first century",
+            "Starting where you are and expanding outward \u2014 a model for every believer's witness",
+            "International missions only",
+            "A geographic list with no current application"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Which quality does Walker say is most essential for a credible daily witness?",
+          "opts":[
+            "Theological education",
+            "A large social media following",
+            "Consistency between public faith and private life",
+            "Memorizing evangelism scripts"
+          ],
+          "ans":2
+        }
+      ],
+      "discussion":[
+        "Acts 1:8 maps witness from Jerusalem outward. Who are the people in YOUR Jerusalem right now \u2014 the closest circle \u2014 who have not heard the Gospel from you? What is holding you back?",
+        "Walker says a lifestyle of witness means every relationship is a potential ministry opportunity. What relationship in your life has God been nudging you toward, and what is the next step?",
+        "What is the gap between your public faith and your private life right now? Where are they inconsistent \u2014 and what would it take to close that gap so your witness has genuine power?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Acts 1:8",
+          "meta":"You will receive power \u2014 the Spirit-empowered mandate for witness",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Matthew 5:13-16",
+          "meta":"Salt and light \u2014 your witness as embedded in everyday life",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Now Is the Time to Believe \u2014 Walker: Witness Chapters",
+          "meta":"Walker on living as a daily witness in a desperate hour",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Thomas-E-Walker/e/B01J6QEWLG"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Tangible Kingdom \u2014 Hugh Halter & Matt Smay",
+          "meta":"Incarnational mission \u2014 embedding the Gospel in everyday life",
+          "tag":"Extra-Biblical"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Evangelism in the Early Church \u2014 Michael Green",
+          "meta":"Historical and theological study of first-century witnessing methods",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Missiology \u2014 SAGE Journals",
+          "meta":"Peer-reviewed research on evangelism methods and effectiveness",
+          "tag":"Journal",
+          "url":"https://journals.sagepub.com/home/mis"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Now Is the Time Playlist \u2014 Walker",
+          "meta":"Walker's complete Phase 04 teaching including daily witness",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=t7MavKqoExo&list=PL0sV-2529XGDFDSmN70keD_f87FmwYtR_"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Denise's Inspirational Melodies \u2014 YouTube",
+          "meta":"Songs of witness and faith in daily life",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@denisesinspirationalmelodi6408"
+        },
+        {
+          "icon":"\ud83d\udcf1",
+          "title":"TikTok \u2014 @thomaswalker41011",
+          "meta":"Walker's short-form outreach and witness content",
+          "tag":"TikTok",
+          "url":"https://www.tiktok.com/@thomaswalker41011"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":7,
+        "title":"The Testimony Fuel"
+      }
+    }
+  ],
+  "phase05":[
+    {
+      "quiz":[
+        {
+          "q":"Jude 1:4 describes people who \"crept in unnoticed\" \u2014 Walker uses this to describe:",
+          "opts":[
+            "Visitors who join the church quickly",
+            "False teachings and spiritual compromise that enter gradually and subtly",
+            "New building programs",
+            "Generational differences in worship style"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Revelation 2-3 shows Jesus addressing compromised churches with:",
+          "opts":[
+            "Only encouragement",
+            "Silence and patience",
+            "Specific diagnosis of each church's sin and a call to repentance",
+            "General statements about love"
+          ],
+          "ans":2
+        },
+        {
+          "q":"Walker argues that honest diagnosis of the church's sins is important because:",
+          "opts":[
+            "It gives people reasons to leave",
+            "Healing cannot begin without truthful acknowledgment of the wound",
+            "It makes for good controversy",
+            "The church is beyond repair"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Which of the following does Walker NOT name as something that \"shouldn't be in the church\"?",
+          "opts":[
+            "Spiritual abuse",
+            "Prosperity gospel",
+            "Racism and division",
+            "Cultural diversity"
+          ],
+          "ans":3
+        }
+      ],
+      "discussion":[
+        "Walker names specific things that have crept into the modern church. Which one is most present in your experience of the church, and how has it affected your faith or your ministry?",
+        "Jude says these infiltrations came \"unnoticed.\" How does compromise enter a church gradually without anyone seeing it coming? What warning signs should leaders watch for?",
+        "Jesus in Revelation 2-3 addresses each church specifically \u2014 He knows each one intimately. How would Jesus write a letter to your current church community? What would He commend, and what would He call out?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Jude 1:3-4",
+          "meta":"Contending for the faith once delivered \u2014 the infiltration warning",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Revelation 2-3",
+          "meta":"Jesus's letters to seven compromised churches \u2014 the model for honest diagnosis",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"It Shouldn't Be in the Church \u2014 Thomas E. Walker",
+          "meta":"Phase 05 core text \u2014 Walker's prophetic naming of church compromise",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Thomas-E-Walker/e/B01J6QEWLG"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Prophetic Untimeliness \u2014 A.W. Tozer",
+          "meta":"Tozer's classic call to name what the church has tolerated",
+          "tag":"Extra-Biblical",
+          "url":"https://archive.org/search?query=tozer+prophetic"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Church Scandal Research \u2014 Baylor Institute for Studies of Religion",
+          "meta":"Data on abuse, scandal, and institutional failure in the church",
+          "tag":"Data",
+          "url":"https://www.baylor.edu/isr/"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Recovering from Churches that Abuse \u2014 Ron Enroth",
+          "meta":"Research on harmful church environments and recovery",
+          "tag":"Scholarly"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"It Shouldn't Be in the Church \u2014 Playlist",
+          "meta":"Walker's full Phase 05 YouTube teaching series",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=t7MavKqoExo&list=PL0sV-2529XGDFDSmN70keD_f87FmwYtR_"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Walking with Denise Ford-Walker",
+          "meta":"Healing, hope, and honesty for those hurt by the church",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@walkingwithdenisefordwalker"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"ROG Ministry Podcast \u2014 Spotify",
+          "meta":"Teaching on church reform and holiness",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0ZEHoURQOg4EVOGku734QA"
+        }
+      ],
+      "bookLink":{
+        "book":"III",
+        "chapter":4,
+        "title":"Confession in Counseling"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Spiritual abuse is best defined as:",
+          "opts":[
+            "Disagreeing with church leadership",
+            "Using spiritual authority to control, manipulate, or harm those under one's care",
+            "Leaving a church for another",
+            "Questioning a pastor's sermon"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Ezekiel 34:2 pronounces \"woe to the shepherds\" who:",
+          "opts":[
+            "Preach too long",
+            "Feed themselves instead of the flock",
+            "Allow musical instruments in worship",
+            "Build too many buildings"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The Shepherding Movement of the 1970s-80s is a historical example of:",
+          "opts":[
+            "Healthy discipleship at scale",
+            "Spiritual authority exercised for the benefit of the congregation",
+            "Spiritual control and manipulation that harmed thousands",
+            "A successful global missions movement"
+          ],
+          "ans":2
+        },
+        {
+          "q":"Recovery from spiritual abuse typically requires:",
+          "opts":[
+            "Immediately joining a new church",
+            "Naming the harm, processing the grief, and rebuilding trust in safe community",
+            "Never going to church again",
+            "Pretending it didn't happen"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Have you experienced or witnessed spiritual abuse? Without naming individuals, describe the dynamics \u2014 what did the use and misuse of spiritual authority look like?",
+        "Walker addresses the Shepherding Movement as a case study. What structural safeguards could a healthy church build to prevent authority from becoming control?",
+        "Ezekiel 34 describes shepherds who feed themselves. What does a shepherd who genuinely feeds the flock look like \u2014 and how do you become that kind of leader?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Ezekiel 34:1-6",
+          "meta":"God's indictment of shepherds who exploit rather than serve the flock",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"1 Peter 5:1-4",
+          "meta":"Peter's instructions to elders \u2014 lead willingly, not for gain, not lording over",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"It Shouldn't Be in the Church \u2014 Walker: Spiritual Abuse",
+          "meta":"Walker's analysis of the Shepherding Movement and its aftermath",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Thomas-E-Walker/e/B01J6QEWLG"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Subtle Power of Spiritual Abuse \u2014 VanVonderen & Johnson",
+          "meta":"Clinical and pastoral study of spiritual abuse dynamics",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Religious Trauma Syndrome \u2014 Marlene Winell",
+          "meta":"Clinical framework for identifying and treating church-related trauma",
+          "tag":"Clinical"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of Psychology and Christianity",
+          "meta":"Peer-reviewed research on spiritual abuse and recovery",
+          "tag":"Journal",
+          "url":"https://caps.net/jpc/"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Phase 05 Playlist \u2014 Walker",
+          "meta":"Walker's teaching series including spiritual abuse chapters",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=t7MavKqoExo&list=PL0sV-2529XGDFDSmN70keD_f87FmwYtR_"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Church Hurt and Healing \u2014 YouTube",
+          "meta":"Multiple perspectives on spiritual abuse recovery",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/results?search_query=church+hurt+spiritual+abuse+healing"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Denise Ford-Walker \u2014 Walking with Denise",
+          "meta":"Healing and hope for those wounded by the institutional church",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@walkingwithdenisefordwalker"
+        }
+      ],
+      "bookLink":{
+        "book":"III",
+        "chapter":4,
+        "title":"Confession in Counseling"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"1 Corinthians 6:18 commands believers to \"flee sexual immorality\" \u2014 the word \"flee\" indicates:",
+          "opts":[
+            "Gradual withdrawal over time",
+            "Instant, decisive separation without negotiation",
+            "Seeking counseling first",
+            "Telling the pastor first"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Paul argues sexual sin is in a special category because:",
+          "opts":[
+            "It is the worst possible sin",
+            "It is the only unforgivable sin",
+            "It is uniquely committed against one's own body \u2014 the temple of the Holy Spirit",
+            "It destroys church buildings"
+          ],
+          "ans":2
+        },
+        {
+          "q":"Accountability structures for sexual sin in the church are most effective when they include:",
+          "opts":[
+            "Public shaming and exposure",
+            "Trusted, same-gender relationships with regular honest reporting",
+            "Anonymous online groups only",
+            "One conversation with a pastor"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker's pastoral response to sexual sin in the church emphasizes:",
+          "opts":[
+            "Immediate dismissal without restoration",
+            "Truth-telling, accountability, and a pathway toward genuine healing and restoration",
+            "Silence to protect the church's reputation",
+            "Transferring to another church"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Walker names sexual sin as something that \"shouldn't be in the church\" \u2014 yet it clearly is. Why does the church so often either ignore it or catastrophize it, rather than responding with truth and grace?",
+        "1 Corinthians 6:18 says to flee \u2014 not negotiate. What does it mean to \"flee\" in a digital age where sexual content is available instantly to every person with a smartphone?",
+        "What would a genuine accountability structure for sexual integrity look like in your church community? What would it require from leadership \u2014 and from you personally?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"1 Corinthians 6:15-20",
+          "meta":"Your body is the temple \u2014 the theological basis for sexual integrity",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Matthew 5:27-30",
+          "meta":"Jesus on lust and radical amputation \u2014 the severity of sexual sin in the heart",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"It Shouldn't Be in the Church \u2014 Walker",
+          "meta":"Walker's pastoral response to sexual compromise in the church",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Thomas-E-Walker/e/B01J6QEWLG"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Unwanted: How Sexual Brokenness Reveals Our Way to Healing \u2014 Jay Stringer",
+          "meta":"Research-based pastoral approach to sexual brokenness and wholeness",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Shattered Vows \u2014 Debra Laaser",
+          "meta":"Clinical and pastoral guide for spouses affected by sexual betrayal",
+          "tag":"Clinical"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of Sex & Marital Therapy",
+          "meta":"Peer-reviewed research on sexual ethics, theology, and clinical treatment",
+          "tag":"Journal"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Phase 05 Playlist \u2014 Walker",
+          "meta":"Walker's teaching series on sexual integrity and the church",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=t7MavKqoExo&list=PL0sV-2529XGDFDSmN70keD_f87FmwYtR_"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Holiness Teaching",
+          "meta":"Walker on purity, integrity, and accountability",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"ROG Ministry Podcast \u2014 Spotify",
+          "meta":"Teaching on sexual integrity and restoration",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0ZEHoURQOg4EVOGku734QA"
+        }
+      ],
+      "bookLink":{
+        "book":"III",
+        "chapter":3,
+        "title":"Scripture in Counseling"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Matthew 6:24 says you cannot serve both God and Mammon \u2014 \"Mammon\" refers to:",
+          "opts":[
+            "The Roman government",
+            "Money and material wealth as a competing lord or master",
+            "The devil directly",
+            "A specific Old Testament false god"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The prosperity gospel teaches that:",
+          "opts":[
+            "God calls all believers to simple living",
+            "Financial blessing is always a sign of God's favor and guaranteed for believers who give",
+            "Money is spiritually neutral",
+            "Poverty is a virtue"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker's critique of prosperity teaching is rooted in:",
+          "opts":[
+            "His personal financial situation",
+            "Jesus' own poverty",
+            "Scripture's consistent teaching that wealth can corrupt and that suffering is part of faithful discipleship",
+            "A political position on economics"
+          ],
+          "ans":2
+        },
+        {
+          "q":"A biblical theology of giving emphasizes:",
+          "opts":[
+            "Giving to receive greater financial returns",
+            "Cheerful, proportional giving motivated by gratitude \u2014 not transaction",
+            "Tithing as the only legitimate form of giving",
+            "Giving only when financially comfortable"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Walker takes on the prosperity gospel directly. Have you been influenced by prosperity teaching \u2014 either positively or negatively? How has it shaped your view of faith, money, and God?",
+        "Jesus said \"you cannot serve God and money.\" Where do you see the tension between financial ambition and Kingdom priorities in your own life right now?",
+        "A biblical theology of giving is motivated by grace, not transaction. What would it look like in your financial life to give from overflow and gratitude rather than obligation or expectation of return?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Matthew 6:19-24",
+          "meta":"Store treasures in heaven \u2014 you cannot serve God and Mammon",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"1 Timothy 6:6-10",
+          "meta":"Godliness with contentment is great gain \u2014 the love of money is a root of all evil",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"It Shouldn't Be in the Church \u2014 Walker: Mammon Chapters",
+          "meta":"Walker's prophetic critique of the prosperity gospel in the church",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Thomas-E-Walker/e/B01J6QEWLG"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Health and Wealth Gospels \u2014 Jones & Woodbridge",
+          "meta":"Scholarly theological critique of prosperity theology",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Christianity in Crisis \u2014 Hank Hanegraaff",
+          "meta":"Historical and biblical critique of the prosperity movement",
+          "tag":"Extra-Biblical",
+          "url":"https://archive.org/search?query=christianity+in+crisis+hanegraaff"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Sociology of American Religion \u2014 Mark Chaves",
+          "meta":"Princeton data on giving, wealth, and institutional church finances",
+          "tag":"Data"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Phase 05 Playlist \u2014 Walker",
+          "meta":"Walker's teaching including the Mammon and prosperity gospel chapters",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=t7MavKqoExo&list=PL0sV-2529XGDFDSmN70keD_f87FmwYtR_"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Prosperity Gospel Exposed \u2014 Justin Peters",
+          "meta":"Biblical critique of health-wealth theology",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/results?search_query=justin+peters+prosperity+gospel"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"ROG Ministry Podcast \u2014 Spotify",
+          "meta":"Teaching on a biblical theology of money and giving",
+          "tag":"Podcast",
+          "url":"https://open.spotify.com/show/0ZEHoURQOg4EVOGku734QA"
+        }
+      ],
+      "bookLink":{
+        "book":"III",
+        "chapter":5,
+        "title":"Forgiveness in Counseling"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Galatians 3:28 \u2014 \"neither Jew nor Greek, neither slave nor free\" \u2014 makes what claim about the church?",
+          "opts":[
+            "Cultural and racial differences disappear in Christ",
+            "The church should be racially homogeneous",
+            "Social distinctions remain but do not determine one's standing before God",
+            "Only Jewish Christians are the true church"
+          ],
+          "ans":2
+        },
+        {
+          "q":"Walker argues that the history of race in the American church is characterized by:",
+          "opts":[
+            "Consistent leadership for racial justice",
+            "Frequent complicity in racism and segregation, alongside prophetic witness against it",
+            "Irrelevance to the civil rights struggle",
+            "Complete harmony across racial lines"
+          ],
+          "ans":1
+        },
+        {
+          "q":"True racial reconciliation in the church requires:",
+          "opts":[
+            "Colorblindness and ignoring racial differences",
+            "Genuine repentance, honest historical reckoning, and structural change",
+            "Separate but equal worship communities",
+            "Waiting for the next generation to solve it"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The phrase \"integrated ministries model the Kingdom\" means:",
+          "opts":[
+            "All churches must become multi-ethnic immediately",
+            "Racially diverse communities of faith reflect God's vision for redeemed humanity",
+            "Integration is only for urban churches",
+            "Demographics should match the neighborhood"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Walker names racism as something that shouldn't be in the church. How has racial division affected your faith community \u2014 and what is the honest history of the church you attend or grew up in?",
+        "Galatians 3:28 describes a church where old divisions no longer define us. What would it practically take for your church to embody that vision? What would have to change \u2014 and who would resist it?",
+        "Reconciliation requires more than tolerance. Walker calls for genuine, structural change. What is one specific action your community could take toward racial justice and reconciliation \u2014 not just a conversation, but an action?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Galatians 3:26-29",
+          "meta":"All one in Christ Jesus \u2014 the theological vision of racial reconciliation",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Ephesians 2:11-22",
+          "meta":"Christ broke down the dividing wall \u2014 the cross as reconciliation",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Revelation 7:9",
+          "meta":"A great multitude of every nation, tribe, people, and language \u2014 the vision of heaven",
+          "tag":"Scripture"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Color of Compromise \u2014 Jemar Tisby",
+          "meta":"Historical account of the American church's complicity in racism",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Divided by Faith \u2014 Emerson & Smith",
+          "meta":"Sociological research on why American evangelicalism perpetuates racial division",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of Race, Ethnicity & Religion",
+          "meta":"Peer-reviewed research on race, faith, and religious institutions",
+          "tag":"Journal",
+          "url":"https://raceandrelifion.com/"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Phase 05 Playlist \u2014 Racism and Reconciliation",
+          "meta":"Walker's teaching on race and the Body of Christ",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=t7MavKqoExo&list=PL0sV-2529XGDFDSmN70keD_f87FmwYtR_"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Reconciliation Teaching",
+          "meta":"Thomas Walker on racial healing and Kingdom unity",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"Denise's Inspirational Melodies \u2014 Spotify",
+          "meta":"Songs of unity, healing, and Kingdom vision",
+          "tag":"Music",
+          "url":"https://open.spotify.com/show/0txwnSLF5SfFThBQzxFXNf"
+        }
+      ],
+      "bookLink":{
+        "book":"III",
+        "chapter":6,
+        "title":"Redemption and the Counseling Relationship"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"1 Peter 4:17 says judgment begins at \"the house of God\" \u2014 Walker applies this to mean:",
+          "opts":[
+            "God judges unbelievers first",
+            "Reform and accountability must begin within the church before it can speak to the world",
+            "God is only interested in the institutional church",
+            "The church is exempt from judgment"
+          ],
+          "ans":1
+        },
+        {
+          "q":"2 Chronicles 7:14 describes four conditions for healing the land \u2014 which is NOT among them?",
+          "opts":[
+            "Humbling themselves",
+            "Seeking God's face",
+            "Building a new temple",
+            "Turning from wicked ways"
+          ],
+          "ans":2
+        },
+        {
+          "q":"Walker's vision of church restoration is characterized by:",
+          "opts":[
+            "Abandoning the institutional church completely",
+            "Return to biblical holiness, transparent accountability, and redemptive community",
+            "Making the church more culturally attractive",
+            "Increasing church membership numbers"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Genuine revival according to church history is typically preceded by:",
+          "opts":[
+            "Large event planning",
+            "Honest corporate confession and prayer",
+            "Celebrity pastor involvement",
+            "Major media coverage"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "2 Chronicles 7:14 gives four conditions for healing: humble, pray, seek God's face, turn from wickedness. Which of these four is your church community LEAST practicing right now?",
+        "Walker calls for a return to holiness \u2014 not legalism, but genuine consecration. What is the difference, and why do so many people confuse them?",
+        "If you could design the church God intended, what would be different from what you currently experience? And \u2014 what role do YOU play in bringing that church into existence rather than just wishing for it?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"2 Chronicles 7:14",
+          "meta":"The conditions for healing \u2014 humility, prayer, seeking, turning",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"1 Peter 4:17",
+          "meta":"Judgment begins at the house of God \u2014 the call to internal reform",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"It Shouldn't Be in the Church \u2014 Walker: Restoration",
+          "meta":"Walker's call to holiness and the church God intended",
+          "tag":"Walker Book",
+          "url":"https://www.amazon.com/Thomas-E-Walker/e/B01J6QEWLG"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Revival Fire \u2014 Wesley Duewel",
+          "meta":"Historical studies in genuine church revival and its conditions",
+          "tag":"Extra-Biblical",
+          "url":"https://archive.org/search?query=revival+fire+duewel"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Holiness of God \u2014 R.C. Sproul",
+          "meta":"Theological foundation for what holiness is and demands",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Church Health Research \u2014 The Barna Group",
+          "meta":"Data on church health, reform, and what attracts and retains believers",
+          "tag":"Data",
+          "url":"https://www.barna.com/"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Phase 05 Playlist \u2014 Holiness and Reform",
+          "meta":"Walker's closing sessions on restoring the church God intended",
+          "tag":"Walker Video",
+          "url":"https://www.youtube.com/watch?v=t7MavKqoExo&list=PL0sV-2529XGDFDSmN70keD_f87FmwYtR_"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Holiness Teaching",
+          "meta":"Thomas Walker on what genuine holiness looks like in the church today",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Denise's Inspirational Melodies \u2014 YouTube",
+          "meta":"Songs of consecration, repentance, and renewal",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@denisesinspirationalmelodi6408"
+        }
+      ],
+      "bookLink":{
+        "book":"III",
+        "chapter":6,
+        "title":"Redemption and the Counseling Relationship"
+      }
+    }
+  ],
+  "phase06":[
+    {
+      "quiz":[
+        {
+          "q":"Walker describes Generation X (born 1965-1980) as significant because they were:",
+          "opts":[
+            "The largest generation in history",
+            "The last generation raised in direct proximity to the old saints and old-time faith",
+            "The most educated generation",
+            "The first generation to use technology"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Judges 2:10 \u2014 \"another generation arose who did not know the LORD\" \u2014 Walker uses this as:",
+          "opts":[
+            "A political commentary",
+            "The biblical template for what happens when a generation loses its faith connection",
+            "A prediction about Gen X specifically",
+            "Evidence that the Bible predicts generational cycles"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Gen X's formative faith experiences included all EXCEPT:",
+          "opts":[
+            "The Jesus Movement",
+            "The Civil Rights Movement's influence on Black churches",
+            "The Megachurch growth movement",
+            "The Pentecostal charismatic renewal"
+          ],
+          "ans":3
+        },
+        {
+          "q":"Walker's thesis about Gen X is that their departure from the church:",
+          "opts":[
+            "Was inevitable and harmless",
+            "Was primarily caused by personal moral failure",
+            "Created a cascading spiritual crisis for the generations that followed",
+            "Was equivalent to previous generational church transitions"
+          ],
+          "ans":2
+        }
+      ],
+      "discussion":[
+        "Walker calls Gen X \"the last connection to the old-time way.\" What does that mean to you \u2014 and what did Gen X carry from the old saints that is now at risk of being lost entirely?",
+        "Judges 2:10 describes a generation that didn't know the LORD. How did that happen in Israel \u2014 and how did it happen in American culture with Gen X? What are the parallels?",
+        "Whether you are Gen X or a different generation, what part of the \"old-time way\" \u2014 the faith, the prayer culture, the reverence \u2014 do you most mourn the loss of?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Judges 2:10-12",
+          "meta":"The generation that did not know the LORD \u2014 the biblical Gen X template",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Psalm 78:5-7",
+          "meta":"The command to tell the next generation \u2014 breaking the cycle",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Generation X Left the Church \u2014 Thomas E. Walker",
+          "meta":"Phase 06 core text \u2014 ISBN: 978-0-9830162-8-1. Listen free on ElevenReader.",
+          "tag":"Walker Book",
+          "url":"https://elevenreader.io/audiobooks/generation-x-left-the-church-now-all-hell-broke-loose/q8orhJlG5rR7bNbe5FXb"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"American Generations \u2014 Pew Research Center",
+          "meta":"Demographic data on Gen X, Millennials, and Gen Z religion trends",
+          "tag":"Data",
+          "url":"https://www.pewresearch.org/social-trends/2015/09/03/the-whys-and-hows-of-generations-research/"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Nones \u2014 Ryan Burge (2021)",
+          "meta":"Peer-reviewed data on Gen X as the last traditionally religious generation",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal for the Scientific Study of Religion",
+          "meta":"Peer-reviewed research on generational religious change",
+          "tag":"Journal",
+          "url":"https://onlinelibrary.wiley.com/journal/14685906"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\ud83c\udfa7",
+          "title":"Generation X Left the Church \u2014 FREE Audiobook",
+          "meta":"Listen free on ElevenReader \u2014 narrated by Thomas E. Walker",
+          "tag":"Free Audiobook",
+          "url":"https://elevenreader.io/audiobooks/generation-x-left-the-church-now-all-hell-broke-loose/q8orhJlG5rR7bNbe5FXb"
+        },
+        {
+          "icon":"\ud83d\udcf1",
+          "title":"TikTok \u2014 @thomaswalker41011",
+          "meta":"Walker on Gen X, the church, and the current cultural crisis",
+          "tag":"TikTok",
+          "url":"https://www.tiktok.com/@thomaswalker41011"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Gen X Teaching",
+          "meta":"Thomas Walker on Generation X and their place in church history",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":1,
+        "title":"The Promise Stands"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"The Shepherding Movement of the 1970s-80s was significant in Gen X's departure because:",
+          "opts":[
+            "It was a positive discipleship model",
+            "It introduced spiritual control and abuse on a wide scale, wounding many Gen X believers",
+            "It produced massive church growth",
+            "It pioneered modern worship music"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker identifies AFDC welfare policy as relevant to Gen X because:",
+          "opts":[
+            "It funded churches",
+            "It financially penalized two-parent households, accelerating family breakdown in communities of faith",
+            "It supported Christian education",
+            "It provided church building grants"
+          ],
+          "ans":1
+        },
+        {
+          "q":"1 Timothy 4:1 warns that \"in latter times some will depart from the faith\" due to:",
+          "opts":[
+            "Economic hardship",
+            "Deceiving spirits and doctrines of demons",
+            "Too many church choices",
+            "Lack of good preaching"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker argues that the church's failures during the AIDS epidemic were significant because:",
+          "opts":[
+            "AIDS was not a serious crisis",
+            "The church's lack of compassion drove Gen X away from an institution that seemed more judgmental than loving",
+            "The church was underfunded at the time",
+            "Medical science had already solved the crisis"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Walker names both systemic forces (AFDC, Shepherding Movement, the AIDS epidemic) and individual failures as causes of Gen X's departure. Which factor do you find most significant \u2014 and why?",
+        "The Shepherding Movement used spiritual language to control rather than serve. How does a believer who has experienced spiritual control distinguish between healthy authority and abusive authority?",
+        "1 Timothy 4:1 speaks of \"deceiving spirits and doctrines of demons\" causing people to depart. What specific false teachings do you see driving people away from faith in your generation or community?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"1 Timothy 4:1-3",
+          "meta":"Departure from faith in latter times \u2014 Paul's prophetic warning",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Ezekiel 34:4",
+          "meta":"You have ruled them with force and cruelty \u2014 God's verdict on abusive shepherds",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Generation X Left the Church \u2014 Walker: The Shifting",
+          "meta":"Walker's analysis of the social and ecclesiastical forces that drove Gen X away",
+          "tag":"Walker Book",
+          "url":"https://elevenreader.io/audiobooks/generation-x-left-the-church-now-all-hell-broke-loose/q8orhJlG5rR7bNbe5FXb"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Shepherding Movement \u2014 S. David Moore",
+          "meta":"Historical and theological analysis of the Shepherding Movement's impact",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Toxic Faith \u2014 Stephen Arterburn",
+          "meta":"Research on spiritual addiction and abusive religious systems",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Church Decline Research \u2014 Barna Group",
+          "meta":"Data on why Gen X left and what would bring them back",
+          "tag":"Data",
+          "url":"https://www.barna.com/"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\ud83c\udfa7",
+          "title":"Generation X Left the Church \u2014 Free Audiobook",
+          "meta":"ElevenReader \u2014 full audiobook on the forces that drove Gen X away",
+          "tag":"Free Audiobook",
+          "url":"https://elevenreader.io/audiobooks/generation-x-left-the-church-now-all-hell-broke-loose/q8orhJlG5rR7bNbe5FXb"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Church and Culture Teaching",
+          "meta":"Walker on the institutional church and its failures",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Walking with Denise Ford-Walker",
+          "meta":"Hope and healing for those wounded by the institutional church",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@walkingwithdenisefordwalker"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":3,
+        "title":"Opposition in the Promised Land"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Ephesians 6:12 identifies our struggle as being against:",
+          "opts":[
+            "Flesh and blood \u2014 human opponents",
+            "Principalities and powers \u2014 spiritual forces of evil",
+            "Cultural institutions only",
+            "Our own sinful nature only"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker argues that when Gen X left the church, the vacuum was filled primarily by:",
+          "opts":[
+            "Government programs",
+            "Horror, Hip-Hop, Heavy Metal, New Age spirituality, and occult practices",
+            "Other Christian denominations",
+            "Educational institutions"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The \"principalities\" Walker identifies in Gen X culture are best understood as:",
+          "opts":[
+            "Government officials",
+            "Satanic spiritual forces operating through cultural systems and media",
+            "Powerful individuals",
+            "Drug cartels only"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker's concern about TikTok and social media in relation to Gen Z is that:",
+          "opts":[
+            "They use too much data",
+            "Deconstruction and anti-faith content has replaced Sunday school as the primary spiritual formation tool",
+            "They connect people across cultures",
+            "Young people spend too much money online"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Walker names Horror, Hip-Hop, Heavy Metal, New Age, and the internet as vectors for principalities. Do you agree? How do you distinguish between cultural engagement and spiritual danger?",
+        "Ephesians 6:12 says our war is against spiritual forces. How does naming the spiritual dimension of cultural problems change how you pray about them \u2014 and how you minister to people caught in them?",
+        "Walker is particularly concerned about TikTok's role in spiritual deconstruction for Gen Z. What would a genuinely helpful Christian engagement with Gen Z on TikTok look like \u2014 and who should be doing it?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Ephesians 6:10-12",
+          "meta":"Principalities and powers \u2014 spiritual warfare as the real battle",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Daniel 10:12-13",
+          "meta":"The prince of Persia \u2014 territorial spiritual powers in Scripture",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Generation X Left the Church \u2014 Walker: Spirits Turned Loose",
+          "meta":"Walker's spiritual warfare analysis of Gen X cultural forces",
+          "tag":"Walker Book",
+          "url":"https://elevenreader.io/audiobooks/generation-x-left-the-church-now-all-hell-broke-loose/q8orhJlG5rR7bNbe5FXb"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"This Present Darkness \u2014 Frank Peretti",
+          "meta":"Fictional but theologically grounded portrayal of principalities in a community",
+          "tag":"Extra-Biblical",
+          "url":"https://archive.org/search?query=this+present+darkness+peretti"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Entertaining Ourselves to Death \u2014 Neil Postman",
+          "meta":"Cultural media critique \u2014 how media colonizes and reshapes consciousness",
+          "tag":"Scholarly",
+          "url":"https://archive.org/search?query=amusing+ourselves+death+postman"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Hip Hop Church \u2014 Phil Jackson",
+          "meta":"Baker Books \u2014 cultural analysis of Hip-Hop and the Church's response",
+          "tag":"Scholarly"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\ud83c\udfa7",
+          "title":"Generation X Left the Church \u2014 Free Audiobook",
+          "meta":"Walker narrates the Spirits Turned Loose chapters \u2014 listen free",
+          "tag":"Free Audiobook",
+          "url":"https://elevenreader.io/audiobooks/generation-x-left-the-church-now-all-hell-broke-loose/q8orhJlG5rR7bNbe5FXb"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Spiritual Warfare in Culture \u2014 Walker YouTube",
+          "meta":"Thomas Walker on principalities and cultural spiritual forces",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\ud83d\udcf1",
+          "title":"TikTok \u2014 @thomaswalker41011",
+          "meta":"Walker on spiritual warfare, deconstruction, and Gen Z",
+          "tag":"TikTok",
+          "url":"https://www.tiktok.com/@thomaswalker41011"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":3,
+        "title":"Opposition in the Promised Land"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Judges 2:10 describes Gen X's impact on subsequent generations because:",
+          "opts":[
+            "Gen X was the most religious generation",
+            "When the bridge generation left, the next generation arose without knowing the LORD",
+            "Gen X left for theological reasons only",
+            "Millennials chose to leave on their own"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Pew Research 2023 data on \"religious nones\" shows that approximately what percentage of Americans now claim no religious affiliation?",
+          "opts":[
+            "5-8%",
+            "12-15%",
+            "28-34%",
+            "Over 50%"
+          ],
+          "ans":2
+        },
+        {
+          "q":"Walker's concept of \"severed roots\" means:",
+          "opts":[
+            "Trees dying from drought",
+            "When the generational transmission of faith is broken, the next generation lacks a spiritual root system",
+            "Physical family separation",
+            "Cultural isolation"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Deconstruction content on TikTok and YouTube is significant because:",
+          "opts":[
+            "It is always theologically accurate",
+            "It has become a primary spiritual formation tool for Millennials and Gen Z",
+            "It strengthens the church",
+            "It is only watched by non-Christians"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Walker says Gen X's departure severed the roots for Millennials and Gen Z. What roots \u2014 prayer culture, Scripture knowledge, reverence, community \u2014 do you see most clearly missing in the younger generations around you?",
+        "Pew Research shows nearly 1 in 3 Americans now claims no religious affiliation. How should the church respond to this data \u2014 with alarm, with compassion, with strategy, or with all three?",
+        "What is your responsibility for the generation that comes after you? What spiritual root are YOU planting \u2014 or failing to plant \u2014 for those who will come behind you?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Judges 2:10-12",
+          "meta":"A generation that did not know the LORD \u2014 the severed roots template",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Psalm 78:4-7",
+          "meta":"We will tell the next generation \u2014 the antidote to severed roots",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Generation X Left the Church \u2014 Walker: Severed Roots",
+          "meta":"Walker's analysis of how Gen X's departure reshaped the next generations",
+          "tag":"Walker Book",
+          "url":"https://elevenreader.io/audiobooks/generation-x-left-the-church-now-all-hell-broke-loose/q8orhJlG5rR7bNbe5FXb"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Rise of the Nones 2023 \u2014 Pew Research",
+          "meta":"28-34% of Americans now identify as religiously unaffiliated",
+          "tag":"Data",
+          "url":"https://www.pewresearch.org/religion/2023/11/09/religious-nones-in-america/"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Deconstruction and Faith \u2014 Ryan Burge / Christianity Today",
+          "meta":"Research on faith deconstruction among Millennials and Gen Z",
+          "tag":"Article",
+          "url":"https://www.christianitytoday.com"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Meet Generation Z \u2014 James Emery White",
+          "meta":"Understanding the post-Gen X generations the church must reach",
+          "tag":"Scholarly"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\ud83c\udfa7",
+          "title":"Generation X Left the Church \u2014 Free Audiobook",
+          "meta":"Walker on severed roots and the generational crisis \u2014 listen free",
+          "tag":"Free Audiobook",
+          "url":"https://elevenreader.io/audiobooks/generation-x-left-the-church-now-all-hell-broke-loose/q8orhJlG5rR7bNbe5FXb"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Generational Faith Teaching",
+          "meta":"Walker on planting roots for the next generation",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\ud83d\udcf1",
+          "title":"TikTok \u2014 @thomaswalker41011",
+          "meta":"Walker engaging the deconstruction conversation directly",
+          "tag":"TikTok",
+          "url":"https://www.tiktok.com/@thomaswalker41011"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":2,
+        "title":"The Delay Is Not a Denial"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Religious Trauma Syndrome (RTS) is characterized by:",
+          "opts":[
+            "Positive memories of religious community",
+            "Anxiety, depression, loss of faith, and PTSD-like symptoms resulting from harmful religious experiences",
+            "A healthy questioning of faith",
+            "Normal stages of spiritual development"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker's concept of \"Agape Love as reparative framework\" for God-image wounds means:",
+          "opts":[
+            "Explaining that God is angry with those who left",
+            "Using consistent, unconditional love to help rebuild a distorted image of God",
+            "Requiring return to church attendance before healing can begin",
+            "Theological argument as the primary healing tool"
+          ],
+          "ans":1
+        },
+        {
+          "q":"A \"spiritual-but-not-religious\" client or ministry contact is best approached by:",
+          "opts":[
+            "Immediately correcting their theology",
+            "Dismissing their spiritual experiences as invalid",
+            "Curiosity, respect, and genuine interest in their story before presenting any framework",
+            "Referring them to a pastor immediately"
+          ],
+          "ans":2
+        },
+        {
+          "q":"The primary clinical tool for someone with religious trauma is:",
+          "opts":[
+            "More Bible reading",
+            "The same trauma-informed care used for any trauma, integrated with appropriate spiritual sensitivity",
+            "Immediately returning to a church community",
+            "Ignoring the religious dimension entirely"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Walker addresses those who have experienced \"church hurt\" \u2014 religious trauma. What does a safe space for that kind of honesty look like, and how do you create it without it becoming a place to simply attack the church?",
+        "He introduces the idea that someone's image of God is often more shaped by their image of their earthly father than by theology. How has your father figure \u2014 present or absent \u2014 shaped your picture of God?",
+        "If a Gen X person who left the church 30 years ago sat down with you today, what would you want them to know \u2014 and what question would you ask them first?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"John 14:26",
+          "meta":"The Holy Spirit as the Comforter \u2014 present in pastoral wound care",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Isaiah 61:1-3",
+          "meta":"Binding the brokenhearted, freeing the captive \u2014 the healing ministry of Christ",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Generation X Left the Church \u2014 Walker: Pastoral Wound Care",
+          "meta":"Walker's counseling framework for those wounded by the church",
+          "tag":"Walker Book",
+          "url":"https://elevenreader.io/audiobooks/generation-x-left-the-church-now-all-hell-broke-loose/q8orhJlG5rR7bNbe5FXb"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Recovering from Religion \u2014 Marlene Winell",
+          "meta":"Clinical framework for Religious Trauma Syndrome and recovery",
+          "tag":"Clinical"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"The Body Keeps the Score \u2014 van der Kolk",
+          "meta":"Trauma neuroscience applicable to religious trauma and healing",
+          "tag":"Scholarly",
+          "url":"https://archive.org/search?query=body+keeps+score+van+der+kolk"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Journal of Psychology and Christianity",
+          "meta":"Research on religious trauma, God-image wounds, and clinical recovery",
+          "tag":"Journal",
+          "url":"https://caps.net/jpc/"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\ud83c\udfa7",
+          "title":"Generation X Left the Church \u2014 Free Audiobook",
+          "meta":"Walker's pastoral wound care chapters \u2014 listen free on ElevenReader",
+          "tag":"Free Audiobook",
+          "url":"https://elevenreader.io/audiobooks/generation-x-left-the-church-now-all-hell-broke-loose/q8orhJlG5rR7bNbe5FXb"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Walking with Denise Ford-Walker",
+          "meta":"Healing and restoration for those wounded by religious institutions",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@walkingwithdenisefordwalker"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"Denise's Inspirational Melodies \u2014 Spotify",
+          "meta":"Songs of healing, hope, and restoration for the wounded",
+          "tag":"Music",
+          "url":"https://open.spotify.com/show/0txwnSLF5SfFThBQzxFXNf"
+        }
+      ],
+      "bookLink":{
+        "book":"III",
+        "chapter":5,
+        "title":"Forgiveness in Counseling"
+      }
+    },
+    {
+      "quiz":[
+        {
+          "q":"Jeremiah 29:13 promises that we will find God when we:",
+          "opts":[
+            "Attend church three times a week",
+            "Search with all our heart",
+            "Complete a ministry training program",
+            "Serve in church leadership"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker's \"response plan\" for reaching Gen X and beyond requires:",
+          "opts":[
+            "Larger, more entertaining church services",
+            "A ministry without walls that goes to where wounded and wandering people are",
+            "Waiting for Gen X to return on their own",
+            "Focusing only on younger generations"
+          ],
+          "ans":1
+        },
+        {
+          "q":"The Great Commission and Great Commandment work together as a \"dual mandate\" because:",
+          "opts":[
+            "They are two separate, unrelated commands",
+            "You cannot make disciples without first loving people, and genuine love includes sharing the Gospel",
+            "The Commission supersedes the Commandment",
+            "They apply to different types of ministry"
+          ],
+          "ans":1
+        },
+        {
+          "q":"Walker's vision of \"restoring the old-time way with new-time compassion\" means:",
+          "opts":[
+            "Returning to 1950s church culture",
+            "Using modern technology to share the same eternal Gospel with current relevance, grace, and cultural intelligence",
+            "Abandoning traditional worship forms entirely",
+            "Prioritizing style over substance"
+          ],
+          "ans":1
+        }
+      ],
+      "discussion":[
+        "Walker closes with a response plan \u2014 a ministry without walls that goes to the wounded and wandering. What would YOUR personal ministry without walls look like? Where would you go, and who would you seek?",
+        "He calls for \"old-time way with new-time compassion.\" What aspects of the old-time way do you most want to preserve \u2014 and what aspects of new-time compassion does the church most need to develop?",
+        "Jeremiah 29:13 is the anchor: \"you will find Me when you search with all your heart.\" What would it look like for your church to create space where the searching \u2014 even the angry ones who left \u2014 can find God again?"
+      ],
+      "biblical":[
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Jeremiah 29:13",
+          "meta":"You will find Me when you search with all your heart \u2014 the open door for those who left",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcd6",
+          "title":"Luke 15:20",
+          "meta":"The father runs to meet the returning son \u2014 the posture for reaching Gen X",
+          "tag":"Scripture"
+        },
+        {
+          "icon":"\ud83d\udcda",
+          "title":"Generation X Left the Church \u2014 Walker: The Response Plan",
+          "meta":"Walker's final chapters: ministry without walls, old-time Gospel, new-time compassion",
+          "tag":"Walker Book",
+          "url":"https://elevenreader.io/audiobooks/generation-x-left-the-church-now-all-hell-broke-loose/q8orhJlG5rR7bNbe5FXb"
+        }
+      ],
+      "scholarly":[
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Pew Research: Religious Nones 2023",
+          "meta":"The data on who left and what would bring them back",
+          "tag":"Data",
+          "url":"https://www.pewresearch.org/religion/2023/11/09/religious-nones-in-america/"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Finding Faith Again \u2014 Patrick Cheng",
+          "meta":"Research on return to faith after deconstruction and church hurt",
+          "tag":"Scholarly"
+        },
+        {
+          "icon":"\ud83d\udcc4",
+          "title":"Missiology \u2014 Reaching Post-Christian Generations",
+          "meta":"SAGE peer-reviewed research on missions to the religiously unaffiliated",
+          "tag":"Journal",
+          "url":"https://journals.sagepub.com/home/mis"
+        }
+      ],
+      "videos":[
+        {
+          "icon":"\ud83c\udfa7",
+          "title":"Generation X Left the Church \u2014 Full Audiobook FREE",
+          "meta":"Complete audiobook \u2014 Walker's full response plan in his own voice",
+          "tag":"Free Audiobook",
+          "url":"https://elevenreader.io/audiobooks/generation-x-left-the-church-now-all-hell-broke-loose/q8orhJlG5rR7bNbe5FXb"
+        },
+        {
+          "icon":"\u25b6\ufe0f",
+          "title":"Reflections of Grace \u2014 Ministry Without Walls",
+          "meta":"Thomas Walker on reaching the wounded and wandering",
+          "tag":"YouTube",
+          "url":"https://www.youtube.com/@reflectionsofgraceoutreach633"
+        },
+        {
+          "icon":"\ud83c\udfb5",
+          "title":"Denise's Inspirational Melodies \u2014 Spotify",
+          "meta":"Songs that reach across generations with hope and restoration",
+          "tag":"Music",
+          "url":"https://open.spotify.com/show/0txwnSLF5SfFThBQzxFXNf"
+        }
+      ],
+      "bookLink":{
+        "book":"II",
+        "chapter":8,
+        "title":"The Moment of Receiving"
+      }
+    }
+  ]
+};
+
 const PHASES=[
 {id:'phase01',num:'01',color:'#1B3A6B',title:'Biblical Foundations',sub:'The Word, the World, and the Believer',
 desc:'Establish a solid scriptural foundation for Christian life and ministry. Covers biblical authority, hermeneutics, Old and New Testament survey, and the theology of discipleship.',
@@ -475,60 +4775,6 @@ function phaseCard(p){
       '<a href="#/phase/'+p.id+'" class="btn '+btnCls+' btn-sm" onclick="event.stopPropagation()">&#9654; Start Phase '+p.num+'</a>'+
       (p.playlistId?'<a href="https://www.youtube.com/playlist?list='+p.playlistId+'" target="_blank" rel="noopener" class="btn btn-soft" onclick="event.stopPropagation()">&#128250; Full Playlist &rarr;</a>':'')+
     '</div></div>';
-}
-
-function renderHome(){
-  const cnt=getCount();
-  view.innerHTML='<section class="hero"><div class="hero-inner">'+
-    '<div class="eyebrow">&#10011; Reflections of Grace Outreach Ministries Inc.</div>'+
-    '<h1>Master <span>Training</span> Portal</h1>'+
-    '<p class="hero-author">Thomas E. Walker, MDiv. &amp; Denise Ford-Walker &middot; Moreno Valley, CA</p>'+
-    '<p class="hero-desc">Six phases of free ministry training &mdash; watch videos, read lessons, listen to the audiobook. <strong style="color:var(--gold-lt)">Completely free.</strong></p>'+
-    '<div class="stats">'+
-      '<div class="stat"><div class="stat-num">6</div><div class="stat-label">Phases</div></div>'+
-      '<div class="stat"><div class="stat-num">36</div><div class="stat-label">Lessons</div></div>'+
-      '<div class="stat"><div class="stat-num">18</div><div class="stat-label">Weeks</div></div>'+
-      '<div class="stat"><div class="stat-num">'+cnt+'</div><div class="stat-label">Enrolled</div></div>'+
-    '</div>'+
-    '<div class="hero-cta">'+
-      '<a href="#/enroll" class="btn btn-primary btn-lg">&#10011; Enroll Free</a>'+
-      '<a href="#/phases" class="btn btn-outline btn-lg">&#9654; Start Learning</a>'+
-      '<a href="#/donate" class="btn btn-green btn-lg">&#10084; Give &sol; Donate</a>'+
-    '</div></div></section>'+
-    '<div class="free-strip"><p>&#10003; All six phases are <strong>completely free</strong> &mdash; watch, read, listen. Support with a <a href="#/donate">voluntary gift of $10 or $50</a>. &#128591;</p></div>'+
-    '<section class="bg-white"><div class="sec-inner">'+
-      '<div class="sec-eyebrow">Six-Phase Certificate Program</div>'+
-      '<h2 class="sec-title">Choose a Phase &mdash; Start Learning Now</h2>'+
-      '<p class="sec-desc">Click any phase to open the full lesson page with embedded YouTube videos, lesson content, scripture anchors, and platform links.</p>'+
-      '<div class="phases-grid">'+PHASES.map(phaseCard).join('')+'</div>'+
-      '<div style="text-align:center;margin-top:36px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'+
-        '<a href="#/enroll" class="btn btn-navy btn-lg">&#10011; Enroll Free</a>'+
-        '<a href="#/donate" class="btn btn-green btn-lg">&#10084; Support the Ministry</a>'+
-      '</div></div></section>'+
-    '<section class="bg-gray"><div class="sec-inner" style="text-align:center;max-width:640px;margin:0 auto">'+
-      '<div class="sec-eyebrow">Support the Ministry</div>'+
-      '<h2 class="sec-title">All Free &mdash; Donations Voluntary</h2>'+
-      '<p class="sec-desc" style="margin:0 auto 24px">A gift of <strong>$10 or $50</strong> helps us keep every phase free for everyone.</p>'+
-      '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'+
-        '<a href="'+S10+'" target="_blank" rel="noopener" class="btn btn-primary btn-lg">&#10084; Give $10</a>'+
-        '<a href="'+S50+'" target="_blank" rel="noopener" class="btn btn-green btn-lg">&#10084; Give $50</a>'+
-      '</div>'+
-      '<p style="margin-top:14px;font-size:13px;color:var(--gray3);font-style:italic">&ldquo;God loves a cheerful giver.&rdquo; &mdash; 2 Corinthians 9:7</p>'+
-    '</div></section>';
-}
-
-function renderPhases(){
-  view.innerHTML='<div style="padding-top:calc(var(--nav-h)+48px);padding-bottom:72px;min-height:100vh"><div class="sec-inner">'+
-    '<div style="text-align:center;max-width:660px;margin:0 auto 40px">'+
-      '<div class="sec-eyebrow">All Six Phases &mdash; Free Access</div>'+
-      '<h1 class="sec-title">Choose Your Phase</h1>'+
-      '<p class="sec-desc" style="margin:0 auto">Click any phase to open the full lesson page with embedded videos, unit-by-unit content, scripture anchors, and platform links. Everything is free.</p>'+
-    '</div>'+
-    '<div class="phases-grid">'+PHASES.map(phaseCard).join('')+'</div>'+
-    '<div style="text-align:center;margin-top:36px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'+
-      '<a href="#/enroll" class="btn btn-navy btn-lg">&#10011; Enroll Free</a>'+
-      '<a href="#/donate" class="btn btn-green btn-lg">&#10084; Support the Ministry</a>'+
-    '</div></div></div>';
 }
 
 function renderAbout(){
@@ -1411,68 +5657,218 @@ function unitTopicCard(p,u,i){
 }
 
 /* ── UNIT DETAIL ── */
-function renderUnitDetail(p,idx){
-  const u=p.units[idx];
-  const prev=idx>0?idx-1:null;
-  const next=idx<p.units.length-1?idx+1:null;
-  view.innerHTML=
+
+function getEnrichment(phaseId, unitIdx){
+  if(!ENRICHMENT[phaseId]) return null;
+  return ENRICHMENT[phaseId][unitIdx] || null;
+}
+
+function renderUnitDetail(p, idx){
+  const u = p.units[idx];
+  const prev = idx > 0 ? idx-1 : null;
+  const next = idx < p.units.length-1 ? idx+1 : null;
+  const en = getEnrichment(p.id, idx);
+  const [activeTab, setTab] = (() => {
+    let _t = window._unitTab || 'overview';
+    return [_t, (v) => { window._unitTab = v; }];
+  })();
+
+  function tabBtn(id, label, color){
+    const active = activeTab === id;
+    return '<button onclick="window._unitTab=\''+id+'\';renderUnitDetail(PHASES.find(x=>x.id===\''+p.id+'\'),'+idx+')" '+
+      'style="padding:8px 16px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid '+(active?p.color:' var(--gray2)')+';'+
+      'background:'+(active?p.color:'var(--white)')+';color:'+(active?'#fff':'var(--gray3)')+'">'+label+'</button>';
+  }
+
+  // Build tab content
+  let tabContent = '';
+  if(activeTab === 'overview'){
+    tabContent =
+      '<div style="background:var(--gold-pale);border-left:4px solid var(--gold);padding:14px 18px;border-radius:0 8px 8px 0;margin-bottom:20px">'+
+        '<div style="font-family:var(--ff-d);font-size:14px;font-style:italic;line-height:1.75;color:var(--text);margin-bottom:5px">&ldquo;'+u.sv+'&rdquo;</div>'+
+        '<div style="font-size:12px;font-weight:700;color:var(--gold)">&mdash; '+u.sr+'</div>'+
+      '</div>'+
+      '<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">&#128218; Lesson Content</div>'+
+      '<div style="font-size:14px;line-height:1.8;color:var(--text);margin-bottom:20px">'+u.c+'</div>'+
+      '<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:10px">&#10003; Key Points</div>'+
+      '<ul style="list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:7px">'+
+        u.kp.map(k=>'<li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;line-height:1.6;color:var(--text)"><span style="color:var(--gray3);flex-shrink:0;font-size:16px">&#8250;</span>'+k+'</li>').join('')+
+      '</ul>';
+
+    // Lay / scholarly resources
+    if(en){
+      tabContent +=
+        '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:20px">'+
+          resCol('&#10011; Biblical &amp; Walker Resources', en.biblical, '#1B3A6B')+
+          resCol('&#128220; Scholarly &amp; Extra-Biblical', en.scholarly, '#4A148C')+
+          resCol('&#9654;&#65039; Videos &amp; Media', en.videos, '#1B5E20')+
+        '</div>';
+      // Book curriculum link
+      if(en.bookLink){
+        const bookColors = {'I':'#1B3A6B','II':'#0F5F5F','III':'#7B1A3A'};
+        tabContent +=
+          '<div style="background:var(--gold-pale);border:1px solid rgba(184,134,11,.3);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px">'+
+            '<div style="flex:1;min-width:180px">'+
+              '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:3px">&#128218; Book Curriculum — Go Deeper</div>'+
+              '<div style="font-size:13px;color:var(--text);line-height:1.5">Book '+en.bookLink.book+' &mdash; Chapter: <strong>'+en.bookLink.title+'</strong></div>'+
+            '</div>'+
+            '<a href="https://rog-access-hub.netlify.app" target="_blank" rel="noopener" style="display:inline-block;padding:9px 18px;background:'+( bookColors[en.bookLink.book] || '#1B3A6B')+';color:#fff;font-weight:700;font-size:13px;border-radius:8px;white-space:nowrap;text-decoration:none;flex-shrink:0">Open in Access Hub &rarr;</a>'+
+          '</div>';
+      }
+    }
+
+    tabContent += extLinksSection(p);
+
+  } else if(activeTab === 'quiz'){
+    tabContent = renderQuizTab(p, idx, en);
+  } else if(activeTab === 'discussion'){
+    tabContent = renderDiscussionTab(p, idx, en);
+  }
+
+  view.innerHTML =
     '<div style="padding-top:calc(var(--nav-h)+0px);background:var(--gray1);min-height:100vh">'+
-    '<div class="unit-detail">'+
-      '<div class="ud-breadcrumb">'+
-        '<span onclick="window.location.hash=\'#/\'">All Phases</span>'+
+    '<div style="max-width:860px;margin:0 auto;padding:28px 20px 60px">'+
+
+      // Breadcrumb
+      '<div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray3);margin-bottom:20px;flex-wrap:wrap">'+
+        '<span onclick="window.location.hash=\'#/\'" style="cursor:pointer;color:var(--navy);font-weight:600">All Phases</span>'+
         ' &#8250; '+
-        '<span onclick="window.location.hash=\'#/phase/'+p.id+'\'">Phase '+p.num+': '+p.title+'</span>'+
+        '<span onclick="window.location.hash=\'#/phase/'+p.id+'\'" style="cursor:pointer;color:var(--navy);font-weight:600">Phase '+p.num+'</span>'+
         ' &#8250; '+
         '<strong style="color:var(--text)">Lesson '+(idx+1)+'</strong>'+
       '</div>'+
-      '<div class="ud-card">'+
-        '<div class="ud-phase-stripe" style="background:linear-gradient(135deg,'+p.color+','+p.color+'cc)">'+
+
+      // Card
+      '<div style="background:var(--white);border-radius:14px;border:1px solid var(--gray2);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08)">'+
+
+        // Phase stripe header
+        '<div style="background:linear-gradient(135deg,'+p.color+','+p.color+'cc);padding:16px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">'+
           '<div style="flex:1">'+
-            '<div class="ud-num">Phase '+p.num+' &bull; Lesson '+(idx+1)+' of '+p.units.length+'</div>'+
-            '<div class="ud-title">'+u.t+'</div>'+
+            '<div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.7)">Phase '+p.num+' &bull; Lesson '+(idx+1)+' of '+p.units.length+'</div>'+
+            '<div style="font-family:var(--ff-d);font-size:20px;font-weight:700;color:#fff;line-height:1.25">'+u.t+'</div>'+
           '</div>'+
-          (p.playlistId?'<a href="https://www.youtube.com/playlist?list='+p.playlistId+'" target="_blank" rel="noopener" style="padding:7px 14px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:8px;color:#fff;font-size:12px;font-weight:700;white-space:nowrap">&#9654;&#65039; Watch</a>':'')+
-          (p.audiobook?'<a href="'+p.audiobook.url+'" target="_blank" rel="noopener" style="padding:7px 14px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:8px;color:#fff;font-size:12px;font-weight:700;white-space:nowrap;margin-left:6px">&#127911; Listen</a>':'')+
-        '</div>'+
-        '<div class="ud-body">'+
-          '<div class="ud-scripture">'+
-            '<div class="ud-scripture-v">&ldquo;'+u.sv+'&rdquo;</div>'+
-            '<div class="ud-scripture-r">&#8212; '+u.sr+'</div>'+
-          '</div>'+
-          '<div class="ud-section-label">&#128218; Lesson Content</div>'+
-          '<div class="ud-content">'+u.c+'</div>'+
-          '<div class="ud-section-label">&#10003; Key Points</div>'+
-          '<ul class="ud-list">'+u.kp.map(k=>'<li>'+k+'</li>').join('')+'</ul>'+
-          (p.extLinks&&p.extLinks.length?
-            '<div class="ud-section-label">&#128279; Resources &amp; Links</div>'+
-            '<div style="display:flex;gap:8px;flex-wrap:wrap">'+
-              p.extLinks.map(l=>'<a href="'+l.url+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:var(--gray1);border:1px solid var(--gray2);border-radius:7px;font-size:12px;font-weight:600;color:var(--navy)">'+l.icon+' '+l.name+'</a>').join('')+
-            '</div>'
-          :'')+
-          '<div class="ud-nav-row">'+
-            (prev!==null?'<button class="btn btn-soft" onclick="window.location.hash=\'#/phase/'+p.id+'/unit/'+prev+'\'">&#8592; Previous Lesson</button>':'<div></div>')+
-            '<button class="btn btn-soft" onclick="window.location.hash=\'#/phase/'+p.id+'\'">&#8801; All Lessons</button>'+
-            (next!==null?'<button class="btn btn-navy" onclick="window.location.hash=\'#/phase/'+p.id+'/unit/'+next+'\'">Next Lesson &#8594;</button>':'<a href="#/" class="btn btn-green">&#10003; Phase Complete</a>')+
-          '</div>'+
-          '<div class="ud-hub-box">'+
-            '<div class="ud-hub-box-text">'+
-              '<div class="ud-hub-box-label">&#128218; Book Curriculum &amp; Full Access Hub</div>'+
-              '<div class="ud-hub-box-desc">All 6 phases, book chapters, quizzes, discussion threads, and every resource in one place.</div>'+
-            '</div>'+
-            '<a href="https://rog-access-hub.netlify.app" target="_blank" rel="noopener" style="padding:9px 18px;background:var(--navy);color:#fff;font-weight:700;font-size:13px;border-radius:8px;white-space:nowrap;flex-shrink:0">Open Access Hub &#8594;</a>'+
+          '<div style="display:flex;gap:8px;flex-wrap:wrap">'+
+            (p.playlistId?'<a href="https://www.youtube.com/playlist?list='+p.playlistId+'" target="_blank" rel="noopener" style="padding:7px 14px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:8px;color:#fff;font-size:12px;font-weight:700;white-space:nowrap;text-decoration:none">&#9654;&#65039; Watch</a>':'')+
+            (p.audiobook?'<a href="'+p.audiobook.url+'" target="_blank" rel="noopener" style="padding:7px 14px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:8px;color:#fff;font-size:12px;font-weight:700;white-space:nowrap;text-decoration:none;margin-left:4px">&#127911; Listen Free</a>':'')+
           '</div>'+
         '</div>'+
+
+        // Tab bar
+        '<div style="display:flex;gap:8px;padding:16px 24px 12px;border-bottom:1px solid var(--gray2);flex-wrap:wrap">'+
+          tabBtn('overview','&#128218; Lesson & Resources',p.color)+
+          (en?tabBtn('quiz','&#9999;&#65039; Quiz ('+en.quiz.length+')',p.color):'')+
+          (en?tabBtn('discussion','&#128172; Discussion ('+en.discussion.length+')',p.color):'')+
+          '<a href="#/research" style="padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--navy);border:1.5px solid var(--gray2);background:var(--gray1);text-decoration:none">&#128218; Research Page</a>'+
+        '</div>'+
+
+        // Tab content
+        '<div style="padding:24px">'+tabContent+'</div>'+
+
+        // Navigation row
+        '<div style="display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;padding:16px 24px 20px;border-top:1px solid var(--gray2)">'+
+          (prev!==null?'<button class="btn btn-soft" onclick="window._unitTab=\'overview\';window.location.hash=\'#/phase/'+p.id+'/unit/'+prev+'\'">&#8592; Previous</button>':'<div></div>')+
+          '<button class="btn btn-soft" onclick="window.location.hash=\'#/phase/'+p.id+'\'">&#8801; All Lessons</button>'+
+          (next!==null?'<button class="btn btn-navy" onclick="window._unitTab=\'overview\';window.location.hash=\'#/phase/'+p.id+'/unit/'+next+'\'">Next &#8594;</button>':'<a href="#/" class="btn btn-green">&#10003; Phase Complete</a>')+
+        '</div>'+
+
       '</div>'+
     '</div></div>';
 }
 
+function resCol(label, refs, color){
+  if(!refs||!refs.length) return '';
+  return '<div>'+
+    '<div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:'+color+';margin-bottom:10px">'+label+'</div>'+
+    refs.map(r=>'<div style="background:var(--gray1);border-radius:9px;border:1px solid var(--gray2);padding:10px 12px;margin-bottom:7px">'+
+      '<div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px">'+r.icon+' '+r.title+'</div>'+
+      '<div style="font-size:11px;color:var(--gray3);line-height:1.5;margin-bottom:5px">'+r.meta+'</div>'+
+      '<span style="display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;background:var(--gold-pale);color:var(--gold)">'+r.tag+'</span>'+
+      (r.url?'<a href="'+r.url+'" target="_blank" rel="noopener" style="float:right;font-size:11px;color:var(--navy);font-weight:700">Access &#8594;</a>':'')+
+    '</div>').join('')+
+  '</div>';
+}
+
+function extLinksSection(p){
+  if(!p.extLinks||!p.extLinks.length) return '';
+  return '<div style="margin-top:4px">'+
+    '<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px">&#128279; All Platforms &amp; Links</div>'+
+    '<div style="display:flex;gap:8px;flex-wrap:wrap">'+
+      p.extLinks.map(l=>'<a href="'+l.url+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:var(--gray1);border:1px solid var(--gray2);border-radius:7px;font-size:12px;font-weight:600;color:var(--navy);text-decoration:none">'+l.icon+' '+l.name+'</a>').join('')+
+    '</div>'+
+  '</div>';
+}
+
+function renderQuizTab(p, idx, en){
+  if(!en) return '<div style="padding:20px;text-align:center;color:var(--gray3)">Quiz coming soon for this lesson.</div>';
+  const stateKey = p.id+'_'+idx;
+  const qState = window._quizState && window._quizState[stateKey] || {answers:{}, submitted:false};
+  let score = null;
+  if(qState.submitted){
+    let correct = 0;
+    en.quiz.forEach((q,i)=>{ if(qState.answers[i]===q.ans) correct++; });
+    score = {correct, total:en.quiz.length, pct:Math.round(correct/en.quiz.length*100)};
+  }
+  let html = '';
+  if(score){
+    html += '<div style="background:'+(score.pct>=75?'var(--green-lt)':'#FFF3E0')+';border:2px solid '+(score.pct>=75?'var(--green)':'#FB8C00')+';border-radius:10px;padding:16px 20px;text-align:center;margin-bottom:18px">'+
+      '<div style="font-family:var(--ff-d);font-size:40px;font-weight:700;color:'+(score.pct>=75?'var(--green)':'#E65100')+'">'+score.pct+'%</div>'+
+      '<div style="font-size:13px;color:var(--gray3);margin-top:4px">'+score.correct+' of '+score.total+' correct &mdash; '+(score.pct>=75?'&#10003; Passed!':'Try again')+'</div>'+
+    '</div>';
+  }
+  en.quiz.forEach((q,qi)=>{
+    const chosen = qState.answers[qi];
+    html += '<div style="background:var(--gray1);border-radius:10px;border:1px solid var(--gray2);padding:16px 18px;margin-bottom:14px">'+
+      '<div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px;line-height:1.55">'+(qi+1)+'. '+q.q+'</div>'+
+      q.opts.map((opt,oi)=>{
+        const isChosen = chosen===oi;
+        const isCorrect = oi===q.ans;
+        const showOk = qState.submitted && isCorrect;
+        const showWrong = qState.submitted && isChosen && !isCorrect;
+        return '<button onclick="if(!('+(JSON.stringify(stateKey))+' in (window._quizState=window._quizState||{}))){window._quizState['+JSON.stringify(stateKey)+']={};}window._quizState['+JSON.stringify(stateKey)+'].answers=window._quizState['+JSON.stringify(stateKey)+'].answers||{};window._quizState['+JSON.stringify(stateKey)+'].answers['+qi+']='+oi+';if(!window._quizState['+JSON.stringify(stateKey)+'].submitted)renderUnitDetail(PHASES.find(x=>x.id==='+JSON.stringify(p.id)+'),'+idx+')" '+
+          'style="display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border-radius:8px;cursor:'+(qState.submitted?'default':'pointer')+';'+
+          'border:1.5px solid '+(showOk?'var(--green)':showWrong?'#e53935':isChosen?p.color:'var(--gray2)')+';'+
+          'background:'+(showOk?'var(--green-lt)':showWrong?'#FFEBEE':isChosen?'#EEF3FB':'var(--white)')+';'+
+          'font-size:13px;line-height:1.5;color:var(--text)">'+
+          (showOk?'&#10003; ':showWrong?'&#10007; ':'')+opt+'</button>';
+      }).join('')+
+    '</div>';
+  });
+  if(!qState.submitted){
+    html += '<button class="btn btn-navy" onclick="window._quizState=window._quizState||{};window._quizState['+JSON.stringify(stateKey)+']=(window._quizState['+JSON.stringify(stateKey)+']||{});window._quizState['+JSON.stringify(stateKey)+'].submitted=true;renderUnitDetail(PHASES.find(x=>x.id==='+JSON.stringify(p.id)+'),'+idx+')">Submit Quiz</button>';
+  } else {
+    html += '<button class="btn" style="background:var(--gray3);color:#fff;margin-right:8px" onclick="window._quizState['+JSON.stringify(stateKey)+']={answers:{},submitted:false};renderUnitDetail(PHASES.find(x=>x.id==='+JSON.stringify(p.id)+'),'+idx+')">Retake</button>'+
+      '<button class="btn btn-navy" onclick="window._unitTab=\'discussion\';renderUnitDetail(PHASES.find(x=>x.id==='+JSON.stringify(p.id)+'),'+idx+')">Join Discussion &#8594;</button>';
+  }
+  return html;
+}
+
+function renderDiscussionTab(p, idx, en){
+  if(!en) return '<div style="padding:20px;text-align:center;color:var(--gray3)">Discussion prompts coming soon.</div>';
+  let html = '<div style="background:var(--gray1);border-left:3px solid '+p.color+';padding:12px 16px;border-radius:0 8px 8px 0;margin-bottom:20px;font-size:14px;color:var(--text)">'+
+    '&#128172; <strong>Thread Discussion Prompts</strong> &mdash; Use these in your training group, small group, or for personal reflection. Allow 10&ndash;15 minutes per prompt.'+
+  '</div>';
+  en.discussion.forEach((d,di)=>{
+    html += '<div style="display:flex;gap:14px;align-items:flex-start;padding:16px 18px;background:var(--white);border-radius:10px;border:1px solid var(--gray2);margin-bottom:12px">'+
+      '<div style="width:28px;height:28px;border-radius:50%;background:'+p.color+';color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">D'+(di+1)+'</div>'+
+      '<div style="font-size:14px;color:var(--text);line-height:1.7;flex:1">'+d+'</div>'+
+    '</div>';
+  });
+  html += '<div style="margin-top:20px;background:var(--gold-pale);border-radius:10px;border:1px solid rgba(184,134,11,.25);padding:14px 18px">'+
+    '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px">&#128221; Facilitator Notes</div>'+
+    '<div style="font-size:13px;color:var(--text);line-height:1.7">Encourage participants to share from personal experience first before moving to theological reflection. The goal is honest engagement, not a right answer. These prompts work for both scholarly and lay groups — adapt the depth to your audience.</div>'+
+  '</div>'+
+  '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">'+
+    '<button class="btn btn-soft" onclick="window._unitTab=\'overview\';renderUnitDetail(PHASES.find(x=>x.id==='+JSON.stringify(p.id)+'),'+idx+')">&#8592; Back to Lesson</button>'+
+    (getEnrichment(p.id,idx)?'<button class="btn btn-navy" onclick="window._unitTab=\'quiz\';renderUnitDetail(PHASES.find(x=>x.id==='+JSON.stringify(p.id)+'),'+idx+')">Take the Quiz &#8594;</button>':'')+
+  '</div>';
+  return html;
+}
 
 
-</script>
-<script src="https://js.stripe.com/v3/buy-button.js" async></script>
-</body>
-</html>
 
+/* ── INIT ── */
+window.addEventListener('hashchange', render);
+window.addEventListener('load', render);
 </script>
 <script src="https://js.stripe.com/v3/buy-button.js" async></script>
 </body>

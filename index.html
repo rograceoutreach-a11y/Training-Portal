@@ -31,6 +31,8 @@
     .nav-links a{color:rgba(255,255,255,.8);font-size:13px;font-weight:500;padding:7px 11px;border-radius:6px;transition:all .2s}
     .nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,.12)}
     .nav-enroll{background:var(--gold)!important;color:var(--navy)!important;font-weight:700!important;border-radius:8px!important;padding:8px 14px!important}
+  .nav-hub{background:rgba(184,134,11,.18)!important;color:var(--gold-lt,#F5C518)!important;font-weight:700!important;border-radius:8px!important;padding:8px 12px!important;border:1.5px solid var(--gold)!important}
+  .nav-hub:hover{background:var(--gold)!important;color:var(--navy)!important}
     .nav-donate{background:var(--green)!important;color:#fff!important;font-weight:700!important;border-radius:8px!important;padding:8px 12px!important}
     .btn{display:inline-block;font-family:var(--ff-b);font-weight:700;border-radius:10px;transition:all .25s;cursor:pointer;border:none;text-align:center}
     .btn-primary{background:var(--gold);color:var(--navy);font-size:15px;padding:13px 28px;box-shadow:0 4px 20px rgba(184,134,11,.35)}
@@ -299,7 +301,7 @@
         <li><a href="#/about" class="nav-link">About</a></li>
         <li><a href="#/connect" class="nav-link">Connect</a></li>
         <li><a href="#/research" class="nav-link">&#128218; Research</a></li>
-        <li><a href="https://rog-access-hub.netlify.app" target="_blank" rel="noopener" class="nav-link" style="background:var(--gold);color:var(--navy)!important;font-weight:700!important;border-radius:8px!important;padding:8px 12px!important">&#128218; Access Hub</a></li>
+        <li><a href="https://rog-access-hub.netlify.app" target="_blank" rel="noopener" class="nav-link nav-hub">&#128218; Access Hub</a></li>
         <li><a href="#/donate" class="nav-link nav-donate">&#10084; Give</a></li>
         <li><a href="#/enroll" class="nav-link nav-enroll">&#10011; Enroll Free</a></li>
       </ul>
@@ -5033,7 +5035,7 @@ function renderDonate(){
     '<div class="donate-header">'+
       '<div class="sec-eyebrow">&#10084; Support the Ministry</div>'+
       '<h1>Give to Reflections of Grace</h1>'+
-      '<p>All six phases are completely free. If this ministry has blessed you, sow a seed to help us reach more people with God\'s Word.</p>'+
+      '<p>All nine phases are completely free. If this ministry has blessed you, sow a seed to help us reach more people with God\'s Word.</p>'+
     '</div>'+
     '<div class="donate-cards">'+
 
@@ -5085,12 +5087,12 @@ function renderEnroll(){
       '<div class="counter-num">'+cnt+'</div>'+
       '<p class="counter-sub">Join them today &mdash; <strong style="color:#fff">free of charge</strong></p>'+
     '</div>'+
-    '<div class="enroll-hdr"><span class="sec-eyebrow">&#10011; Free Enrollment</span><h1>Enroll in the Bible Studies Training Portal</h1><p>Six phases. Eighteen weeks. Free. No payment required to enroll or access any content.</p></div>'+
+    '<div class="enroll-hdr"><span class="sec-eyebrow">&#10011; Free Enrollment</span><h1>Enroll in the Bible Studies Training Portal</h1><p>Nine phases. Eighteen weeks. Free. No payment required to enroll or access any content.</p></div>'+
     (enrolled?
       '<div style="background:var(--green-lt);border:2px solid var(--green);border-radius:14px;padding:26px;text-align:center;margin-bottom:18px">'+
         '<div style="font-size:38px;margin-bottom:9px">&#10003;</div>'+
         '<h2 style="font-family:var(--ff-d);color:var(--green);margin-bottom:7px">You\'re already enrolled!</h2>'+
-        '<p style="color:var(--gray3);font-size:14px;line-height:1.7;margin-bottom:14px">All six phases are open and available to you. God bless your studies!</p>'+
+        '<p style="color:var(--gray3);font-size:14px;line-height:1.7;margin-bottom:14px">All nine phases are open and available to you. God bless your studies!</p>'+
         '<div style="display:flex;gap:9px;justify-content:center;flex-wrap:wrap">'+
           '<a href="#/phases" class="btn btn-navy">&#9654; Start Learning</a>'+
           '<a href="#/donate" class="btn btn-green">&#10084; Support the Ministry</a>'+
@@ -5239,40 +5241,50 @@ function renderResearch(){
   const activeFilter = window._resFilter || 'all';
   view.innerHTML='<div class="res-page">'+
     '<div class="res-hero">'+
-      '<div class="sec-eyebrow" style="color:rgba(255,255,255,.55)">&#128218; Reference Library &amp; Research Hub</div>'+
-      '<h1>Research, Resources &amp; Further Study</h1>'+
-      '<p>Scholarly journals, biblical references, extra-biblical readings, YouTube teachings, and research linked phase-by-phase to the books of Thomas E. Walker. Every resource is mapped to a specific phase, module, and topic of discussion.</p>'+
-      '<div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:18px 22px;margin-bottom:18px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">'+
-        '<div style="flex:1;min-width:220px">'+
-          '<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:5px">&#128218; Book Curriculum &amp; Complete Access Hub</div>'+
-          '<div style="font-size:14px;color:rgba(255,255,255,.85);line-height:1.6">All 6 phases, all 36 units, 3 book curricula, 22 chapters, 88 quiz questions, and every link &mdash; one page.</div>'+
+      '<div style="max-width:1100px;margin:0 auto;padding:56px 24px 44px;text-align:center">'+
+        '<div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px">'+
+          '<button onclick="window.location.hash=\'#/\'" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:12px;font-weight:700;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:var(--ff-b)">&#8592; Home</button>'+
+          '<a href="https://reflectionsofgraceministryportal.netlify.app/" target="_blank" rel="noopener" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:12px;font-weight:700;padding:6px 14px;border-radius:8px;text-decoration:none">&#127968; Ministry Home</a>'+
         '</div>'+
-        '<a href="https://rog-access-hub.netlify.app" target="_blank" rel="noopener" style="display:inline-block;padding:11px 22px;background:var(--gold);color:var(--navy);font-weight:700;font-size:14px;border-radius:9px;white-space:nowrap;flex-shrink:0">&#128218; Open Access Hub &#8594;</a>'+
-      '</div>'+
-      '<div class="res-phase-pills">'+
-        '<button class="res-pill '+(activeFilter==='all'?'active':'')+'" style="background:var(--navy);color:#fff;border-color:var(--gold)" onclick="filterRes(\'all\')">All Phases</button>'+
-        RES_PHASES.map(p=>'<button class="res-pill '+(activeFilter===p.id?'active':'')+'" style="background:'+p.color+';color:#fff" onclick="filterRes(\''+p.id+'\')">'+p.num+' &bull; '+p.shortTitle+'</button>').join('')+
+        '<div class="sec-eyebrow" style="color:rgba(255,255,255,.55)">&#128218; Reference Library &amp; Research Hub</div>'+
+        '<h1 style="font-family:var(--ff-d);font-size:clamp(24px,4vw,42px);color:#fff;font-weight:700;margin-bottom:10px">Research, Resources &amp; Further Study</h1>'+
+        '<p style="font-size:15px;color:rgba(255,255,255,.7);max-width:640px;margin:0 auto 20px;line-height:1.8">Scholarly journals, biblical references, Ancient Near East history, extra-biblical readings, YouTube teachings, and research — all nine phases with connections to biblical history and modern society.</p>'+
+
+        // Access Hub banner
+        '<div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:16px 22px;margin-bottom:20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;text-align:left">'+
+          '<div style="flex:1;min-width:220px">'+
+            '<div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-lt,#F5C518);margin-bottom:4px">&#128218; Book Curriculum &amp; Complete Access Hub</div>'+
+            '<div style="font-size:14px;color:rgba(255,255,255,.85);line-height:1.6">All 9 phases, 3 book curricula (Denise Ford-Walker &amp; McMinn), 88 quizzes, 66 discussions, and every resource in one place.</div>'+
+          '</div>'+
+          '<a href="https://rog-access-hub.netlify.app" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:linear-gradient(135deg,var(--gold),#d4a012);color:var(--navy);font-weight:700;font-size:14px;border-radius:9px;text-decoration:none;white-space:nowrap;flex-shrink:0;box-shadow:0 3px 12px rgba(184,134,11,.4)">&#128218; Open Access Hub &#8594;</a>'+
+        '</div>'+
+
+        // Phase filter pills
+        '<div class="res-phase-pills">'+
+          '<button class="res-pill '+(activeFilter==='all'?'active':'')+'" style="background:var(--navy);color:#fff;border-color:var(--gold)" onclick="filterRes(\'all\')">All Phases</button>'+
+          RES_PHASES.map(p=>'<button class="res-pill '+(activeFilter===p.id?'active':'')+'" style="background:'+p.color+';color:#fff" onclick="filterRes(\''+p.id+'\')">'+p.num+' &bull; '+p.shortTitle+'</button>').join('')+
+        '</div>'+
       '</div>'+
     '</div>'+
     '<div class="res-body">'+
 
-      /* Walker Books Banner */
+      // Walker/Denise Books Banner
       '<div style="margin-bottom:28px">'+
-        '<div class="sec-eyebrow" style="margin-bottom:10px">&#10011; Core Texts by Thomas E. Walker &mdash; Mapped to Each Phase</div>'+
+        '<div class="sec-eyebrow" style="margin-bottom:10px">&#10011; Core Texts — Mapped to Each Phase</div>'+
         '<div class="walker-books-banner">'+
           RES_PHASES.filter(p=>p.walkerBook).map(p=>
             '<div class="walker-book-card">'+
               '<div class="phase-tag">Phase '+p.num+'</div>'+
               '<h4>'+p.walkerBook.title+'</h4>'+
               '<p>'+p.walkerBook.desc+'</p>'+
-              (p.walkerBook.audioUrl?'<a href="'+p.walkerBook.audioUrl+'" target="_blank" rel="noopener" class="btn btn-purple btn-sm" style="display:inline-block">&#127911; Audiobook &rarr;</a>':'')+''+
-              (p.walkerBook.amazonUrl?'<a href="'+p.walkerBook.amazonUrl+'" target="_blank" rel="noopener" class="btn btn-soft btn-sm" style="display:inline-block;margin-left:6px">&#128214; Buy &rarr;</a>':'')+''+
+              (p.walkerBook.audioUrl?'<a href="'+p.walkerBook.audioUrl+'" target="_blank" rel="noopener" style="display:inline-block;padding:5px 12px;background:rgba(184,134,11,.3);color:var(--gold-lt,#F5C518);font-size:11px;font-weight:700;border-radius:6px;text-decoration:none;margin-right:6px">&#127911; Listen</a>':'')+
+              (p.walkerBook.amazonUrl?'<a href="'+p.walkerBook.amazonUrl+'" target="_blank" rel="noopener" style="display:inline-block;padding:5px 12px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);font-size:11px;font-weight:700;border-radius:6px;text-decoration:none">&#128214; Buy</a>':'')+
             '</div>'
           ).join('')+
         '</div>'+
       '</div>'+
 
-      /* Phase blocks */
+      // Phase accordions
       RES_PHASES.filter(p=>activeFilter==='all'||activeFilter===p.id).map(p=>
         '<div class="res-phase-block" id="res-'+p.id+'">'+
           '<div class="res-phase-hdr" style="background:'+p.color+'">'+
@@ -5281,7 +5293,7 @@ function renderResearch(){
               '<div class="res-phase-title">'+p.title+'</div>'+
               '<div class="res-phase-sub">'+p.sub+'</div>'+
             '</div>'+
-            (p.walkerBook?'<div class="res-walker-badge">&#128216; '+p.walkerBook.shortTitle+'</div>':'')+
+            '<button onclick="window.location.hash=\'#/phase/'+p.id+'\'" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:7px;cursor:pointer;white-space:nowrap;font-family:var(--ff-b);margin-left:auto;position:relative;z-index:1">&#9654; Study Phase</button>'+
           '</div>'+
           p.modules.map((m,mi)=>
             '<div class="res-module">'+
@@ -5293,29 +5305,81 @@ function renderResearch(){
               '<div class="res-module-body" id="body-'+p.id+'-'+mi+'">'+
                 '<div class="res-scripture">&ldquo;'+m.scripture.text+'&rdquo;<cite>&mdash; '+m.scripture.ref+'</cite></div>'+
                 '<div class="res-cols">'+
-                  /* Col 1: Walker + Biblical */
                   '<div class="res-col">'+
                     '<div class="res-col-label" style="color:var(--navy)">&#10011; Biblical &amp; Walker Foundation</div>'+
-                    m.biblical.map(r=>'<div class="res-card"><div class="res-card-icon">'+r.icon+'</div><div class="res-card-title">'+r.title+'</div><div class="res-card-meta">'+r.meta+'</div>'+r.tags.map(t=>'<span class="res-card-tag '+t.cls+'">'+t.label+'</span>').join('')+(r.url?'<div style="margin-top:6px"><a href="'+r.url+'" target="_blank" rel="noopener" style="font-size:11px;color:var(--navy);font-weight:700">Access &rarr;</a></div>':'')+'</div>').join('')+
+                    m.biblical.map(r=>'<div class="res-card"><div class="res-card-icon">'+r.icon+'</div><div class="res-card-title">'+r.title+'</div><div class="res-card-meta">'+r.meta+'</div>'+r.tags.map(t=>'<span class="res-card-tag '+t.cls+'">'+t.label+'</span>').join('')+(r.url?'<div style="margin-top:6px"><a href="'+r.url+'" target="_blank" rel="noopener" style="font-size:11px;color:var(--navy);font-weight:700">Access &#8594;</a></div>':'')+'</div>').join('')+
                   '</div>'+
-                  /* Col 2: Scholarly */
                   '<div class="res-col">'+
                     '<div class="res-col-label" style="color:#4A148C">&#128220; Scholarly &amp; Extra-Biblical</div>'+
-                    m.scholarly.map(r=>'<div class="res-card"><div class="res-card-icon">'+r.icon+'</div><div class="res-card-title">'+r.title+'</div><div class="res-card-meta">'+r.meta+'</div>'+r.tags.map(t=>'<span class="res-card-tag '+t.cls+'">'+t.label+'</span>').join('')+(r.url?'<div style="margin-top:6px"><a href="'+r.url+'" target="_blank" rel="noopener" style="font-size:11px;color:var(--navy);font-weight:700">Access &rarr;</a></div>':'')+'</div>').join('')+
+                    m.scholarly.map(r=>'<div class="res-card"><div class="res-card-icon">'+r.icon+'</div><div class="res-card-title">'+r.title+'</div><div class="res-card-meta">'+r.meta+'</div>'+r.tags.map(t=>'<span class="res-card-tag '+t.cls+'">'+t.label+'</span>').join('')+(r.url?'<div style="margin-top:6px"><a href="'+r.url+'" target="_blank" rel="noopener" style="font-size:11px;color:var(--navy);font-weight:700">Access &#8594;</a></div>':'')+'</div>').join('')+
                   '</div>'+
-                  /* Col 3: Video & Social */
                   '<div class="res-col">'+
                     '<div class="res-col-label" style="color:#1B5E20">&#9654;&#65039; Videos &amp; Social Media</div>'+
-                    m.videos.map(r=>'<div class="res-card"><div class="res-card-icon">'+r.icon+'</div><div class="res-card-title">'+r.title+'</div><div class="res-card-meta">'+r.meta+'</div>'+r.tags.map(t=>'<span class="res-card-tag '+t.cls+'">'+t.label+'</span>').join('')+(r.url?'<div style="margin-top:6px"><a href="'+r.url+'" target="_blank" rel="noopener" style="font-size:11px;color:var(--navy);font-weight:700">Watch &rarr;</a></div>':'')+'</div>').join('')+
+                    m.videos.map(r=>'<div class="res-card"><div class="res-card-icon">'+r.icon+'</div><div class="res-card-title">'+r.title+'</div><div class="res-card-meta">'+r.meta+'</div>'+r.tags.map(t=>'<span class="res-card-tag '+t.cls+'">'+t.label+'</span>').join('')+(r.url?'<div style="margin-top:6px"><a href="'+r.url+'" target="_blank" rel="noopener" style="font-size:11px;color:var(--navy);font-weight:700">Watch &#8594;</a></div>':'')+'</div>').join('')+
                   '</div>'+
                 '</div>'+
+                '<button onclick="window.location.hash=\'#/phase/'+p.id+'\'" style="margin-top:14px;padding:8px 18px;background:'+p.color+';color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--ff-b)">&#9654; Open Phase '+p.num+' Lessons</button>'+
               '</div>'+
             '</div>'
           ).join('')+
         '</div>'
       ).join('')+
 
+      // ANE & Modern Society Section
+      '<div style="background:var(--white);border-radius:var(--radius);border:1px solid var(--gray2);padding:28px;margin-bottom:28px">'+
+        '<div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">&#127981; Ancient Near East Biblical History</div>'+
+        '<div style="font-family:var(--ff-d);font-size:20px;color:var(--navy);font-weight:700;margin-bottom:12px">How Biblical History Connects to the Ancient Near East</div>'+
+        '<p style="font-size:14px;color:var(--text);line-height:1.8;margin-bottom:16px">Every phase of this curriculum is rooted in real history. The Bible did not emerge in a vacuum — it was written within, and often against the backdrop of, the great civilizations of the Ancient Near East: Egypt, Babylon, Assyria, Persia, and Canaan. Understanding that context transforms your reading of Scripture from ancient story to living revelation.</p>'+
+        '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-bottom:18px">'+
+          aneCard('Mesopotamian Creation & Flood Texts','The Enuma Elish (Babylonian creation epic, c. 1700 BCE) and Gilgamesh Epic (flood narrative) provide the cultural backdrop for Genesis 1-11. Biblical revelation reframes these narratives: creation is by a personal God who calls it good; the flood is judgment with redemptive purpose.','#1B3A6B','https://archive.org/search?query=enuma+elish+creation+epic')+
+          aneCard('Suzerainty Covenant Treaties (Hittites, c. 1400 BCE)','The structure of biblical covenants — especially Deuteronomy — mirrors Hittite suzerainty treaties exactly: preamble, historical prologue, stipulations, blessings/curses. God used the most solemn legal form of the ancient world to bind Himself to His people. Directly connects to Phase 08 (Holding On — covenant faithfulness).','#0F5F5F','https://archive.org/search?query=hittite+suzerainty+treaty+covenant')+
+          aneCard('Egyptian Wisdom Literature & Proverbs','Egyptian wisdom texts (Instruction of Amenemope, c. 1200 BCE) have direct parallels in Proverbs 22:17-24:22. Biblical wisdom both engages and transforms surrounding culture. Connects to Phases 01 (Biblical Foundations) and 03 (Christian Counseling).','#B8860B','https://archive.org/search?query=instruction+amenemope+egyptian+wisdom')+
+          aneCard('Babylonian Exile & Psalms of Lament','The Babylonian exile (597-539 BCE) is the historical context for the Psalms of lament, Isaiah 40-55, Daniel, and Ezekiel. Understanding displacement, cultural pressure, and identity crisis in ancient Babylon illuminates Phase 05 (Church Issues) and Phase 06 (Generation X) themes.','#7B1A1A','https://archive.org/search?query=babylonian+exile+psalms+lament')+
+          aneCard('Intertestamental Period & Second Temple Judaism','The 400 years between Malachi and Matthew (Persian → Greek → Roman rule) shaped the Judaism Jesus entered. Understanding Pharisees, Sadducees, apocalypticism, and diaspora communities explains why Generation X\'s departure (Phase 06) has deep historical precedent.','#4A148C','https://archive.org/search?query=second+temple+judaism+intertestamental')+
+          aneCard('Ancient Near East Healing & Integration','Egyptian physicians (Edwin Smith Papyrus) and Mesopotamian healing priests combined empirical medicine with prayer ritual — directly anticipating McMinn\'s integration model (Phase 09). The ancient world knew what modernity is rediscovering: healing requires the whole person.','#7B1A3A','https://archive.org/search?query=ancient+egypt+medicine+healing'),
+        '</div>'+
+        '<div style="font-size:13px;color:var(--gray3);line-height:1.7;font-style:italic">Key ANE reference texts: John Walton — <em>The Lost World of Genesis One</em>; Kenneth Kitchen — <em>On the Reliability of the Old Testament</em>; James Pritchard — <em>Ancient Near Eastern Texts</em> (ANET); Victor Matthews — <em>Old Testament: Its Background, Growth, and Content</em>.</div>'+
+      '</div>'+
+
+      // Modern Society Section
+      '<div style="background:var(--white);border-radius:var(--radius);border:1px solid var(--gray2);padding:28px;margin-bottom:48px">'+
+        '<div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">&#127758; Modern Society Connections</div>'+
+        '<div style="font-family:var(--ff-d);font-size:20px;color:var(--navy);font-weight:700;margin-bottom:12px">How This Curriculum Addresses Modern Society</div>'+
+        '<p style="font-size:14px;color:var(--text);line-height:1.8;margin-bottom:16px">Every phase speaks directly to contemporary challenges. The Gospel is not ancient history — it is the answer to the defining crises of the 21st century.</p>'+
+        '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">'+
+          modernCard('The Crisis of Belonging (Phases 01-02)','28-34% of Americans now claim no religious affiliation (Pew 2023). The Vacuum Effect (Phase 02) explains exactly how this happened — and what fills the void when faith communities collapse.','#1B3A6B','https://www.pewresearch.org/religion/')+
+          modernCard('Mental Health & Faith (Phase 03, 09)','1 in 5 Americans experiences a mental health condition annually. McMinn\'s integration model (Phase 09) equips counselors and ministers to meet this crisis with both clinical competence and spiritual depth.','#B8860B','https://www.nimh.nih.gov/')+
+          modernCard('Generational Faith Collapse (Phase 06)','Gen X\'s departure created the largest religiously unaffiliated generation in American history. The principles in Phase 06 directly address TikTok deconstruction culture and the church\'s response.','#4A148C','https://www.pewresearch.org/religion/2023/11/09/religious-nones-in-america/')+
+          modernCard('Prayer & Resilience Research (Phase 07)','Johns Hopkins and Duke University research confirms that regular prayer is one of the strongest predictors of resilience, community trust, and recovery from trauma in modern populations.','#1B3A6B','https://www.pewresearch.org/')+
+          modernCard('Perseverance & Grit in Modern Culture (Phase 08)','Angela Duckworth\'s research on grit mirrors Phase 08\'s theology of persevering faith — holding on through opposition produces character that cannot be developed any other way.','#0F5F5F','')+
+          modernCard('Forgiveness and Community Healing (Phase 09)','Post-conflict societies (South Africa\'s Truth & Reconciliation Commission, Rwanda\'s Gacaca courts) demonstrate that Worthington\'s REACH model is not merely clinical — it is the key to communal restoration.','#7B1A3A','https://www.evworthington-forgiveness.com/'),
+        '</div>'+
+      '</div>'+
+
+      // Back / Home navigation
+      '<div style="text-align:center;padding-bottom:48px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'+
+        '<button onclick="window.location.hash=\'#/\'" class="btn btn-navy">&#8592; Back to All Phases</button>'+
+        '<a href="https://reflectionsofgraceministryportal.netlify.app/" target="_blank" rel="noopener" class="btn btn-soft">&#127968; Ministry Home</a>'+
+        '<a href="https://rog-access-hub.netlify.app" target="_blank" rel="noopener" style="display:inline-block;padding:10px 20px;background:linear-gradient(135deg,var(--gold),#d4a012);color:var(--navy);font-weight:700;font-size:13px;border-radius:9px;text-decoration:none;box-shadow:0 3px 10px rgba(184,134,11,.35)">&#128218; Open Access Hub</a>'+
+      '</div>'+
+
     '</div>'+
+  '</div>';
+}
+
+function aneCard(title, desc, color, url){
+  return '<div style="background:var(--gray1);border-radius:10px;border:1px solid var(--gray2);padding:14px 16px;border-left:4px solid '+color+'">'+
+    '<div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px;line-height:1.35">'+title+'</div>'+
+    '<div style="font-size:12px;color:var(--text);line-height:1.6;margin-bottom:8px">'+desc+'</div>'+
+    (url?'<a href="'+url+'" target="_blank" rel="noopener" style="font-size:11px;color:'+color+';font-weight:700">Explore &#8594;</a>':'')+
+  '</div>';
+}
+
+function modernCard(title, desc, color, url){
+  return '<div style="background:var(--gray1);border-radius:10px;border:1px solid var(--gray2);padding:14px 16px;border-top:3px solid '+color+'">'+
+    '<div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px;line-height:1.35">'+title+'</div>'+
+    '<div style="font-size:12px;color:var(--text);line-height:1.6;margin-bottom:8px">'+desc+'</div>'+
+    (url?'<a href="'+url+'" target="_blank" rel="noopener" style="font-size:11px;color:'+color+';font-weight:700">Read More &#8594;</a>':'')+
   '</div>';
 }
 
@@ -5714,6 +5778,156 @@ const RES_PHASES=[
     },
   ]
 },
+,{
+  id:'phase07',num:'07',color:'#1B3A6B',shortTitle:'Prayer',
+  title:'Praying to Know Him, Praying From My Soul',
+  sub:'Denise Ford-Walker — A Life of Prayer',
+  walkerBook:{
+    title:'Praying to Know Him, Praying From My Soul',
+    shortTitle:'Praying to Know Him',
+    desc:'Denise Ford-Walker leads believers from the first cry of the soul into deep, sustained communion with God — through intercession, warfare, fasting, and wordless prayer.',
+    audioUrl:'https://open.spotify.com/show/0txwnSLF5SfFThBQzxFXNf',
+    amazonUrl:'https://www.amazon.com/Denise-P.-Ford/e/B08WQ7PY8N'
+  },
+  modules:[
+    {
+      num:'7.1',title:'The Soul\'s Cry and the Discipline of Prayer',sub:'From Longing to Intimacy with God',
+      scripture:{text:'As the deer pants for the water brooks, so pants my soul for You, O God.',ref:'Psalm 42:1 NKJV'},
+      biblical:[
+        {icon:'📖',title:'Psalm 42 & 63 — Soul Thirst',meta:'The foundational OT texts on prayer as spiritual longing — ancient Near Eastern lament genre.',tags:[{cls:'tag-bible',label:'Scripture'}],url:''},
+        {icon:'📚',title:'Praying to Know Him — Denise Ford-Walker',meta:'Core text. Chapter 1 — The Cry of the Soul.',tags:[{cls:'tag-book',label:'Book'}],url:'https://www.amazon.com/Denise-P.-Ford/e/B08WQ7PY8N'},
+        {icon:'📄',title:'Ancient Near East: Mesopotamian Prayer Texts',meta:'Sumerian and Akkadian lament prayers (c. 2000 BCE) show the universal human cry to the divine — biblical lament stands in this tradition and transforms it.',tags:[{cls:'tag-article',label:'ANE'}],url:'https://archive.org/search?query=mesopotamian+prayer+ancient+near+east'},
+      ],
+      scholarly:[
+        {icon:'📄',title:'The Soul of Prayer — P.T. Forsyth',meta:'Classic evangelical theology of prayer as the supreme activity of the regenerate soul.',tags:[{cls:'tag-book',label:'Classic'}],url:'https://archive.org/search?query=soul+of+prayer+forsyth'},
+        {icon:'📄',title:'Prayer: Does It Make Any Difference? — Philip Yancey',meta:'Accessible scholarly study of prayer across traditions — widely used in lay ministry.',tags:[{cls:'tag-book',label:'Scholarly'}],url:''},
+        {icon:'📄',title:'Journal of Spiritual Formation & Soul Care — Biola',meta:'Peer-reviewed research on prayer, longing, and spiritual formation.',tags:[{cls:'tag-article',label:'Journal'}],url:'https://journals.sagepub.com/home/jsc'},
+      ],
+      videos:[
+        {icon:'▶️',title:'Walking with Denise Ford-Walker — YouTube',meta:'Devotional teaching from the author on prayer and spiritual longing.',tags:[{cls:'tag-video',label:'YouTube'}],url:'https://www.youtube.com/@walkingwithdenisefordwalker'},
+        {icon:'▶️',title:'Reflections of Grace — Prayer Teaching',meta:'Thomas Walker on the theology and practice of prayer.',tags:[{cls:'tag-video',label:'YouTube'}],url:'https://www.youtube.com/@reflectionsofgraceoutreach633'},
+        {icon:'🎵',title:'Denise Ford-Walker — Spotify',meta:'Inspirational melodies as expressions of prayerful worship.',tags:[{cls:'tag-video',label:'Music'}],url:'https://open.spotify.com/show/0txwnSLF5SfFThBQzxFXNf'},
+      ]
+    },
+    {
+      num:'7.2',title:'Intercession, Warfare, and Fasting',sub:'The Active Dimensions of a Prayer Life',
+      scripture:{text:'Praying always with all prayer and supplication in the Spirit, being watchful to this end with all perseverance.',ref:'Ephesians 6:18 NKJV'},
+      biblical:[
+        {icon:'📖',title:'Ephesians 6:10-18 — The Full Armor and Prayer',meta:'Paul\'s warfare passage climaxes in prayer — the armor is activated through intercession.',tags:[{cls:'tag-bible',label:'Scripture'}],url:''},
+        {icon:'📄',title:'Ancient Near East: Ritual Fasting in Egypt and Mesopotamia',meta:'Fasting as spiritual preparation appears across ancient cultures — biblical fasting reframes it as intimacy with YHWH rather than appeasement of deities.',tags:[{cls:'tag-article',label:'ANE'}],url:'https://archive.org/search?query=fasting+ancient+near+east+ritual'},
+        {icon:'📚',title:'Praying to Know Him — Ford-Walker: Chapters 5-7',meta:'Intercession, spiritual warfare, and fasting as integrated prayer disciplines.',tags:[{cls:'tag-book',label:'Book'}],url:'https://www.amazon.com/Denise-P.-Ford/e/B08WQ7PY8N'},
+      ],
+      scholarly:[
+        {icon:'📄',title:'Intercessory Prayer — Dutch Sheets',meta:'Widely-used practical guide to the ministry of intercession.',tags:[{cls:'tag-book',label:'Extra-Biblical'}],url:''},
+        {icon:'📄',title:'Spiritual Warfare — Clinton Arnold',meta:'Scholarly Ephesians 6 commentary on principalities and prayer warfare.',tags:[{cls:'tag-book',label:'Scholarly'}],url:''},
+        {icon:'📄',title:'Modern Relevance: How Prayer Shapes Community Resilience',meta:'Research on prayer, social cohesion, and community mental health outcomes in contemporary society.',tags:[{cls:'tag-article',label:'Modern'}],url:'https://www.pewresearch.org/religion/'},
+      ],
+      videos:[
+        {icon:'▶️',title:'Walking with Denise Ford-Walker — Intercession Teaching',meta:'Denise Ford-Walker on carrying others to God in prayer.',tags:[{cls:'tag-video',label:'YouTube'}],url:'https://www.youtube.com/@walkingwithdenisefordwalker'},
+        {icon:'▶️',title:'Reflections of Grace — Spiritual Warfare',meta:'Thomas Walker on the armor of God and warfare prayer.',tags:[{cls:'tag-video',label:'YouTube'}],url:'https://www.youtube.com/@reflectionsofgraceoutreach633'},
+        {icon:'📱',title:'TikTok — @thomaswalker41011',meta:'Short-form teaching on prayer and spiritual authority.',tags:[{cls:'tag-video',label:'TikTok'}],url:'https://www.tiktok.com/@thomaswalker41011'},
+      ]
+    },
+  ]
+},
+{
+  id:'phase08',num:'08',color:'#0F5F5F',shortTitle:'Holding On',
+  title:'Holding On When It Is Destined to Be Yours',
+  sub:'Denise Ford-Walker — Persevering Faith',
+  walkerBook:{
+    title:'Holding On When It Is Destined to Be Yours',
+    shortTitle:'Holding On',
+    desc:'Denise Ford-Walker equips believers with biblical, spiritual, and practical tools for persevering faith through delays, opposition, and exhaustion.',
+    audioUrl:'https://open.spotify.com/show/0txwnSLF5SfFThBQzxFXNf',
+    amazonUrl:'https://www.amazon.com/Denise-P.-Ford/e/B08WQ7PY8N'
+  },
+  modules:[
+    {
+      num:'8.1',title:'The Promise Stands — God\'s Covenant Faithfulness',sub:'Why Holding On Is Anchored in God\'s Character',
+      scripture:{text:'God is not a man, that He should lie, nor a son of man, that He should repent.',ref:'Numbers 23:19 NKJV'},
+      biblical:[
+        {icon:'📖',title:'Numbers 23:19 & 2 Corinthians 1:20',meta:'God\'s immutability and the Yes of all promises in Christ — the theological anchor for holding on.',tags:[{cls:'tag-bible',label:'Scripture'}],url:''},
+        {icon:'📄',title:'Ancient Near East: Covenant Treaties (Suzerainty Treaties)',meta:'Hittite and Mesopotamian covenant structures (c. 1400-1200 BCE) illuminate the biblical covenant form — God binds Himself to His people using the most solemn legal form of the ancient world.',tags:[{cls:'tag-article',label:'ANE'}],url:'https://archive.org/search?query=ancient+near+east+covenant+treaty+hittite'},
+        {icon:'📚',title:'Holding On When It Is Destined to Be Yours — Denise Ford-Walker',meta:'Core text for Phase 08. Chapter 1: The Promise Stands.',tags:[{cls:'tag-book',label:'Book'}],url:'https://www.amazon.com/Denise-P.-Ford/e/B08WQ7PY8N'},
+      ],
+      scholarly:[
+        {icon:'📄',title:'The Promises of God — R.C. Sproul',meta:'Theological study of divine covenant promises and their inviolability.',tags:[{cls:'tag-book',label:'Scholarly'}],url:''},
+        {icon:'📄',title:'Covenant and Creation — W.J. Dumbrell',meta:'Scholarly treatment of covenant as the structural framework of the entire biblical narrative.',tags:[{cls:'tag-book',label:'Scholarly'}],url:''},
+        {icon:'📄',title:'Modern Relevance: Covenant Commitments and Social Trust',meta:'Research on how covenant-based commitments (marriage, community, church membership) build social capital and resilience in modern communities.',tags:[{cls:'tag-article',label:'Modern'}],url:''},
+      ],
+      videos:[
+        {icon:'▶️',title:'Walking with Denise Ford-Walker — YouTube',meta:'Teaching on God\'s faithfulness and persevering faith.',tags:[{cls:'tag-video',label:'YouTube'}],url:'https://www.youtube.com/@walkingwithdenisefordwalker'},
+        {icon:'▶️',title:'Reflections of Grace — Covenant Faithfulness',meta:'Thomas Walker on why God\'s promises cannot fail.',tags:[{cls:'tag-video',label:'YouTube'}],url:'https://www.youtube.com/@reflectionsofgraceoutreach633'},
+        {icon:'🎵',title:'Denise\'s Inspirational Melodies — Spotify',meta:'Songs of covenant faith and persevering hope.',tags:[{cls:'tag-video',label:'Music'}],url:'https://open.spotify.com/show/0txwnSLF5SfFThBQzxFXNf'},
+      ]
+    },
+    {
+      num:'8.2',title:'Opposition, Testimony, and the Moment of Receiving',sub:'Holding On Through Resistance Until Breakthrough',
+      scripture:{text:'And let us not grow weary while doing good, for in due season we shall reap if we do not lose heart.',ref:'Galatians 6:9 NKJV'},
+      biblical:[
+        {icon:'📖',title:'Genesis 37-45 — Joseph\'s 13-Year Delay',meta:'The definitive biblical case study of delay, opposition, and ultimate fulfillment.',tags:[{cls:'tag-bible',label:'Scripture'}],url:''},
+        {icon:'📄',title:'Ancient Near East: The Tale of Sinuhe and Joseph Narrative',meta:'Egyptian literary parallels to the Joseph narrative (c. 1900 BCE) illuminate the historicity and cultural context of the story — a real man in a real world holding on.',tags:[{cls:'tag-article',label:'ANE'}],url:'https://archive.org/search?query=sinuhe+egypt+joseph+ancient+near+east'},
+        {icon:'📚',title:'Holding On — Ford-Walker: Chapters 3, 7-8',meta:'Opposition in the Promised Land, The Testimony Fuel, and The Moment of Receiving.',tags:[{cls:'tag-book',label:'Book'}],url:'https://www.amazon.com/Denise-P.-Ford/e/B08WQ7PY8N'},
+      ],
+      scholarly:[
+        {icon:'📄',title:'Post-Traumatic Growth — Tedeschi & Calhoun',meta:'Peer-reviewed research showing that sustained adversity can produce unexpected growth.',tags:[{cls:'tag-article',label:'Journal'}],url:''},
+        {icon:'📄',title:'Resilience: Hard-Won Wisdom — Eric Greitens',meta:'Research-based framework for building resilience through opposition and setback.',tags:[{cls:'tag-book',label:'Scholarly'}],url:''},
+        {icon:'📄',title:'Modern Relevance: Perseverance and Achievement Research',meta:'Psychology of grit and delayed gratification in modern society — Angela Duckworth\'s work and its implications for faith communities.',tags:[{cls:'tag-article',label:'Modern'}],url:''},
+      ],
+      videos:[
+        {icon:'▶️',title:'Walking with Denise Ford-Walker — Testimony Teaching',meta:'Denise on the power of testimony and holding on through opposition.',tags:[{cls:'tag-video',label:'YouTube'}],url:'https://www.youtube.com/@walkingwithdenisefordwalker'},
+        {icon:'▶️',title:'Reflections of Grace — Persevering Faith',meta:'Thomas Walker on not growing weary in the season of waiting.',tags:[{cls:'tag-video',label:'YouTube'}],url:'https://www.youtube.com/@reflectionsofgraceoutreach633'},
+        {icon:'🎵',title:'Denise\'s Inspirational Melodies — YouTube',meta:'Songs of endurance, testimony, and breakthrough.',tags:[{cls:'tag-video',label:'YouTube'}],url:'https://www.youtube.com/@denisesinspirationalmelodi6408'},
+      ]
+    },
+  ]
+},
+{
+  id:'phase09',num:'09',color:'#7B1A3A',shortTitle:'Counseling',
+  title:'Psychology, Theology & Spirituality in Christian Counseling',
+  sub:'Mark R. McMinn, Ph.D. — Professional Integration',
+  walkerBook:null,
+  modules:[
+    {
+      num:'9.1',title:'Integration, Prayer, and Scripture in Counseling',sub:'The Three-Domain Model in Clinical Practice',
+      scripture:{text:'In whom are hidden all the treasures of wisdom and knowledge.',ref:'Colossians 2:3 NKJV'},
+      biblical:[
+        {icon:'📖',title:'Colossians 2:2-3 & Philippians 4:6-7',meta:'All wisdom is found in Christ; prayer produces peace that guards both heart and mind.',tags:[{cls:'tag-bible',label:'Scripture'}],url:''},
+        {icon:'📄',title:'Ancient Near East: Healing Practices in Egypt and Mesopotamia',meta:'Egyptian physicians (Edwin Smith Papyrus, c. 1600 BCE) and Mesopotamian healing priests combined empirical medicine with ritual prayer — anticipating the integration model McMinn describes.',tags:[{cls:'tag-article',label:'ANE'}],url:'https://archive.org/search?query=ancient+egypt+medicine+healing+papyrus'},
+        {icon:'📚',title:'Psychology, Theology & Spirituality in Christian Counseling — McMinn',meta:'Core text. Chapters 1-3: Integration, Prayer, and Scripture.',tags:[{cls:'tag-book',label:'Core Text'}],url:'https://archive.org/search?query=psychology+theology+spirituality+mcminn'},
+      ],
+      scholarly:[
+        {icon:'📄',title:'Journal of Psychology and Theology — Sage',meta:'The flagship peer-reviewed integration journal.',tags:[{cls:'tag-article',label:'Journal'}],url:'https://journals.sagepub.com/home/ptj'},
+        {icon:'📄',title:'Psychology & Christianity: Five Views — Johnson (Ed.)',meta:'The definitive scholarly debate on integration models.',tags:[{cls:'tag-book',label:'Scholarly'}],url:''},
+        {icon:'📄',title:'Modern Relevance: Mental Health Crisis and the Church\'s Response',meta:'Pew Research 2023 data on mental health, spirituality, and the growing demand for faith-integrated counseling in modern society.',tags:[{cls:'tag-article',label:'Modern'}],url:'https://www.pewresearch.org/religion/'},
+      ],
+      videos:[
+        {icon:'▶️',title:'Reflections of Grace — Integration Teaching',meta:'Thomas Walker on theology, psychology, and whole-person ministry.',tags:[{cls:'tag-video',label:'YouTube'}],url:'https://www.youtube.com/@reflectionsofgraceoutreach633'},
+        {icon:'▶️',title:'CCEF — Soul Care Resources',meta:'Free videos on biblical counseling and integration.',tags:[{cls:'tag-video',label:'Free'}],url:'https://www.ccef.org'},
+        {icon:'📄',title:'JFIC — Open Access Counseling Journal',meta:'Free peer-reviewed integration articles.',tags:[{cls:'tag-video',label:'Free'}],url:'https://jfic.researchcommons.org/'},
+      ]
+    },
+    {
+      num:'9.2',title:'Confession, Forgiveness, and Redemption in Counseling',sub:'The REACH Model and the Counselor as Wounded Healer',
+      scripture:{text:'If anyone is in Christ, he is a new creation; old things have passed away; behold, all things have become new.',ref:'2 Corinthians 5:17 NKJV'},
+      biblical:[
+        {icon:'📖',title:'James 5:16 & Ephesians 4:32',meta:'Confess to one another and be healed; forgive one another as God forgave you.',tags:[{cls:'tag-bible',label:'Scripture'}],url:''},
+        {icon:'📄',title:'Ancient Near East: Confession Rituals in Babylon',meta:'Babylonian penitential psalms (c. 1000 BCE) show the ancient human need for confession and divine forgiveness — the biblical confession texts stand in this tradition, transformed by covenant relationship with YHWH.',tags:[{cls:'tag-article',label:'ANE'}],url:'https://archive.org/search?query=babylonian+penitential+psalms+ancient+near+east'},
+        {icon:'📚',title:'Psychology, Theology & Spirituality — McMinn: Chapters 4-6',meta:'Confession, Forgiveness (REACH model), and Redemption in the counseling relationship.',tags:[{cls:'tag-book',label:'Core Text'}],url:'https://archive.org/search?query=psychology+theology+spirituality+mcminn'},
+      ],
+      scholarly:[
+        {icon:'📄',title:'Worthington\'s REACH Forgiveness Model — Free Resources',meta:'The most widely researched empirical forgiveness model.',tags:[{cls:'tag-article',label:'Scholarly'}],url:'https://www.evworthington-forgiveness.com/'},
+        {icon:'📄',title:'The Wounded Healer — Henri Nouwen',meta:'The defining text on how the counselor\'s processed wounds become instruments of ministry.',tags:[{cls:'tag-book',label:'Classic'}],url:''},
+        {icon:'📄',title:'Modern Relevance: Forgiveness and Community Healing',meta:'Research on forgiveness interventions in post-conflict societies (Truth & Reconciliation models) — how McMinn\'s clinical forgiveness framework applies to communities, not just individuals.',tags:[{cls:'tag-article',label:'Modern'}],url:''},
+      ],
+      videos:[
+        {icon:'▶️',title:'Reflections of Grace — Forgiveness and Redemption',meta:'Walker on forgiveness as a clinical and spiritual intervention.',tags:[{cls:'tag-video',label:'YouTube'}],url:'https://www.youtube.com/@reflectionsofgraceoutreach633'},
+        {icon:'▶️',title:'Walking with Denise Ford-Walker',meta:'Denise on healing, forgiveness, and new creation.',tags:[{cls:'tag-video',label:'YouTube'}],url:'https://www.youtube.com/@walkingwithdenisefordwalker'},
+        {icon:'📄',title:'JFIC — Confession, Forgiveness, and Counseling Research',meta:'Free open-access research on forgiveness in faith-based counseling.',tags:[{cls:'tag-video',label:'Free'}],url:'https://jfic.researchcommons.org/'},
+      ]
+    },
+  ]
+}
 ];
 
 
@@ -5731,7 +5945,7 @@ function renderDashboard(){
     '<div class="dash-hero">'+
       '<div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:12px">&#10011; Reflections of Grace Outreach Ministries Inc.</div>'+
       '<h1>Bible Studies Training Portal</h1>'+
-      '<p>Thomas E. Walker, MDiv. &amp; Denise Ford-Walker &middot; Moreno Valley, CA<br>Six phases of free ministry training — click any phase to explore modules and lessons.</p>'+
+      '<p>Thomas E. Walker, MDiv. &amp; Denise Ford-Walker &middot; Moreno Valley, CA<br>Nine phases of free ministry training — click any phase to explore modules and lessons.</p>'+
       '<div class="dash-stats">'+
         '<div class="dash-stat"><div class="dash-stat-n">9</div><div class="dash-stat-l">Phases</div></div>'+
         '<div class="dash-stat"><div class="dash-stat-n">58</div><div class="dash-stat-l">Lessons</div></div>'+
@@ -5743,7 +5957,7 @@ function renderDashboard(){
       '</div>'+
       '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">'+
         '<a href="#/enroll" class="btn btn-primary" style="padding:10px 22px;font-size:14px">&#10011; Enroll Free</a>'+
-        '<a href="https://rog-access-hub.netlify.app" target="_blank" rel="noopener" class="btn" style="background:var(--gold);color:var(--navy);padding:10px 22px;font-size:14px;font-weight:700">&#128218; Access Hub</a>'+
+        '<a href="https://rog-access-hub.netlify.app" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:linear-gradient(135deg,var(--gold),#d4a012);color:var(--navy);font-size:14px;font-weight:700;border-radius:10px;border:none;box-shadow:0 3px 12px rgba(184,134,11,.35);text-decoration:none;transition:all .2s">&#128218; Access Hub &rarr;</a>'+
         '<a href="#/research" class="btn btn-outline" style="padding:10px 22px;font-size:14px">&#128218; Research</a>'+
       '</div>'+
     '</div>'+
@@ -5901,11 +6115,19 @@ function renderUnitDetail(p, idx){
               '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:3px">&#128218; Book Curriculum — Go Deeper</div>'+
               '<div style="font-size:13px;color:var(--text);line-height:1.5">Book '+en.bookLink.book+' &mdash; Chapter: <strong>'+en.bookLink.title+'</strong></div>'+
             '</div>'+
-            '<a href="https://rog-access-hub.netlify.app" target="_blank" rel="noopener" style="display:inline-block;padding:9px 18px;background:'+( bookColors[en.bookLink.book] || '#1B3A6B')+';color:#fff;font-weight:700;font-size:13px;border-radius:8px;white-space:nowrap;text-decoration:none;flex-shrink:0">Open in Access Hub &rarr;</a>'+
+            '<a href="https://rog-access-hub.netlify.app" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:linear-gradient(135deg,\'+( bookColors[en.bookLink.book] || \'#1B3A6B\')+\',\'+( bookColors[en.bookLink.book] || \'#0d2245\')+\');color:#fff;font-weight:700;font-size:13px;border-radius:9px;white-space:nowrap;text-decoration:none;flex-shrink:0;box-shadow:0 3px 10px rgba(0,0,0,.25)">&#128218; Open in Access Hub &rarr;</a>'+
           '</div>';
       }
     }
 
+    // Access Hub prominent callout
+    tabContent += '<div style="margin-top:20px;background:linear-gradient(135deg,var(--navy),#1a0a3a);border-radius:12px;padding:18px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">'+
+      '<div style="flex:1;min-width:200px">'+
+        '<div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-lt,#F5C518);margin-bottom:5px">&#128218; Full Access Hub — All 9 Phases &amp; Book Curriculum</div>'+
+        '<div style="font-size:14px;color:rgba(255,255,255,.8);line-height:1.55">Quizzes, discussions, biblical &amp; scholarly resources, and all 3 book curricula in one place.</div>'+
+      '</div>'+
+      '<a href="https://rog-access-hub.netlify.app" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;padding:12px 22px;background:linear-gradient(135deg,var(--gold),#d4a012);color:var(--navy);font-size:13px;font-weight:700;border-radius:9px;white-space:nowrap;flex-shrink:0;text-decoration:none;box-shadow:0 4px 14px rgba(184,134,11,.45)">&#128218; Open Access Hub &#8594;</a>'+
+    '</div>';
     tabContent += extLinksSection(p);
 
   } else if(activeTab === 'quiz'){

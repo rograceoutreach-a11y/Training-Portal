@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Reflections of Grace — Bible Studies Training Portal</title>
+<title>Reflections of Grace — Bible Studies Training Portal v2026.09</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Cormorant+SC:wght@500;600;700&display=swap" rel="stylesheet"/>
@@ -367,7 +367,7 @@
 <body>
 <div id="app">
 <nav class="navbar" id="navbar">
-    <div class="nav-inner">
+    <div class="nav-inner" id="nav-inner-tp"><div class="portal-id training" style="flex-shrink:0">📖 Training Portal</div>
       <div class="nav-brand"><img class="rog-logo" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Reflections of Grace Logo" style="margin-right:6px"/><div class="brand-text"><span class="brand-title">Reflections of Grace</span><span class="brand-sub">Outreach Ministries</span></div></div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle">&#9776;</button>
       <ul class="nav-links" id="navLinks">
@@ -1002,7 +1002,7 @@
           <a href="#/phase/phase13" class="pdc-btn pdc-btn-primary" style="background:#6B2A00">&#9654; Open Phase</a>
           
         
-          <a href="#/research" class="pdc-btn pdc-btn-ghost">📜 Research Archive</a>
+          <a href="#/research" class="pdc-btn pdc-btn-ghost" style="background:rgba(201,146,58,.15);border-color:rgba(201,146,58,.4);color:#E8B96A;font-weight:700">📜 Research Archive &#8594;</a>
         </div>
       </div>
     </div>
@@ -1037,6 +1037,7 @@
       <a href="#/" style="color:rgba(253,243,224,.8);font-size:12px;font-weight:600;padding:4px 10px;background:rgba(253,243,224,.06);border:1px solid rgba(253,243,224,.15);border-radius:5px;text-decoration:none">🏠 Dashboard</a>
       <a href="#/phase/phase13" style="color:rgba(253,243,224,.8);font-size:12px;font-weight:600;padding:4px 10px;background:rgba(253,243,224,.06);border:1px solid rgba(253,243,224,.15);border-radius:5px;text-decoration:none">📖 Phase 13</a>
       <a href="#/books" style="color:rgba(253,243,224,.8);font-size:12px;font-weight:600;padding:4px 10px;background:rgba(253,243,224,.06);border:1px solid rgba(253,243,224,.15);border-radius:5px;text-decoration:none">📚 Book Curriculum</a>
+      <a href="https://rog-library.netlify.app" target="_blank" style="color:rgba(253,243,224,.8);font-size:12px;font-weight:600;padding:4px 10px;background:rgba(201,146,58,.12);border:1px solid rgba(201,146,58,.3);border-radius:5px;text-decoration:none">📚 Resource Library</a>
       <a href="https://rog-access-hub.netlify.app" target="_blank" style="color:rgba(253,243,224,.8);font-size:12px;font-weight:600;padding:4px 10px;background:rgba(253,243,224,.06);border:1px solid rgba(253,243,224,.15);border-radius:5px;text-decoration:none">🌐 Access Hub</a>
       <a href="https://github.com/rograceoutreach-a11y" target="_blank" style="color:rgba(253,243,224,.8);font-size:12px;font-weight:600;padding:4px 10px;background:rgba(253,243,224,.06);border:1px solid rgba(253,243,224,.15);border-radius:5px;text-decoration:none">⚙️ GitHub</a>
     </div>
@@ -1079,9 +1080,8 @@
     <p class="footer-author">Thomas E. Walker, MDiv. &amp; Denise Ford-Walker &middot; Moreno Valley, CA &middot; 501c3 Nonprofit</p>
     <p class="footer-copy">&copy; 2026 Reflections of Grace Outreach Ministries, Inc. All rights reserved.</p>
     <nav class="footer-links">
-      <a href="#/">Home</a><a href="#/phases">Phases</a><a href="#/about">About</a>
-      <a href="#/connect">Connect</a><a href="#/research">Research</a><a href="#/donate">Donate</a><a href="#/enroll">Enroll Free</a>
-      <a href="https://reflectionsofgraceministryportal.netlify.app/
+      <a href="#/
+
 <script>
 const S10='https://donate.stripe.com/9B600caNR32e2ne5hR9EI00';
 const S50='https://buy.stripe.com/3cIdR2cVZ0U65zq11B9EI01';
@@ -1099,7 +1099,8 @@ var ROG = {
   sites: {
     training : 'https://reflectionsofgracebiblestudies.netlify.app',
     hub      : 'https://rog-access-hub.netlify.app',
-    ministry : 'https://reflectionsofgraceministryportal.netlify.app'
+    ministry : 'https://reflectionsofgraceministryportal.netlify.app',
+    library  : 'https://rog-library.netlify.app'
   },
   github: {
     org      : 'https://github.com/rograceoutreach-a11y',
@@ -1159,6 +1160,7 @@ var ROG = {
       + bookBtn
       + this.pill('🌐 Access Hub', this.sites.hub,      true)
       + this.pill('⛪ Ministry',   this.sites.ministry,  true)
+      + this.pill('📚 Library',    this.sites.library,   true)
       + this.pill('⚙️ GitHub',     this.github.org,      true)
       +'</div>';
   },
@@ -1181,6 +1183,7 @@ var ROG = {
       +'</div>'
 
       +'<div><div style="font-size:11px;font-weight:700;color:rgba(201,146,58,.9);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px">🌐 Portals</div>'
+      +p('📚 Resource Library ↗', 'https://rog-library.netlify.app', true)
       +p('Access Hub ↗', 'https://rog-access-hub.netlify.app', true)
       +p('Ministry Portal ↗', 'https://reflectionsofgraceministryportal.netlify.app', true)
       +p('Media Links ↗', 'https://rog-access-hub.netlify.app', true)
@@ -1233,6 +1236,8 @@ var ROG = {
       +'<div style="display:flex;flex-wrap:wrap;gap:7px">'
       + self.pill('📖 Research Archive',  '#/research',        false)
       + self.pill('📚 Book Curriculum',   '#/books',           false)
+      + self.pill('📚 Library',           self.sites.library,  true)
+      + self.pill('📚 Library',           self.sites.library,  true)
       + self.pill('🌐 Access Hub',        self.sites.hub,      true)
       + self.pill('⛪ Ministry Portal',   self.sites.ministry, true)
       + self.pill('⚙️ GitHub',           self.github.org,     true)
@@ -1262,8 +1267,13 @@ var ROG = {
     if (book && book.research) {
       html += card(
         label('📜 Research Archive — Phase 13 Galatians')
-        +'<div style="font-size:14px;font-weight:600;color:rgba(253,243,224,.9);margin-bottom:10px">Galatians: Faith, Freedom &amp; Life in the Spirit — Six-Module Study</div>'
+        +'<div style="font-size:14px;font-weight:600;color:rgba(253,243,224,.9);margin-bottom:6px">Galatians: Faith, Freedom &amp; Life in the Spirit</div>'
+        +'<div style="font-size:12px;color:rgba(253,243,224,.55);line-height:1.6;margin-bottom:12px">Six recorded Bible-study sessions covering all six chapters — Scripture, hermeneutics, discussion prompts, review questions, and life application.</div>'
+        +'<div style="display:flex;flex-wrap:wrap;gap:8px">'
         +'<a href="#/research" style="display:inline-block;padding:7px 14px;background:rgba(201,146,58,.85);color:#1a0507;border-radius:7px;font-size:12px;font-weight:700;text-decoration:none">Open Research Archive &#8594;</a>'
+        +'<a href="#/phase/phase13" style="display:inline-block;padding:7px 14px;background:rgba(253,243,224,.08);border:1px solid rgba(253,243,224,.2);color:rgba(253,243,224,.85);border-radius:7px;font-size:12px;font-weight:700;text-decoration:none">Phase 13 Curriculum</a>'
+        +'<a href="https://rog-library.netlify.app" target="_blank" rel="noopener" style="display:inline-block;padding:7px 14px;background:rgba(107,42,0,.3);border:1px solid rgba(201,146,58,.3);color:rgba(201,146,58,.9);border-radius:7px;font-size:12px;font-weight:700;text-decoration:none">📚 Resource Library &#8599;</a>'
+        +'</div>'
       );
     }
 
@@ -1416,7 +1426,7 @@ function renderDashboard(){
     +'<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">'
     +'<a href="#/enroll" class="btn btn-primary" style="padding:10px 22px">Enroll Free</a>'
     +'<a href="https://rog-library.netlify.app" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:rgba(253,243,224,.08);border:1px solid rgba(253,243,224,.2);color:var(--parchment,#FDF3E0);font-size:15px;font-weight:700;border-radius:10px;text-decoration:none">&#128214; Resource Library &#8599;</a>'+'<a href="https://rog-access-hub.netlify.app" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:linear-gradient(135deg,var(--gold,#C9923A),#d4a012);color:var(--wine-dk,#1a0507);font-size:15px;font-weight:700;border-radius:10px;text-decoration:none">&#128218; Access Hub &#8594;</a>'
-    +'<a href="#/research" class="btn btn-outline" style="padding:10px 22px">&#128218; Research</a>'
+    +'<a href="#/research" style="display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:rgba(201,146,58,.15);border:1.5px solid rgba(201,146,58,.45);color:var(--gold-lt,#E8B96A);font-size:15px;font-weight:700;border-radius:10px;text-decoration:none">&#128214; Research Archive &#8594;</a>'
     +'</div>'
     +'</div>'
     +'<div class="phase-dashboard">';
@@ -8295,7 +8305,8 @@ document.addEventListener('DOMContentLoaded',function(){
   var nl=document.getElementById('navLinks');
   if(nt&&nl){
     nt.addEventListener('click',function(){nl.classList.toggle('open');});
-    nl.addEventListener('click',function(e){if(e.target.tagName==='A'&&!e.target.getAttribute('target'))nl.classList.remove('open');});
+    nl.addEventListener('click',function(e){if(e.target.tagName==='A'&&!e.target.getAttribute('target'))nl.classLis
+t.remove('open');});
   }
   window.addEventListener('scroll',function(){
     var nb=document.getElementById('navbar');
